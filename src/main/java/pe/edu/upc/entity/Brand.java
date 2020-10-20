@@ -1,6 +1,6 @@
 package pe.edu.upc.entity;
 
-import javax.persistence.Column;
+import javax.persistence.Column; 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,12 +10,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name="brands")
 public class Brand {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idBrand;
 	
 	@Column(name = "nameBrand", length = 35, nullable = false)
-	
 	private String nameBrand;
 	public Brand() {
 		super();
@@ -27,6 +27,8 @@ public class Brand {
 		this.idBrand = idBrand;
 		this.nameBrand = nameBrand;
 	}
+	
+	// Get and set
 	public int getIdBrand() {
 		return idBrand;
 	}
