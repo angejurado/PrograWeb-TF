@@ -25,6 +25,7 @@ public class District {
 		this.idDistrict = idDistrict;
 		this.nameDistrict = nameDistrict;
 	}
+	// Get and set
 	public int getIdDistrict() {
 		return idDistrict;
 	}

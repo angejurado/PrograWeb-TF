@@ -34,6 +34,8 @@ public class Card {
 		this.dExpiration = dExpiration;
 		this.cPin = cPin;
 	}
+	
+	// Get and set
 	public int getIdCard() {
 		return idCard;
 	}
