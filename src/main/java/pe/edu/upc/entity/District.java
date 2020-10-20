@@ -20,6 +20,7 @@ public class District {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	// contructor
 	public District(int idDistrict, String nameDistrict) {
 		super();
 		this.idDistrict = idDistrict;
