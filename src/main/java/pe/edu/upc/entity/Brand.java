@@ -42,4 +42,7 @@ public class Brand {
 		this.nameBrand = nameBrand;
 	}
 	
+	
+	//MICHAEL
+	
 }
