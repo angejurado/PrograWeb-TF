@@ -41,7 +41,7 @@
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-leaf"></i>
 				</div>
-				<div class="sidebar-brand-text mx-3">App</div>
+				<div class="sidebar-brand-text mx-3">C-Top</div>
 			</a>
 
 			<!-- Divider -->
@@ -59,6 +59,9 @@
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/brands/list}">Marcas</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/districts/list}">Distritos</a>
 					</div>
 				</div></li>
 
@@ -140,7 +143,7 @@
 							<tr th:each="l: ${listaMarcas}">
 								<td th:text="${l.idBrand}"></td>
 								<td th:text="${l.nameBrand}"></td>
-							
+
 							</tr>
 						</tbody>
 					</table>
