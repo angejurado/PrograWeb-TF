@@ -40,7 +40,7 @@ public class DistrictController {
 		}
 		model.addAttribute("listaDistrict", dS.list());
 		
-		return "/district/listDistrict";
+		return "redirect:/district/listDistrict";
 		
 	}
 	

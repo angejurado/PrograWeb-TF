@@ -40,7 +40,7 @@ public class CardController {
 		}
 		model.addAttribute("listaCard", cS.list());
 		
-		return "/card/listCard";
+		return "redirect:/card/listCard";
 		
 	}
 	
