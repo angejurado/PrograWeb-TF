@@ -40,7 +40,7 @@ public class BrandController {
 		}
 		model.addAttribute("listaBrand", bS.list());
 		
-		return "redirect:/brand/listBrand";
+		return "redirect:/brands/list";
 		
 	}
 	
