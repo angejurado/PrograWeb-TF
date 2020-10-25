@@ -37,11 +37,11 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/brands/index}">
+				th:href="@{/cards/index}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-leaf"></i>
 				</div>
-				<div class="sidebar-brand-text mx-3">C-Top</div>
+				<div class="sidebar-brand-text mx-3">App</div>
 			</a>
 
 			<!-- Divider -->
@@ -57,13 +57,9 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/brands/list}">Marcas</a>
+						<a class="collapse-item" th:href="@{/categories/list}">Categorías</a>
 					</div>
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/districts/list}">Distritos</a>
-					</div>
-						
-					</div></li>
+				</div></li>
 
 
 			<!-- Divider -->
@@ -112,33 +108,58 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Marca</h1>
+					<h1 class="h3 mb-4 text-gray-800">Tarjeta</h1>
 
 					<hr class="sidebar-divider">
-					<div th:object="${brand}" th:remove="tag">
+					<div th:object="${card}" th:remove="tag">
 						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
 							role="alert">
 							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
 						</ul>
 					</div>
 
-					<form th:action="@{/brands/save}" th:object="${brand}"
+					<form th:action="@{/cards/save}" th:object="${card}"
 						method="post">
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Marca</label>
+							<label for="name" class="col-sm-2 col-form-label">Numero de Tarjeta</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{nameBrand}" class="form-control"
+								<input type="text" th:field="*{numCard}"
+									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('nameBrand')}"
-									th:errors="*{nameBrand}"></small>
+									th:if="${#fields.hasErrors('numCard')}"
+									th:errors="*{numCard}"></small>
 							</div>
 						</div>
-
+						
+						<div class="form-group row">
+							<label for="dExpiration" class="col-sm-2 col-form-label">Dia de Expiracion</label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{dExpiration}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('dExpiration')}"
+									th:errors="*{dExpiration}"></small>
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="cPin" class="col-sm-2 col-form-label">Pin</label>
+							<div class="col-sm-6">
+								<input type="text" th:field="*{cPin}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('cPin')}"
+									th:errors="*{cPin}"></small>
+							</div>
+						</div>
+						
 						<div class="form-group row">
 							<div class="col-sm-6">
 								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
-								<a href="/brands/list" class="btn btn-danger">Cancelar</a>
+								<a href="/cards/list" class="btn btn-danger">Cancelar</a>
 							</div>
 						</div>
 						<p th:text="${mensaje}" class="form-text text-danger"></p>
