@@ -31,7 +31,7 @@
 
 		<!-- Sidebar -->
 		<ul
-			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+			class="navbar-nav bg-primary sidebar sidebar-dark accordion"
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
@@ -39,7 +39,7 @@
 				class="sidebar-brand d-flex align-items-center justify-content-center"
 				th:href="@{/brands/index}">
 				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fas fa-leaf"></i>
+					<i class="fab fa-cuttlefish"></i>
 				</div>
 				<div class="sidebar-brand-text mx-3">C-TOP</div>
 			</a>
@@ -65,6 +65,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" th:href="@{/districts/list}">Distritos</a>
                     </div>
+                          
+                   
                 </div></li>
 
 			<!-- Divider -->
@@ -138,8 +140,8 @@
 
 						<div class="form-group row">
 							<div class="col-sm-6">
-								<input type="submit" value="Guardar" class="btn btn-secondary"></input>
-								<a href="/brands/list" class="btn btn-danger">Cancelar</a>
+								<input type="submit" value="Guardar" class="btn btn-dark"></input>
+								<a href="/brands/list"  class="btn btn-danger">Cancelar</a>
 							</div>
 						</div>
 						<p th:text="${mensaje}" class="form-text text-danger"></p>
