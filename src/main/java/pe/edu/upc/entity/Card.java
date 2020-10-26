@@ -20,46 +20,55 @@ public class Card {
 	@Column(name = "dExpiration", length = 45, nullable = false)
 	private String dExpiration;
 	
-	@Column(name = "cPin", length = 55, nullable = false)
-	private String cPin;
+	@Column(name = "codeCard", length = 55, nullable = false)
+	private String codeCard;
 	
 	public Card() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Card(int idCard, String numCard, String dExpiration, String cPin) {
+
+	public Card(int idCard, String numCard, String dExpiration, String codeCard) {
 		super();
 		this.idCard = idCard;
 		this.numCard = numCard;
 		this.dExpiration = dExpiration;
-		this.cPin = cPin;
+		this.codeCard = codeCard;
 	}
-	
-	// Get and set
+
 	public int getIdCard() {
 		return idCard;
 	}
+
 	public void setIdCard(int idCard) {
 		this.idCard = idCard;
 	}
+
 	public String getNumCard() {
 		return numCard;
 	}
+
 	public void setNumCard(String numCard) {
 		this.numCard = numCard;
 	}
+
 	public String getdExpiration() {
 		return dExpiration;
 	}
+
 	public void setdExpiration(String dExpiration) {
 		this.dExpiration = dExpiration;
 	}
-	public String getcPin() {
-		return cPin;
+
+	public String getCodeCard() {
+		return codeCard;
 	}
-	public void setcPin(String cPin) {
-		this.cPin = cPin;
+
+	public void setCodeCard(String codeCard) {
+		this.codeCard = codeCard;
 	}
+	
+	
 	
 	
 }

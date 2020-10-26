@@ -153,14 +153,14 @@
 						</div>
 						
 						<div class="form-group row">
-							<label for="cPin" class="col-sm-2 col-form-label">Pin</label>
+							<label for="cPin" class="col-sm-2 col-form-label">Codigo de seguridad</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{cPin}"
+								<input type="text" th:field="*{codeCard}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('cPin')}"
-									th:errors="*{cPin}"></small>
+									th:if="${#fields.hasErrors('codeCard')}"
+									th:errors="*{codeCard}"></small>
 							</div>
 						</div>
 						
