@@ -22,7 +22,6 @@ public class UserController {
 	@Autowired
 	private IUserService uS;
 	
-	
 	@GetMapping("/new")
 	public String newUser(Model model) {
 		model.addAttribute("user", new User());
@@ -41,7 +40,7 @@ public class UserController {
 		}
 		model.addAttribute("listaBrand", uS.list());
 		
-		return "redirect:/user/list";
+		return "redirect:/users/list";
 		
 	}
 	
