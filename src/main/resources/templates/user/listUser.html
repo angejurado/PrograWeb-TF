@@ -37,7 +37,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/cards/list}">
+				th:href="@{/districts/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fab fa-cuttlefish"></i>
 				</div>
@@ -70,6 +70,7 @@
                         <a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
                     </div>
                 </div></li>
+
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
@@ -130,9 +131,9 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Tarjeta</h1>
+					<h1 class="h3 mb-4 text-gray-800">Usuarios</h1>
 
-					<a th:href="@{/cards/new/}" class="btn btn-success btn-xs">Nuevo</a>
+					<a th:href="@{/users/new/}" class="btn btn-success btn-xs">Nuevo</a>
 
 					<hr class="sidebar-divider">
 
@@ -140,18 +141,19 @@
 						<thead class="thead-dark">
 							<tr>
 								<th scope="col">Id</th>
-								<th scope="col">Numero de la tarjeta</th>
-								<th scope="col">Dia de Expiración</th>
-								<th scope="col">Pin</th>
+								<th scope="col">Usuario</th>
+								<th scope="col">Email</th>
+								<th scope="col">Celular</th>
+								<th scope="col">Tipo</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="l: ${listaTarjetas}">
-								<td th:text="${l.idCard}"></td>
-								<td th:text="${l.numCard}"></td>
-								<td th:text="${l.dExpiration}"></td>
-								<td th:text="${l.cPin}"></td>
-							
+							<tr th:each="u: ${listaUsuarios}">
+								<td th:text="${u.idUser}"></td>
+								<td th:text="${u.nameUser}"></td>
+								<td th:text="${u.emailUser}"></td>
+								<td th:text="${u.celUser}"></td>
+								<td th:text="${u.typeUser}"></td>
 							</tr>
 						</tbody>
 					</table>
