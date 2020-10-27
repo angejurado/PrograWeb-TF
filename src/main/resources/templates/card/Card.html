@@ -158,7 +158,7 @@
 							<div class="col-sm-6">
 								<select class="form-control" th:field="*{user.idUser}">
 									<option th:each="l: ${listUser}" th:value="${l.idUser}"
-										th:text="${l.nameUser}"
+										th:text="${l.nameUser}" 
 										th:selected="(${l.idUser} == *{user.idUser})"></option>
 								</select>
 							</div>
