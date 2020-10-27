@@ -30,8 +30,7 @@
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<ul
-			class="navbar-nav bg-primary sidebar sidebar-dark accordion"
+		<ul class="navbar-nav bg-primary sidebar sidebar-dark accordion"
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
@@ -54,25 +53,25 @@
 				data-target="#collapseTwo" aria-expanded="false"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
-						<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" th:href="@{/brands/list}">Marcas</a>
-                    </div>
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" th:href="@{/cards/list}">Tarjetas</a>
-                    </div>
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" th:href="@{/districts/list}">Distritos</a>
-                    </div>
-                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
-                      </div>
-                         
-                      	<div class="bg-white py-2 collapse-inner rounded">
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/brands/list}">Marcas</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/cards/list}">Tarjetas</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/districts/list}">Distritos</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
+					</div>
+
+					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/reserves/list}">Reservas</a>
 					</div>
-					
+
 				</div></li>
 
 			<!-- Divider -->
@@ -118,43 +117,124 @@
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
-				<div class="container-fluid">
+				<div id="content">
 
-					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Reserva</h1>
+					<!-- Topbar -->
+					<nav
+						class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-					<hr class="sidebar-divider">
-					<div th:object="${reserve}" th:remove="tag">
-						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
-							role="alert">
-							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+						<!-- Sidebar Toggle (Topbar) -->
+						<button id="sidebarToggleTop"
+							class="btn btn-link d-md-none rounded-circle mr-3">
+							<i class="fa fa-bars"></i>
+						</button>
+
+						<!-- Topbar Search -->
+
+
+						<!-- Topbar Navbar -->
+						<ul class="navbar-nav ml-auto">
+
+							<!-- Nav Item - Search Dropdown (Visible Only XS) -->
+							<li class="nav-item dropdown no-arrow d-sm-none"><a
+								class="nav-link dropdown-toggle" href="#" id="searchDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
+							</a></li>
 						</ul>
+
+					</nav>
+					<!-- End of Topbar -->
+
+					<!-- Begin Page Content -->
+					<div class="container-fluid">
+
+						<!-- Page Heading -->
+						<h1 class="h3 mb-4 text-gray-800">Reservas</h1>
+
+						<hr class="sidebar-divider">
+						<div th:object="${reserve}" th:remove="tag">
+							<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
+								role="alert">
+								<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+							</ul>
+						</div>
+
+						<form th:action="@{/reserves/save}" th:object="${reserve}"
+							method="post">
+							<div class="form-group row">
+								<label for="numPrice" class="col-sm-2 col-form-label">Monto:</label>
+								<div class="col-sm-6">
+									<input type="text" th:field="*{numPrice}" class="form-control"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('numPrice')}"
+										th:errors="*{numPrice}"></small>
+								</div>
+							</div>
+
+
+							<div class="form-group row">
+								<label for="dDate" class="col-sm-2 col-form-label">Fecha:</label>
+								<div class="col-sm-6">
+									<input type="date" th:field="*{dDate}" class="form-control"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('dDate')}" th:errors="*{dDate}"></small>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								&nbsp;&nbsp;&nbsp;<label for="stateReserve">Estado</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<div class="col-sm-6">
+									<select class="form-control" th:field="*{stateReserve}">
+										<option value="1">Pendiente</option>
+										<option value="2">Completado</option>
+									</select>
+								</div>
+							</div>
+
+
+							<div class="form-group row">
+								&nbsp;&nbsp;&nbsp;<label for="card">Tarjeta:</label>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<div class="col-sm-6">
+									<select class="form-control" th:field="*{card.idCard}">
+										<option th:each="l: ${listCard}" th:value="${l.idCard}"
+											th:text="${l.numCard}"
+											th:selected="(${l.idCard} == *{card.idCard})"></option>
+									</select>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								&nbsp;&nbsp;&nbsp;<label for="user">Usuario:</label>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<div class="col-sm-6">
+									<select class="form-control" th:field="*{user.idUser}">
+										<option th:each="l: ${listUser}" th:value="${l.idUser}"
+											th:text="${l.nameUser}"
+											th:selected="(${l.idUser} == *{user.idUser})"></option>
+									</select>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<div class="col-sm-6">
+									<input type="submit" value="Guardar" class="btn btn-dark"></input>
+									<a href="/reserves/list" class="btn btn-danger">Cancelar</a>
+								</div>
+							</div>
+							<p th:text="${mensaje}" class="form-text text-danger"></p>
+
+						</form>
+
+
+
+
 					</div>
-
-					<form th:action="@{/reserves/save}" th:object="${reserve}"
-						method="post">
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Reserva</label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{nameReserve}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('nameReserve')}"
-									th:errors="*{nameReserve}"></small>
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<div class="col-sm-6">
-								<input type="submit" value="Guardar" class="btn btn-dark"></input>
-								<a href="/districts/list" class="btn btn-danger">Cancelar</a>
-							</div>
-						</div>
-						<p th:text="${mensaje}" class="form-text text-danger"></p>
-
-					</form>
-
 
 
 

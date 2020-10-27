@@ -36,7 +36,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/districts/list}">
+				th:href="@{/reserves/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fab fa-cuttlefish"></i>
 				</div>
@@ -132,36 +132,38 @@
 			<!-- End of Topbar -->
 
 			<!-- Begin Page Content -->
-			<div class="container-fluid">
+				<div class="container-fluid">
 
-				<!-- Page Heading -->
-				<h1 class="h3 mb-4 text-gray-800">Reservas</h1>
+					<!-- Page Heading -->
+					<h1 class="h3 mb-4 text-gray-800">Reservas</h1>
 
-				<a th:href="@{/reserves/new/}" class="btn btn-success btn-xs">Nuevo</a>
+					<a th:href="@{/reserves/new/}" class="btn btn-success btn-xs">Nuevo</a>
 
-				<hr class="sidebar-divider">
+					<hr class="sidebar-divider">
 
-				<table class="table table-striped">
-					<thead class="thead-dark">
-						<tr>
-							<th scope="col">Id</th>
-							<th scope="col">Reserva</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="l: ${listaReservas}">
-							<td th:text="${l.idReserve}"></td>
-							<td th:text="${l.nameReserve}"></td>
-						</tr>
-					</tbody>
-				</table>
+					<table class="table table-striped">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">Id</th>
+								<th scope="col">Monto</th>
+								<th scope="col">Fecha</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="l: ${listaReservas}">
+								<td th:text="${l.idReserve}"></td>
+								<td th:text="${l.numPrice}"></td>
+								<td th:text="${l.dDate}"></td>
+							</tr>
+						</tbody>
+					</table>
 
-				<p th:text="${mensaje}"></p>
+					<p th:text="${mensaje}"></p>
+
+				</div>
+				<!-- /.container-fluid -->
 
 			</div>
-			<!-- /.container-fluid -->
-
-		</div>
 		<!-- End of Main Content -->
 
 		<!-- Footer -->

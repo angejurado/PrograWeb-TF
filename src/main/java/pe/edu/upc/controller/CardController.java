@@ -30,9 +30,9 @@ public class CardController {
         model.addAttribute("listUser", uS.list());
         return "card/card";
     }
-	
+      	
 	@PostMapping("/save")
-	public String saveBrand(@Valid Card card, BindingResult result, Model model, 
+	public String saveCard(@Valid Card card, BindingResult result, Model model, 
 			SessionStatus status ) throws Exception {
 		
 		if (result.hasErrors()) {
