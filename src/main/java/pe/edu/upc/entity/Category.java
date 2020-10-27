@@ -15,9 +15,6 @@ public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idCategory;
-	@ManyToOne
-	@JoinColumn(name = "idStore", nullable = false)
-	private Store Store;
 
 	@Column(name = "nameCategory", length = 50, nullable = false)
 	private String nameCategory;
@@ -28,13 +25,11 @@ public class Category {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Category(int idCategory, pe.edu.upc.entity.Store store, String nameCategory) {
-		super();
-		this.idCategory = idCategory;
-		Store = store;
-		this.nameCategory = nameCategory;
+	public Category(int idCategory, String nameCategory) {
+	super();
+	this.idCategory = idCategory;
+	this.nameCategory = nameCategory;
 	}
-	// GET AND SET
 
 	public int getIdCategory() {
 		return idCategory;
@@ -42,14 +37,6 @@ public class Category {
 
 	public void setIdCategory(int idCategory) {
 		this.idCategory = idCategory;
-	}
-
-	public Store getStore() {
-		return Store;
-	}
-
-	public void setStore(Store store) {
-		Store = store;
 	}
 
 	public String getNameCategory() {
@@ -60,4 +47,6 @@ public class Category {
 		this.nameCategory = nameCategory;
 	}
 
+	
+	
 }

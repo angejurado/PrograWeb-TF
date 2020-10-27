@@ -17,7 +17,7 @@ import pe.edu.upc.serviceinterface.ICategoryService;
 @RequestMapping("/categories")
 public class CategoryController {
 	@Autowired
-	private ICategoryService dS;
+	private ICategoryService cS;
 	
 	@GetMapping("/new")
 	public String newLCategory(Model model) {
@@ -30,21 +30,21 @@ public class CategoryController {
 		if(result.hasErrors()) {
 			return "category/category";
 		}else {
-			dS.insert(category);
+			cS.insert(category);
 		}
-		model.addAttribute("listaCategory", dS.list());
+		model.addAttribute("listaCategory", cS.list());
 		return "redirect:/categories/list";
 		}
 	
 	@GetMapping("/list")
 	public String listCategory(Model model) {
 		try {
-			model.addAttribute("listaCategorias",dS.list());
+			model.addAttribute("listaCategorias",cS.list());
 		}catch (Exception e) {
 			//TODO: handle exception
 			System.out.println("Error al listar en el controller");
 		}
-		return "district/listDistrict";
+		return "category/listCategory";
 	}
 
 }

@@ -11,12 +11,12 @@ import pe.edu.upc.serviceinterface.ICategoryService;
 @Service
 public class CategoryServiceImpl implements ICategoryService {
 @Autowired
-private CategoryRepository dR;
+private CategoryRepository cR;
 
 @Override
 public void insert(Category cate) {
 	try {
-		dR.save(cate);
+		cR.save(cate);
 		} catch (Exception e) {
 			System.out.println("Error en el serviceimpl Category");
 
