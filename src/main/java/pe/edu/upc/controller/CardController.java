@@ -1,6 +1,6 @@
 package pe.edu.upc.controller;
 
-import javax.validation.Valid; 
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.entity.Card;
 import pe.edu.upc.serviceinterface.ICardService;
+import pe.edu.upc.serviceinterface.IUserService;
 
 @Controller
 @RequestMapping("/cards")
@@ -20,13 +21,15 @@ public class CardController {
 
 	@Autowired
 	private ICardService cS;
+	@Autowired
+    private IUserService uS;
 	
 	@GetMapping("/new")
-	public String newLBrand(Model model) {
-		model.addAttribute("card", new Card());
-		return "card/card";
-
-	}
+    public String newLBrand(Model model) {
+        model.addAttribute("card", new Card());
+        model.addAttribute("listUser", uS.list());
+        return "card/card";
+    }
 	
 	@PostMapping("/save")
 	public String saveBrand(@Valid Card card, BindingResult result, Model model, 
