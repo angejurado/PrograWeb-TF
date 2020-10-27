@@ -31,4 +31,10 @@ public class UserServiceImpl implements IUserService {
 		return uR.findAll();
 	}
 
+	@Override
+	public List<User> findBynameUser(String nameUser) {
+	
+		return uR.findBynameUser(nameUser);
+	}
+
 }

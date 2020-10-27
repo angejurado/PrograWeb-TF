@@ -8,5 +8,6 @@ public interface IUserService {
 	
 	public void insert(User use);
 	public List<User>list();
+	public List<User>findBynameUser(String nameUser);
 
 }

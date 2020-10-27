@@ -23,8 +23,7 @@ public class User {
 	@Column(name = "emailUser",length = 100, nullable = false)
 	private String emailUser;
 	
-	@Max(value=999999999, message="Ingrese un numero correcto")
-	@Min(value=900000000, message="Ingrese un numero correcto")
+	@Column(name = "celUser",nullable = false)
 	private int celUser;
 	
 	@Column(name="passwordUser", length=20, nullable=false)
