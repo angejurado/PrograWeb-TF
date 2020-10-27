@@ -37,7 +37,7 @@ public class StoreController {
 		return "store/store";
 	}
 
-	@PostMapping("/save<")
+	@PostMapping("/save")
 	public String saveStore(@Valid Store store, BindingResult result, Model model,Model model2, SessionStatus status)
 			throws Exception {
 

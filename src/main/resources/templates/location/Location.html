@@ -56,10 +56,19 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/stores/list}">Tiendas</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/brands/list}">Marcas</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/cards/list}">Tarjetas</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/locations/list}">Direcciones</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/cities/list}">Ciudades</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/districts/list}">Distritos</a>
@@ -67,16 +76,18 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
 					</div>
-					
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/cities/list}">Ciudades</a>
+						<a class="collapse-item" th:href="@{/reserves/list}">Reservas</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/locations/list}">Direcciones</a>
+						<a class="collapse-item" th:href="@{/products/list}">Productos</a>
 					</div>
-					 <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" th:href="@{/products/list}">Productos</a>
-                    </div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/reserves/list}">Reservas</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/products/list}">Productos</a>
+					</div>
 				</div></li>
 
 			<!-- Divider -->
@@ -135,32 +146,39 @@
 						</ul>
 					</div>
 
-					<form th:action="@{/locations/save}" th:object="${location}" method="post">
+					<form th:action="@{/locations/save}" th:object="${location}"
+						method="post">
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Nombre de la Dirección </label>
+							<label for="name" class="col-sm-2 col-form-label">Nombre
+								de la Dirección </label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{nameDirection}" class="form-control"
+								<input type="text" th:field="*{nameDirection}"
+									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('nameDirection')}" th:errors="*{nameDirection}"></small>
+									th:if="${#fields.hasErrors('nameDirection')}"
+									th:errors="*{nameDirection}"></small>
 							</div>
 						</div>
 
 
 						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label"> Codigo Postal </label>
+							<label for="name" class="col-sm-2 col-form-label"> Codigo
+								Postal </label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{numPostalCode}" class="form-control"
+								<input type="text" th:field="*{numPostalCode}"
+									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
-									th:if="${#fields.hasErrors('numPostalCode')}" th:errors="*{numPostalCode}"></small>
+									th:if="${#fields.hasErrors('numPostalCode')}"
+									th:errors="*{numPostalCode}"></small>
 							</div>
 						</div>
-						
 
-					
 
-						
+
+
+
 
 						<div class="form-group row">
 							<div class="col-sm-6">

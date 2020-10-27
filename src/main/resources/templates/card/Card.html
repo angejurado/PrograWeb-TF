@@ -56,30 +56,38 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/stores/list}">Tiendas</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/brands/list}">Marcas</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/cards/list}">Tarjetas</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/districts/list}">Distritos</a>
-					</div>
-					      <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
-                    </div>
-                    
-               	<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/reserves/list}">Reservas</a>
+						<a class="collapse-item" th:href="@{/locations/list}">Direcciones</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/cities/list}">Ciudades</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/locations/list}">Direcciones</a>
+						<a class="collapse-item" th:href="@{/districts/list}">Distritos</a>
 					</div>
-					 <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" th:href="@{/products/list}">Productos</a>
-                    </div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/reserves/list}">Reservas</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/products/list}">Productos</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/reserves/list}">Reservas</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/products/list}">Productos</a>
+					</div>
 				</div></li>
 
 			<!-- Divider -->
@@ -138,6 +146,7 @@
 						</ul>
 					</div>
 
+
 					<form th:action="@{/cards/save}" th:object="${card}" method="post">
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Numero
@@ -150,11 +159,22 @@
 							</div>
 						</div>
 
+						<div class="form-group row">
+							<label for="user" class="col-sm-2 col-form-label">Dueño</label>
+							<div class="col-sm-6">
+								<select class="form-control" th:field="*{user.idUser}">
+									<option th:each="l: ${listUser}" th:value="${l.idUser}"
+										th:text="${l.nameUser}"
+										th:selected="(${l.idUser} == *{user.idUser})"></option>
+								</select>
+							</div>
+						</div>
+
 
 						<div class="form-group row">
 							<label for="dExpiration" class="col-sm-2 col-form-label">Fecha
 								de Expiracion</label>
-							<div class="col-sm-6">
+							<div class="col-sm-3">
 								<input type="month" th:field="*{dExpiration}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
@@ -165,23 +185,11 @@
 						</div>
 
 						<div class="form-group row">
-							&nbsp;&nbsp;&nbsp;<label for="user">Usuario:</label>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<div class="col-sm-6">
-								<select class="form-control" th:field="*{user.idUser}">
-									<option th:each="l: ${listUser}" th:value="${l.idUser}"
-										th:text="${l.nameUser}" 
-										th:selected="(${l.idUser} == *{user.idUser})"></option>
-								</select>
-							</div>
-						</div>
-
-						<div class="form-group row">
 							<label for="cPin" class="col-sm-2 col-form-label">Codigo
 								de seguridad</label>
-							<div class="col-sm-6">
-								<input type="password" th:field="*{codeCard}" class="form-control"
+							<div class="col-sm-1">
+								<input type="password" th:field="*{codeCard}"
+									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('codeCard')}"

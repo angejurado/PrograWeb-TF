@@ -66,25 +66,29 @@
 						<a class="collapse-item" th:href="@{/cards/list}">Tarjetas</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/locations/list}">Direcciones</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/cities/list}">Ciudades</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/districts/list}">Distritos</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
 					</div>
-
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/reserves/list}">Reservas</a>
 					</div>
-<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/cities/list}">Ciudades</a>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/products/list}">Productos</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" th:href="@{/locations/list}">Direcciones</a>
+						<a class="collapse-item" th:href="@{/reserves/list}">Reservas</a>
 					</div>
-					
-                  	 <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" th:href="@{/products/list}">Productos</a>
-                    </div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/products/list}">Productos</a>
+					</div>
 				</div></li>
 			<!-- Divider -->
 			<hr class="sidebar-divider">
@@ -155,9 +159,10 @@
 						<thead class="thead-dark">
 							<tr>
 								<th scope="col">Id</th>
-								<th scope="col">Numero de la tarjeta</th>
-								<th scope="col">Fecha de Expiración</th>
-								<th scope="col">Descripción</th>
+								<th scope="col">Nombre de la tienda</th>
+								<th scope="col">Hora de apertura</th>
+								<th scope="col">Hora de cierre</th>
+								<th scope="col">Descripcion</th>
 							</tr>
 						</thead>
 						<tbody>
