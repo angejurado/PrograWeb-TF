@@ -167,7 +167,7 @@
 						<div class="form-group row">
 							<label for="email" class="col-sm-2 col-form-label">Contraseña</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{passwordUser}"
+								<input type="password" th:field="*{passwordUser}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
@@ -180,9 +180,8 @@
 							<label for="category">Tipo de Usuario</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<div class="col-sm-6">
 								<select class="form-control" th:field="*{typeUser}">
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
+									<option value="1">Dueño</option>
+									<option value="2">Cliente</option>
 								</select>
 							</div>
 						</div>
