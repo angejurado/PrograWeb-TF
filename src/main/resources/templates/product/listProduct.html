@@ -30,13 +30,14 @@
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<ul class="navbar-nav bg-primary sidebar sidebar-dark accordion"
+		<ul
+			class="navbar-nav bg-primary sidebar sidebar-dark accordion"
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/locations/index}">
+				th:href="@{/products/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fab fa-cuttlefish"></i>
 				</div>
@@ -48,14 +49,15 @@
 
 
 
+
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapseTwo" aria-expanded="false"
+				data-target="#collapseTwo" aria-expanded=true
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/brands/list}">Marcas</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -66,18 +68,24 @@
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/users/list}">Usuarios</a>
+					  </div>
+                         
+                      	<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/reserves/list}">Reservas</a>
 					</div>
-					
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/cities/list}">Ciudades</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/locations/list}">Direcciones</a>
 					</div>
-					 <div class="bg-white py-2 collapse-inner rounded">
+					
+                  	 <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" th:href="@{/products/list}">Productos</a>
                     </div>
-				</div></li>
+                    
+                    
+                </div></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
@@ -116,6 +124,19 @@
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
 						</a></li>
+
+
+
+						<!-- Nav Item - User Information -->
+						<li class="nav-item dropdown no-arrow"><a
+							class="nav-link dropdown-toggle" href="#" id="userDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> <span
+								class="mr-2 d-none d-lg-inline text-gray-600 small"><img
+									th:src="@{/img/logout.png}" width="30" height="30" alt="logo"
+									align="middle"></img></span>
+						</a> <!-- Dropdown - User Information --></li>
+
 					</ul>
 
 				</nav>
@@ -125,55 +146,38 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Direccion</h1>
+					<h1 class="h3 mb-4 text-gray-800">Producto</h1>
+
+					<a th:href="@{/products/new/}" class="btn btn-success btn-xs">Nuevo</a>
 
 					<hr class="sidebar-divider">
-					<div th:object="${location}" th:remove="tag">
-						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
-							role="alert">
-							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
-						</ul>
-					</div>
 
-					<form th:action="@{/locations/save}" th:object="${location}" method="post">
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Nombre de la Dirección </label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{nameDirection}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('nameDirection')}" th:errors="*{nameDirection}"></small>
-							</div>
-						</div>
+					<table class="table table-striped">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">Id Producto</th>
+								<th scope="col">Id Category</th>
+								<th scope="col">Precio</th>
+								<th scope="col">Nombre del producto</th>
+								<th scope="col">Cantidad del producto</th>
+								<th scope="col">Peso</th>
+								<th scope="col">Id Marca</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="l: ${listaProductos}">
+								<td th:text="${l.idProduct}"></td>
+								<td th:text="${l.idCategory}"></td>
+								<td th:text="${l.Mprice}"></td>
+								<td th:text="${l.nProduct}"></td>
+								<td th:text="${l.qProduct}"></td>
+								<td th:text="${l.numWeigt}"></td>
+								<td th:text="${l.idBrand}"></td>
+							</tr>
+						</tbody>
+					</table>
 
-
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label"> Codigo Postal </label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{numPostalCode}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('numPostalCode')}" th:errors="*{numPostalCode}"></small>
-							</div>
-						</div>
-						
-
-					
-
-						
-
-						<div class="form-group row">
-							<div class="col-sm-6">
-								<input type="submit" value="Guardar" class="btn btn-dark"></input>
-								<a href="/locations/list" class="btn btn-danger">Cancelar</a>
-							</div>
-						</div>
-						<p th:text="${mensaje}" class="form-text text-danger"></p>
-
-					</form>
-
-
-
+					<p th:text="${mensaje}"></p>
 
 				</div>
 				<!-- /.container-fluid -->
@@ -202,30 +206,7 @@
 		class="fas fa-angle-up"></i>
 	</a>
 
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">¿Listo para
-						salir?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Seleccione "Cerrar sesión" a
-					continuación si está listo para finalizar su sesión actual</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancelar</button>
-					<a class="btn btn-primary" th:href="@{/categories/index}">Cerrar
-						Sesión</a>
-				</div>
-			</div>
-		</div>
-	</div>
+
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="/vendor/jquery/jquery.min.js"></script>
