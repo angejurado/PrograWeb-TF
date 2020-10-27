@@ -29,8 +29,14 @@ public class Store {
 	private String tDescription;
 	
 	@ManyToOne
+	@JoinColumn(name = "idUser")
+	private User user;
+	
+	@ManyToOne
 	@JoinColumn(name = "idLocation")
 	private Location location;
+
+	
 
 	public Store() {
 		super();
@@ -38,7 +44,7 @@ public class Store {
 	}
 
 	public Store(int idStore, String nameBusiness, String starHour, String endHour, String tDescription,
-			Location location) {
+			Location location, User user) {
 		super();
 		this.idStore = idStore;
 		this.nameBusiness = nameBusiness;
@@ -46,6 +52,7 @@ public class Store {
 		this.endHour = endHour;
 		this.tDescription = tDescription;
 		this.location = location;
+		this.user = user;
 	}
 
 	public int getIdStore() {
@@ -95,5 +102,14 @@ public class Store {
 	public void setLocation(Location location) {
 		this.location = location;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
 }
+	
