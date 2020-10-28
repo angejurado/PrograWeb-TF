@@ -150,7 +150,7 @@
 						<div class="form-group row">
                             <label for="store" class="col-sm-2 col-form-label">Producto</label>
                             <div class="col-sm-6">
-                                <select class="form-control" th:field="*{store.idStore}">
+                                <select class="form-control" required="required" th:field="*{store.idStore}">
                                     <option th:each="l: ${listaTiendas}"
                                         th:value="${l.idStore}" th:text="${l.nameStore}"
                                         th:selected="(${l.idStore} == *{store.idStore})"></option>
@@ -194,7 +194,7 @@
                         <div class="form-group row">
                             <label for="card" class="col-sm-2 col-form-label">Tarjeta</label>
                             <div class="col-sm-6">
-                                <select class="form-control" th:field="*{card.idCard}">
+                                <select class="form-control" required="required" th:field="*{card.idCard}">
                                     <option th:each="l: ${listaTarjetas}"
                                         th:value="${l.idCard}" th:text="${l.numCard}"
                                         th:selected="(${l.idCard} == *{card.idCard})"></option>

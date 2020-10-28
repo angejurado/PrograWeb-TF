@@ -149,7 +149,7 @@
 							<label for="name" class="col-sm-2 col-form-label">Nombre
 								de Usuario</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{nameUser}" class="form-control"
+								<input type="text" required="required" th:field="*{nameUser}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('nameUser')}"
@@ -160,7 +160,7 @@
 						<div class="form-group row">
 							<label for="email" class="col-sm-2 col-form-label">Email</label>
 							<div class="col-sm-6">
-								<input type="email" th:field="*{emailUser}" class="form-control"
+								<input type="email" required="required" th:field="*{emailUser}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('emailUser')}"
@@ -171,7 +171,7 @@
 						<div class="form-group row">
 							<label for="celUser" class="col-sm-2 col-form-label">Celular</label>
 							<div class="col-sm-6">
-								<input type="number" th:field="*{celUser}" class="form-control"
+								<input type="number" required="required" th:field="*{celUser}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('celUser')}" th:errors="*{celUser}"></small>
@@ -181,7 +181,7 @@
 						<div class="form-group row">
 							<label for="email" class="col-sm-2 col-form-label">Contraseña</label>
 							<div class="col-sm-6">
-								<input type="password" th:field="*{passwordUser}"
+								<input type="password"required="required" th:field="*{passwordUser}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"

@@ -178,11 +178,10 @@
 
 
 							<div class="form-group row">
-								&nbsp;&nbsp;&nbsp;<label for="product">Producto:</label>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<label for="product" class="col-sm-2 col-form-label">Producto:</label>
+
 								<div class="col-sm-6">
-									<select class="form-control" th:field="*{product.idProduct}">
+									<select class="form-control" required="required" th:field="*{product.idProduct}">
 										<option th:each="l: ${listProduct}" th:value="${l.idProduct}"
 											th:text="${l.nProduct}"
 											th:selected="(${l.idProduct} == *{product.idProduct})"></option>
@@ -191,11 +190,10 @@
 							</div>
 
 							<div class="form-group row">
-								&nbsp;&nbsp;&nbsp;<label for="product">Precio:</label>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<label for="product" class="col-sm-2 col-form-label">Precio:</label>
+
 								<div class="col-sm-6">
-									<select class="form-control" th:field="*{product.idProduct}">
+									<select class="form-control" required="required" th:field="*{product.idProduct}">
 										<option th:each="l: ${listProduct}" th:value="${l.idProduct}"
 											th:text="${l.Mprice}"
 											th:selected="(${l.idProduct} == *{product.idProduct})"></option>
@@ -207,7 +205,7 @@
 							<div class="form-group row">
 								<label for="name" class="col-sm-2 col-form-label">Cantidad:</label>
 								<div class="col-sm-6">
-									<input type="text" th:field="*{numQuantity}"
+									<input type="number" required="required" th:field="*{numQuantity}"
 										class="form-control"
 										th:errorclass="'form-control alert-danger'" /> <small
 										class="form-text text-danger"
@@ -220,7 +218,7 @@
 							<div class="form-group row">
 								<label for="name" class="col-sm-2 col-form-label">Monto:</label>
 								<div class="col-sm-6">
-									<input type="text" th:field="*{numTotalPrice}"
+									<input type="number" required="required" th:field="*{numTotalPrice}"
 										class="form-control"
 										th:errorclass="'form-control alert-danger'" /> <small
 										class="form-text text-danger"
@@ -235,7 +233,7 @@
 							<div class="form-group row">
 								<label for="dDate" class="col-sm-2 col-form-label">Fecha:</label>
 								<div class="col-sm-6">
-									<input type="date" th:field="*{dDate}" class="form-control"
+									<input type="date" required="required" th:field="*{dDate}" class="form-control"
 										th:errorclass="'form-control alert-danger'" /> <small
 										class="form-text text-danger"
 										th:if="${#fields.hasErrors('dDate')}" th:errors="*{dDate}"></small>
@@ -244,11 +242,10 @@
 
 
 							<div class="form-group row">
-								&nbsp;&nbsp;&nbsp;<label for="card">Tarjeta:</label>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<label for="card" class="col-sm-2 col-form-label">Tarjeta:</label>
+								
 								<div class="col-sm-6">
-									<select class="form-control" th:field="*{card.idCard}">
+									<select class="form-control" required="required" th:field="*{card.idCard}">
 										<option th:each="l: ${listCard}" th:value="${l.idCard}"
 											th:text="${l.numCard}"
 											th:selected="(${l.idCard} == *{card.idCard})"></option>

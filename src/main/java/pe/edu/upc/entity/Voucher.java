@@ -17,7 +17,7 @@ import javax.validation.constraints.Past;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "voucher")
+@Table(name = "vouchers")
 
 
 public class Voucher {

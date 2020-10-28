@@ -149,7 +149,7 @@
 							<label for="name" class="col-sm-2 col-form-label">Nombre
 								de Negocio</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{nameBusiness}"
+								<input type="text" required="required" th:field="*{nameBusiness}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
@@ -163,7 +163,7 @@
 							<label for="starHour" class="col-sm-2 col-form-label">Hora
 								de Inicio</label>
 							<div class="col-sm-2">
-								<input type="time" th:field="*{starHour}" class="form-control"
+								<input type="time" required="required" th:field="*{starHour}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('starHour')}"
@@ -174,7 +174,7 @@
 							<label for="endHour" class="col-sm-2 col-form-label">Hora
 								de Fin</label>
 							<div class="col-sm-2">
-								<input type="time" th:field="*{endHour}" class="form-control"
+								<input type="time" required="required" th:field="*{endHour}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('endHour')}" th:errors="*{endHour}"></small>
@@ -183,7 +183,7 @@
 						<div class="form-group row">
 							<label for="tDescription" class="col-sm-2 col-form-label">Descripcion</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{tDescription}"
+								<input type="text" required="required" th:field="*{tDescription}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
@@ -195,7 +195,7 @@
 						<div class="form-group row ">
 							<label for="user" class="col-sm-2 col-form-label">Dueño</label>
 							<div class="col-sm-6">
-								<select class="form-control" th:field="*{user.idUser}">
+								<select class="form-control" required="required" th:field="*{user.idUser}">
 									<option th:each="l: ${listaUsuarios}" th:value="${l.idUser}"
 										th:text="${l.nameUser}"
 										th:selected="(${l.idUser} == *{user.idUser})"></option>

@@ -149,7 +149,7 @@
 						<div class="form-group row">
 							<label for="category" class="col-sm-2 col-form-label">ID Categoria</label>
 							<div class="col-sm-6">
-								<select class="form-control" th:field="*{category.idCategory}">
+								<select class="form-control" required="required" th:field="*{category.idCategory}">
 									<option th:each="l: ${listCategory}" th:value="${l.idCategory}"
 										th:text="${l.nameCategory}"
 										th:selected="(${l.idCategory} == *{category.idCategory})"></option>
@@ -160,7 +160,7 @@
 						<div class="form-group row">
 							<label for="Mprice" class="col-sm-2 col-form-label">Precio</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{Mprice}" class="form-control"
+								<input type="number" required="required" th:field="*{Mprice}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('Mprice')}" th:errors="*{Mprice}"></small>
@@ -170,7 +170,7 @@
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Nombre del Producto</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{nProduct}" class="form-control"
+								<input type="text" required="required" th:field="*{nProduct}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('nProduct')}" th:errors="*{nProduct}"></small>
@@ -180,8 +180,8 @@
 						
 						<div class="form-group row">
 							<label for="qProduct" class="col-sm-2 col-form-label">Cantidad del Producto</label>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{qProduct}" class="form-control"
+							<div class="col-sm-2">
+								<input type="number" required="required" th:field="*{qProduct}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('qProduct')}" th:errors="*{qProduct}"></small>
@@ -191,7 +191,7 @@
 						<div class="form-group row">
 							<label for="name" class="col-sm-2 col-form-label">Peso</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{numWeigt}" class="form-control"
+								<input type="text" required="required" th:field="*{numWeigt}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('numWeigt')}" th:errors="*{numWeigt}"></small>
@@ -203,7 +203,7 @@
 						<div class="form-group row">
 							<label for="brand" class="col-sm-2 col-form-label">ID Marca</label>
 							<div class="col-sm-6">
-								<select class="form-control" th:field="*{brand.idBrand}">
+								<select class="form-control" required="required" th:field="*{brand.idBrand}">
 									<option th:each="l: ${listBrand}" th:value="${l.idBrand}"
 										th:text="${l.nameBrand}"
 										th:selected="(${l.idBrand} == *{brand.idBrand})"></option>

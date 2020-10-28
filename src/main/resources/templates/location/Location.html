@@ -146,7 +146,7 @@
 							<label for="name" class="col-sm-2 col-form-label">Nombre
 								de la Dirección </label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{nameDirection}"
+								<input type="text" required="required" th:field="*{nameDirection}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
@@ -160,7 +160,7 @@
 							<label for="name" class="col-sm-2 col-form-label"> Codigo
 								Postal </label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{numPostalCode}"
+								<input type="text" required="required" th:field="*{numPostalCode}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
