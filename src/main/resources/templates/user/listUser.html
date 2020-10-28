@@ -83,7 +83,9 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/products/list}">Productos</a>
 					</div>
-
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/categories/list}">Categorias</a>
+					</div>
 				</div></li>
 
 
@@ -150,15 +152,13 @@
 
 					<a th:href="@{/users/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
 
-					<form th:action="@{/users/find}" method="post"
-						th:object="${user}">
+					<form th:action="@{/users/find}" method="post" th:object="${user}">
 
 						<div class="form-group">
 							<table>
 								<tbody>
 									<tr>
-										<td><label for="nameUser"
-											class="col-sm-2 col-form-label">Buscar:</label></td>
+										<td><label for="nameUser" class="col-sm-2 col-form-label">Buscar:</label></td>
 										<td><input type="text" class="form-control"
 											th:field="*{nameUser}" id="nameUser"
 											placeholder="Nombre Usuario" required="required"></input></td>

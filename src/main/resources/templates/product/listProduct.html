@@ -83,7 +83,9 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/products/list}">Productos</a>
 					</div>
-					
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/categories/list}">Categorias</a>
+					</div>
 
 				</div></li>
 
@@ -165,15 +167,15 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="l: ${listaProductos}">
-								<td th:text="${l.idProduct}"></td>
-								<td th:text="${l.idCategory}"></td>
-								<td th:text="${l.Mprice}"></td>
-								<td th:text="${l.nProduct}"></td>
-								<td th:text="${l.qProduct}"></td>
-								<td th:text="${l.numWeigt}"></td>
-								<td th:text="${l.idBrand}"></td>
-							</tr>
+						<tr th:each="l: ${listaProductos}">
+                                <td th:text="${l.idProduct}"></td>
+                                <td th:text="${l.category.idCategory}"></td>
+                                <td th:text="${l.Mprice}"></td>
+                                <td th:text="${l.nProduct}"></td>
+                                <td th:text="${l.qProduct}"></td>
+                                <td th:text="${l.numWeigt}"></td>
+                                <td th:text="${l.brand.idBrand}"></td>
+                            </tr>
 						</tbody>
 					</table>
 

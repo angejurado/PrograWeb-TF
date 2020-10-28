@@ -30,8 +30,7 @@
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<ul
-			class="navbar-nav bg-primary sidebar sidebar-dark accordion"
+		<ul class="navbar-nav bg-primary sidebar sidebar-dark accordion"
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
@@ -56,8 +55,8 @@
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar">
-                    	<div class="bg-white py-2 collapse-inner rounded">
+					data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/stores/list}">Tiendas</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -84,9 +83,11 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/products/list}">Productos</a>
 					</div>
-				
 
-                </div></li>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/categories/list}">Categorias</a>
+					</div>
+				</div></li>
 
 
 			<!-- Divider -->
@@ -159,7 +160,7 @@
 							<tr>
 								<th scope="col">Id</th>
 								<th scope="col">Ciudad</th>
-								
+
 							</tr>
 						</thead>
 						<tbody>

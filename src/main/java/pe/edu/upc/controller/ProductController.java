@@ -14,6 +14,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import pe.edu.upc.entity.Product;
 import pe.edu.upc.serviceinterface.IBrandService;
 import pe.edu.upc.serviceinterface.IProductService;
+import pe.edu.upc.serviceinterface.IStoreService;
 import pe.edu.upc.serviceinterface.ICategoryService;
 
 @Controller
@@ -29,12 +30,13 @@ public class ProductController {
 	@Autowired
 	private ICategoryService cS;
 	
+
 	@GetMapping("/new")
 	public String newProduct(Model model) {
 		model.addAttribute("product", new Product());
 		model.addAttribute("listBrand", bS.list());
 		model.addAttribute("listCategory", cS.list());
-		return "product/product";
+				return "product/product";
 	}
 	
 	

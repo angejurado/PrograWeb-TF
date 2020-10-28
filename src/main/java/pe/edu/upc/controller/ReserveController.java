@@ -14,7 +14,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import pe.edu.upc.entity.Reserve;
 import pe.edu.upc.serviceinterface.ICardService;
 import pe.edu.upc.serviceinterface.IReserveService;
-import pe.edu.upc.serviceinterface.IUserService;
+import pe.edu.upc.serviceinterface.IProductService;
 
 @Controller
 @RequestMapping("/reserves")
@@ -23,7 +23,7 @@ public class ReserveController {
 	@Autowired
 	private IReserveService rS;
 	@Autowired
-    private IUserService uS;
+    private IProductService pS;
 	@Autowired
     private ICardService cS;
 	
@@ -31,12 +31,12 @@ public class ReserveController {
 	public String newLReserve(Model model) {
 		model.addAttribute("reserve", new Reserve());
 		model.addAttribute("listCard", cS.list());
-		model.addAttribute("listUser", uS.list());
+		model.addAttribute("listProduct", pS.list());
 		return "reserve/reserve";
 	}
 	
 	@PostMapping("/save")
-	public String saveReserve(@Valid Reserve reserve, BindingResult result, Model model, Model model2,
+	public String saveReserve(@Valid Reserve reserve, BindingResult result, Model model, Model model2,Model model3, 
 			SessionStatus status ) throws Exception {
 		
 		if (result.hasErrors()) {

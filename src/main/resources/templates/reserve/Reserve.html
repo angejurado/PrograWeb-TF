@@ -82,7 +82,9 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/products/list}">Productos</a>
 					</div>
-				
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/categories/list}">Categorias</a>
+					</div>
 				</div></li>
 
 			<!-- Divider -->
@@ -173,16 +175,61 @@
 
 						<form th:action="@{/reserves/save}" th:object="${reserve}"
 							method="post">
+
+
 							<div class="form-group row">
-								<label for="numPrice" class="col-sm-2 col-form-label">Monto:</label>
+								&nbsp;&nbsp;&nbsp;<label for="product">Producto:</label>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<div class="col-sm-6">
-									<input type="text" th:field="*{numPrice}" class="form-control"
-										th:errorclass="'form-control alert-danger'" /> <small
-										class="form-text text-danger"
-										th:if="${#fields.hasErrors('numPrice')}"
-										th:errors="*{numPrice}"></small>
+									<select class="form-control" th:field="*{product.idProduct}">
+										<option th:each="l: ${listProduct}" th:value="${l.idProduct}"
+											th:text="${l.nProduct}"
+											th:selected="(${l.idProduct} == *{product.idProduct})"></option>
+									</select>
 								</div>
 							</div>
+
+							<div class="form-group row">
+								&nbsp;&nbsp;&nbsp;<label for="product">Precio:</label>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<div class="col-sm-6">
+									<select class="form-control" th:field="*{product.idProduct}">
+										<option th:each="l: ${listProduct}" th:value="${l.idProduct}"
+											th:text="${l.Mprice}"
+											th:selected="(${l.idProduct} == *{product.idProduct})"></option>
+									</select>
+								</div>
+							</div>
+
+
+							<div class="form-group row">
+								<label for="name" class="col-sm-2 col-form-label">Cantidad:</label>
+								<div class="col-sm-6">
+									<input type="text" th:field="*{numQuantity}"
+										class="form-control"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('numQuantity')}"
+										th:errors="*{numQuantity}"></small>
+								</div>
+							</div>
+
+
+							<div class="form-group row">
+								<label for="name" class="col-sm-2 col-form-label">Monto:</label>
+								<div class="col-sm-6">
+									<input type="text" th:field="*{numTotalPrice}"
+										class="form-control"
+										th:errorclass="'form-control alert-danger'" /> <small
+										class="form-text text-danger"
+										th:if="${#fields.hasErrors('numTotalPrice')}"
+										th:errors="*{numTotalPrice}"></small>
+								</div>
+							</div>
+
+
 
 
 							<div class="form-group row">
@@ -192,16 +239,6 @@
 										th:errorclass="'form-control alert-danger'" /> <small
 										class="form-text text-danger"
 										th:if="${#fields.hasErrors('dDate')}" th:errors="*{dDate}"></small>
-								</div>
-							</div>
-
-							<div class="form-group row">
-								&nbsp;&nbsp;&nbsp;<label for="stateReserve">Estado</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<div class="col-sm-6">
-									<select class="form-control" th:field="*{stateReserve}">
-										<option value="1">Pendiente</option>
-										<option value="2">Completado</option>
-									</select>
 								</div>
 							</div>
 
@@ -219,18 +256,6 @@
 								</div>
 							</div>
 
-							<div class="form-group row">
-								&nbsp;&nbsp;&nbsp;<label for="user">Usuario:</label>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<div class="col-sm-6">
-									<select class="form-control" th:field="*{user.idUser}">
-										<option th:each="l: ${listUser}" th:value="${l.idUser}"
-											th:text="${l.nameUser}"
-											th:selected="(${l.idUser} == *{user.idUser})"></option>
-									</select>
-								</div>
-							</div>
 
 							<div class="form-group row">
 								<div class="col-sm-6">
