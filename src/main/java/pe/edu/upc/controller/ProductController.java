@@ -32,10 +32,11 @@ public class ProductController {
 	@GetMapping("/new")
 	public String newProduct(Model model) {
 		model.addAttribute("product", new Product());
-		model.addAttribute("listaMarcas", bS.list());
-		model.addAttribute("listaCategorias", cS.list());
+		model.addAttribute("listBrand", bS.list());
+		model.addAttribute("listCategory", cS.list());
 		return "product/product";
 	}
+	
 	
 	@PostMapping("/save")
 	public String saveProduct(@Valid Product product, BindingResult result, Model model, 
