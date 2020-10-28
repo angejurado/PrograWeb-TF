@@ -1,6 +1,6 @@
 package pe.edu.upc.serviceimpl;
 
-import java.util.List;
+import java.util.List;  
 
 import javax.transaction.Transactional;
 
@@ -32,4 +32,10 @@ public class StoreServiceImpl implements IStoreService {
 		return sR.findAll();
 	}
 
+
+    @Override
+   	public List<Store> findByStore(String nameBusiness) {
+   		// TODO Auto-generated method stub
+   		return sR.findByStore(nameBusiness);
+   	}
 }

@@ -152,6 +152,31 @@
 				
 
 					<a th:href="@{/stores/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
+					
+					<form th:action="@{/stores/find}" method="post"
+						th:object="${store}">
+
+						<div class="form-group">
+							<table>
+								<tbody>
+									<tr>
+										<td><label for="nameBusiness"
+											class="col-sm-2 col-form-label">Buscar:</label></td>
+										<td><input type="text" class="form-control"
+											th:field="*{nameBusiness}" id="nameBusiness"
+											placeholder="Nombre Tienda" required="required"
+											></input></td>
+										<td><button type="submit" class="btn btn-danger">
+												<i class="iconf fa fa-search" style="color: white;"></i>
+											</button></td>
+										<td><a href="/stores/list" class="btn btn-danger">Limpiar</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+					</form>
+					
 
 					<hr class="sidebar-divider">
 

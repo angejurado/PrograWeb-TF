@@ -1,15 +1,20 @@
 package pe.edu.upc.controller;
 
+import java.util.List; 
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
+
+import com.sun.el.parser.ParseException;
 
 import pe.edu.upc.entity.Store;
 import pe.edu.upc.serviceinterface.ILocationService;
@@ -55,11 +60,27 @@ public class StoreController {
 	public String listStores(Model model) {
 
 		try {
+
+			model.addAttribute("store", new Store());
+			model.addAttribute("listaLocaciones", lS.list());
+			model.addAttribute("listaUsuarios", uS.list());
 			model.addAttribute("listaTiendas", sS.list());
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("Error al listar tiendas en el controller");
 		}
+		return "store/listStore";
+	}
+	
+	@RequestMapping("/find")
+	public String findBynProduct(Model model, @Validated Store store) throws ParseException{
+		
+		List<Store> listaTiendas;
+		listaTiendas = sS.findByStore(store.getNameBusiness());
+		if (listaTiendas.isEmpty()) {
+			model.addAttribute("mensaje", "No se encontro");
+		}
+		model.addAttribute("listaTiendas", listaTiendas);
 		return "store/listStore";
 	}
 
