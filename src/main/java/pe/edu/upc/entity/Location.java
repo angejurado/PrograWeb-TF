@@ -19,9 +19,14 @@ public class Location {
 	private int idLocation;
 
 	@ManyToOne
-	@JoinColumn(name = "idCity", nullable = false)
+	@JoinColumn(name = "idCity")
 	private City City;
-
+	
+	@ManyToOne
+	@JoinColumn(name = "idDistrict")
+	private District District;
+	                                                                      
+             
 	@Column(name = "nameDirection", length = 36, nullable = false)
 	private String nameDirection;
 
@@ -32,14 +37,18 @@ public class Location {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 
-	public Location(int idLocation, pe.edu.upc.entity.City city, String nameDirection, int numPostalCode) {
+	public Location(int idLocation, pe.edu.upc.entity.City city, pe.edu.upc.entity.District district,
+			String nameDirection, int numPostalCode) {
 		super();
 		this.idLocation = idLocation;
 		City = city;
+		District = district;
 		this.nameDirection = nameDirection;
 		this.numPostalCode = numPostalCode;
 	}
+
 
 	public int getIdLocation() {
 		return idLocation;
@@ -55,6 +64,14 @@ public class Location {
 
 	public void setCity(City city) {
 		City = city;
+	}
+
+	public District getDistrict() {
+		return District;
+	}
+
+	public void setDistrict(District district) {
+		District = district;
 	}
 
 	public String getNameDirection() {
@@ -73,4 +90,5 @@ public class Location {
 		this.numPostalCode = numPostalCode;
 	}
 
+	
 }

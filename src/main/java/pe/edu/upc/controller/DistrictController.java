@@ -27,7 +27,7 @@ public class DistrictController {
 		return "district/district";
 
 	}
-	
+	     
 	@PostMapping("/save")
 	public String saveBrand(@Valid District district, BindingResult result, Model model, 
 			SessionStatus status ) throws Exception {

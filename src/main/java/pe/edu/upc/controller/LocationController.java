@@ -12,6 +12,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import pe.edu.upc.entity.Location;
 import pe.edu.upc.serviceinterface.ILocationService;
 import pe.edu.upc.serviceinterface.ICityService;
+import pe.edu.upc.serviceinterface.IDistrictService;
 
 @Controller
 @RequestMapping("/locations")
@@ -21,12 +22,16 @@ public class LocationController {
 	private ILocationService lS;
 	
 	@Autowired
-	private ICityService cS;
+	private ICityService ciS;
+	
+	@Autowired
+	private IDistrictService diS;
 	
 	@GetMapping("/new")
 	public String newLLocation(Model model) {
 		model.addAttribute("location", new Location());
-		model.addAttribute("listCity",cS.list());
+		model.addAttribute("listCity",ciS.list());
+		model.addAttribute("listDistrict",diS.list());		
 		return "location/location";
 
 	}
@@ -40,6 +45,7 @@ public class LocationController {
 		}else {
 			lS.insert(location);
 		}
+		
 		model.addAttribute("listaLocation", lS.list());
 		
 		return "redirect:/locations/list";
