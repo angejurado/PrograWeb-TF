@@ -207,7 +207,7 @@
 							<div class="col-sm-6">
 								<select class="form-control" th:field="*{location.idLocation}">
 									<option th:each="l: ${listaLocaciones}"
-										th:value="${l.idLocation}" th:text="${l.namelocation}"
+										th:value="${l.idLocation}" th:text="${l.nameDirection}"
 										th:selected="(${l.idLocation} == *{location.idLocation})"></option>
 								</select>
 							</div>
