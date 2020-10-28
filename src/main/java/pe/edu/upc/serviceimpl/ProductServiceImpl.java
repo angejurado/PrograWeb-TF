@@ -1,6 +1,6 @@
 package pe.edu.upc.serviceimpl;
 
-import java.util.List;   
+import java.util.List;     
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,4 +32,10 @@ public class ProductServiceImpl implements IProductService{
         // TODO Auto-generated method stub
         return pR.findAll();
     }
+    
+    @Override
+   	public List<Product> findBynProduct(String nProduct) {
+   		// TODO Auto-generated method stub
+   		return pR.findBynProduct(nProduct);
+   	}
 }

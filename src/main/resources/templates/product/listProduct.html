@@ -151,7 +151,34 @@
 					<h1 class="h3 mb-4 text-gray-800">Producto</h1>
 
 					<a th:href="@{/products/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
+					
+					<form th:action="@{/products/find}" method="post"
+						th:object="${product}">
 
+						<div class="form-group">
+							<table>
+								<tbody>
+									<tr>
+										<td><label for="nProduct"
+											class="col-sm-2 col-form-label">Buscar:</label></td>
+										<td><input type="text" class="form-control"
+											th:field="*{nProduct}" id="nProduct"
+											placeholder="Nombre Producto" required="required"
+											></input></td>
+										<td><button type="submit" class="btn btn-danger">
+												<i class="iconf fa fa-search" style="color: white;"></i>
+											</button></td>
+										<td><a href="/products/list" class="btn btn-danger">Limpiar</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+					</form>
+					
+					
+					
+					
 					<hr class="sidebar-divider">
 
 					<table class="table table-striped">
