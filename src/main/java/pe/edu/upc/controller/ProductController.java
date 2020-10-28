@@ -30,15 +30,15 @@ public class ProductController {
 	private ICategoryService cS;
 	
 	@GetMapping("/new")
-	public String newVaccine(Model model) {
+	public String newProduct(Model model) {
+		model.addAttribute("product", new Product());
 		model.addAttribute("listaMarcas", bS.list());
 		model.addAttribute("listaCategorias", cS.list());
-		model.addAttribute("product", new Product());
 		return "product/product";
 	}
 	
 	@PostMapping("/save")
-	public String saveVaccine(@Valid Product product, BindingResult result, Model model, 
+	public String saveProduct(@Valid Product product, BindingResult result, Model model, 
 			SessionStatus status ) throws Exception {
 		
 		if (result.hasErrors()) {
@@ -56,6 +56,7 @@ public class ProductController {
 	public String listProducts(Model model) {
 		
 		try {
+			
 			model.addAttribute("listaProductos", pS.list());
 		} catch (Exception e) {
 			// TODO: handle exception
