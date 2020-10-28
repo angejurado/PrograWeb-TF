@@ -10,24 +10,22 @@ import pe.edu.upc.serviceinterface.ICategoryService;
 
 @Service
 public class CategoryServiceImpl implements ICategoryService {
-@Autowired
-private CategoryRepository cR;
+	@Autowired
+	private CategoryRepository cR;
 
-@Override
-public void insert(Category cate) {
-	try {
-		cR.save(cate);
+	@Override
+	public void insert(Category cate) {
+		try {
+			cR.save(cate);
 		} catch (Exception e) {
 			System.out.println("Error en el serviceimpl Category");
 
 		}
 	}
 
-@Override
-public List<Category> list() {
-	// TODO Auto-generated method stub
-	return null;
+	@Override
+	public List<Category> list() {
+		// TODO Auto-generated method stub
+		return cR.findAll();
+	}
 }
-}
-
-
