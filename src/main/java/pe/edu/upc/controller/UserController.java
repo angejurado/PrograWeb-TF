@@ -1,6 +1,6 @@
 package pe.edu.upc.controller;
 
-import java.util.List;
+import java.util.List; 
 
 import javax.validation.Valid;
 
@@ -64,26 +64,14 @@ public class UserController {
 	}
 	
 	@RequestMapping("/find")
-	public String findVaccine(Model model, @Validated User user) throws ParseException{
-		try {
-			
-			/*model.addAttribute("listLaboratorios",lS.findBynameLaboratory(laboratory.getNameLaboratory()));*/
-			List<User> listUser;
-			listUser=uS.findBynameUser(user.getNameUser());
-			model.addAttribute("listUser", listUser);
-			if(listUser.isEmpty())
-			{
-				model.addAttribute("mensaje", "No se encontro");
-				
-			}
-			
-		} catch (Exception e) {
-			System.out.println("Error en el metodo del controller");
+	public String findUser(Model model, @Validated User user) throws ParseException{
+		
+		List<User> listaUsuarios;
+		listaUsuarios = uS.findBynameUser(user.getNameUser());
+		if (listaUsuarios.isEmpty()) {
+			model.addAttribute("mensaje", "No se encontro");
 		}
-		
-		
-		return "/user/listUser";
-		
+		model.addAttribute("listaUsuarios", listaUsuarios);
+		return "user/listUser";
 	}
-
 }

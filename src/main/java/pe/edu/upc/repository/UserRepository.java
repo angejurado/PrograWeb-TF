@@ -1,6 +1,5 @@
 package pe.edu.upc.repository;
 
-
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,6 +13,6 @@ import pe.edu.upc.entity.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	@Query("from User u where u.nameUser like %:name%")
-	public List<User> findBynameUser(@Param("name")String nameUser);
+	List<User> findBynameUser(@Param("name")String nameUser);
 
 }
