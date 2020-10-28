@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 import pe.edu.upc.entity.City;
 import pe.edu.upc.serviceinterface.ICityService;
-import pe.edu.upc.serviceinterface.IDistrictService;
 
 @Controller
 @RequestMapping("/cities")
@@ -19,13 +18,10 @@ public class CityController {
 	@Autowired
 	private ICityService cS;
 	
-	@Autowired
-	private IDistrictService dS;
 	
 	@GetMapping("/new")
 	public String newLCity(Model model) {
 		model.addAttribute("city", new City());
-		model.addAttribute("listDistrict",dS.list());
 		return "city/city";
 
 	}

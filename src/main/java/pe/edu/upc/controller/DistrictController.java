@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.entity.District;
+import pe.edu.upc.serviceinterface.ICityService;
 import pe.edu.upc.serviceinterface.IDistrictService;
 
 @Controller
@@ -21,9 +22,13 @@ public class DistrictController {
 	@Autowired
 	private IDistrictService dS;
 	
+	@Autowired
+	private ICityService cS;
+	
 	@GetMapping("/new")
 	public String newLDistrict(Model model) {
 		model.addAttribute("district", new District());
+		model.addAttribute("listCity",cS.list());
 		return "district/district";
 
 	}
