@@ -1,6 +1,7 @@
 package pe.edu.upc.serviceimpl;
 
-import java.util.List; 
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,4 +38,15 @@ public class UserServiceImpl implements IUserService {
 		return uR.findBynameUser(nameUser);
 	}
 
+
+	@Override
+	public Optional<User> searchId(int idUser) {
+		// TODO Auto-generated method stub
+		return uR.findById(idUser);
+	}
+	
+	@Override
+	public void delete(int idUser) {
+		uR.deleteById(idUser);
+	}
 }
