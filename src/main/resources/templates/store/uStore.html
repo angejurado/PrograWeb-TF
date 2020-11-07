@@ -36,7 +36,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/stores/list}">
+				th:href="@{/stores/index}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fab fa-cuttlefish"></i>
 				</div>
@@ -48,10 +48,9 @@
 
 
 
-
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapseTwo" aria-expanded=true
+				data-target="#collapseTwo" aria-expanded="false"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -83,10 +82,11 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/products/list}">Productos</a>
 					</div>
-				<div class="bg-white py-2 collapse-inner rounded">
+					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/categories/list}">Categorias</a>
 					</div>
 				</div></li>
+
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
@@ -124,19 +124,6 @@
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
 						</a></li>
-
-
-
-						<!-- Nav Item - User Information -->
-						<li class="nav-item dropdown no-arrow"><a
-							class="nav-link dropdown-toggle" href="#" id="userDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small"><img
-									th:src="@{/img/logout.png}" width="30" height="30" alt="logo"
-									align="middle"></img></span>
-						</a> <!-- Dropdown - User Information --></li>
-
 					</ul>
 
 				</nav>
@@ -146,66 +133,98 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					
-					
-						<h1 class="h3 mb-4 text-gray-800">Tiendas</h1>
-				
-
-					<a th:href="@{/stores/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
-					
-					<form th:action="@{/stores/find}" method="post"
-						th:object="${store}">
-
-						<div class="form-group">
-							<table>
-								<tbody>
-									<tr>
-										<td><label for="nameBusiness"
-											class="col-sm-2 col-form-label">Buscar:</label></td>
-										<td><input type="text" class="form-control"
-											th:field="*{nameBusiness}" id="nameBusiness"
-											placeholder="Nombre Tienda" required="required"
-											></input></td>
-										<td><button type="submit" class="btn btn-danger">
-												<i class="iconf fa fa-search" style="color: white;"></i>
-											</button></td>
-										<td><a href="/stores/list" class="btn btn-danger">Limpiar</a></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-
-					</form>
-					
+					<h1 class="h3 mb-4 text-gray-800">Tienda</h1>
 
 					<hr class="sidebar-divider">
+					<div th:object="${store}" th:remove="tag">
+						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
+							role="alert">
+							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+						</ul>
+					</div>
 
-					<table class="table table-striped">
-						<thead class="thead-dark">
-							<tr>
-								<th scope="col">Id</th>
-								<th scope="col">Nombre de la tienda</th>
-								<th scope="col">Hora de apertura</th>
-								<th scope="col">Hora de cierre</th>
-								<th scope="col">Descripcion</th>
-								<th scope="col">Eliminar</th>
-								<th scope="col">Actualizar</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="s: ${listaTiendas}">
-								<td th:text="${s.idStore}"></td>
-								<td th:text="${s.nameBusiness}"></td>
-								<td th:text="${s.starHour}"></td>
-								<td th:text="${s.endHour}"></td>
-								<td th:text="${s.tDescription}"></td>
-								<td ><a th:href="@{'/stores/delete/'+${s.idStore}}" class="delete"><i class="icon fa fa-trash" style="color:red; align:center"></i></a></td>
-								<td><a th:href="@{'/stores/irUpdate/'+${s.idStore}}"><i class="iconf fa fa-edit" style="color: green;"></i></a></td>
-							</tr>
-						</tbody>
-					</table>
+					<form th:action="@{/stores/update}" th:object="${store}"
+						method="post">
+						<div class="form-group row">
+							<label for="name" class="col-sm-2 col-form-label">Nombre
+								de Negocio</label>
+							<div class="col-sm-6">
+								<input type="text" required="required" th:field="*{nameBusiness}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('nameBusiness')}"
+									th:errors="*{nameBusinesse}"></small>
+							</div>
+						</div>
 
-					<p th:text="${mensaje}"></p>
+
+						<div class="form-group row">
+							<label for="starHour" class="col-sm-2 col-form-label">Hora
+								de Inicio</label>
+							<div class="col-sm-2">
+								<input type="time" required="required" th:field="*{starHour}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('starHour')}"
+									th:errors="*{starHour}"></small>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="endHour" class="col-sm-2 col-form-label">Hora
+								de Fin</label>
+							<div class="col-sm-2">
+								<input type="time" required="required" th:field="*{endHour}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('endHour')}" th:errors="*{endHour}"></small>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="tDescription" class="col-sm-2 col-form-label">Descripcion</label>
+							<div class="col-sm-6">
+								<input type="text" required="required" th:field="*{tDescription}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('tDescription')}"
+									th:errors="*{tDescription}"></small>
+							</div>
+						</div>
+
+						<div class="form-group row ">
+							<label for="user" class="col-sm-2 col-form-label">Dueño</label>
+							<div class="col-sm-6">
+								<select class="form-control" required="required" th:field="*{user.idUser}">
+									<option th:each="l: ${listaUsuarios}" th:value="${l.idUser}"
+										th:text="${l.nameUser}"
+										th:selected="(${l.idUser} == *{user.idUser})"></option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="location" class="col-sm-2 col-form-label">Location</label>
+							<div class="col-sm-6">
+								<select class="form-control" th:field="*{location.idLocation}">
+									<option th:each="l: ${listaLocaciones}"
+										th:value="${l.idLocation}" th:text="${l.nameDirection}"
+										th:selected="(${l.idLocation} == *{location.idLocation})"></option>
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-sm-6">
+								<input type="submit" value="Guardar" class="btn btn-dark"></input>
+								<a href="/stores/list" class="btn btn-danger">Cancelar</a>
+							</div>
+						</div>
+						<p th:text="${mensaje}" class="form-text text-danger"></p>
+
+					</form>
+
+
+
 
 				</div>
 				<!-- /.container-fluid -->
@@ -234,7 +253,30 @@
 		class="fas fa-angle-up"></i>
 	</a>
 
-
+	<!-- Logout Modal-->
+	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">¿Listo para
+						salir?</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">Seleccione "Cerrar sesión" a
+					continuación si está listo para finalizar su sesión actual</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Cancelar</button>
+					<a class="btn btn-primary" th:href="@{/categories/index}">Cerrar
+						Sesión</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="/vendor/jquery/jquery.min.js"></script>

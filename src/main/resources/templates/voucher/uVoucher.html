@@ -36,7 +36,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/vouchers/list}">
+				th:href="@{/vouchers/index}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fab fa-cuttlefish"></i>
 				</div>
@@ -48,10 +48,9 @@
 
 
 
-
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-target="#collapseTwo" aria-expanded=true
+				data-target="#collapseTwo" aria-expanded="false"
 				aria-controls="collapseTwo"> <i class="fas fa-fw fa-cog"></i> <span>Men&uacute;</span>
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -83,11 +82,13 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/products/list}">Productos</a>
 					</div>
+					
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/vouchers/list}">Vouchers</a>
 					</div>
-				
+					
 				</div></li>
+
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
@@ -125,19 +126,6 @@
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
 						</a></li>
-
-
-
-						<!-- Nav Item - User Information -->
-						<li class="nav-item dropdown no-arrow"><a
-							class="nav-link dropdown-toggle" href="#" id="userDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small"><img
-									th:src="@{/img/logout.png}" width="30" height="30" alt="logo"
-									align="middle"></img></span>
-						</a> <!-- Dropdown - User Information --></li>
-
 					</ul>
 
 				</nav>
@@ -147,35 +135,89 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800"></h1>
-
-					<a th:href="@{/vouchers/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
+					<h1 class="h3 mb-4 text-gray-800">Voucher</h1>
 
 					<hr class="sidebar-divider">
+					<div th:object="${voucher}" th:remove="tag">
+						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
+							role="alert">
+							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+						</ul>
+					</div>
 
-					<table class="table table-striped">
-						<thead class="thead-dark">
-							<tr>
-								<th scope="col">Id</th>
-								<th scope="col">Tienda</th>
-								<th scope="col">Fecha</th>
-								<th scope="col">Producto</th>
-								<th scope="col">Cantidad</th>
-								<th scope="col">Eliminar</th>
-								<th scope="col">Actualizar</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="l: ${listaVouchers}">
-								<td th:text="${l.idStore}"></td>
-								<td th:text="${l.dateVoucher}"></td>
-								<td th:text="${l.mTotalprice}"></td>
-								
-							</tr>
-						</tbody>
-					</table>
+					<form th:action="@{/vouchers/save}" th:object="${voucher}"
+						method="post">
+						<div class="form-group row">
+                            <label for="store" class="col-sm-2 col-form-label">Reserva</label>
+                            <div class="col-sm-6">
+                                <select class="form-control" required="required" th:field="*{store.idStore}">
+                                    <option th:each="l: ${listaTiendas}"
+                                        th:value="${l.idStore}" th:text="${l.nameStore}"
+                                        th:selected="(${l.idStore} == *{store.idStore})"></option>
+                                </select>
+                            </div>
+                        </div>
 
-					<p th:text="${mensaje}"></p>
+
+						<div class="form-group row">
+							<label for="dateVoucher" class="col-sm-2 col-form-label">Fecha de voucher</label>
+							<div class="col-sm-2">
+								<input type="time" th:field="*{dateVoucher}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('dateVoucher')}"
+									th:errors="*{dateVoucher}"></small>
+							</div>
+						</div>
+						<div class="form-group row">
+                            <label for="product" class="col-sm-2 col-form-label">Producto</label>
+                            <div class="col-sm-6">
+                                <select class="form-control" th:field="*{product.idProduct}">
+                                    <option th:each="l: ${listaProductos}"
+                                        th:value="${l.idProduct}" th:text="${l.nameproduct}"
+                                        th:selected="(${l.idProduct} == *{product.idProduct})"></option>
+                                </select>
+                            </div>
+                        </div>
+                        
+						<div class="form-group row">
+                            <label for="reserve" class="col-sm-2 col-form-label">Cantidad</label>
+                            <div class="col-sm-6">
+                                <select class="form-control" th:field="*{reserve.idReserve}">
+                                    <option th:each="l: ${listaReservas}"
+                                        th:value="${l.idReserve}" th:text="${l.numreserve}"
+                                        th:selected="(${l.idReserve} == *{reserve.idReserve})"></option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label for="card" class="col-sm-2 col-form-label">Tarjeta</label>
+                            <div class="col-sm-6">
+                                <select class="form-control" required="required" th:field="*{card.idCard}">
+                                    <option th:each="l: ${listaTarjetas}"
+                                        th:value="${l.idCard}" th:text="${l.numCard}"
+                                        th:selected="(${l.idCard} == *{card.idCard})"></option>
+                                </select>
+                            </div>
+                        </div>
+
+
+
+						
+
+						<div class="form-group row">
+							<div class="col-sm-6">
+								<input type="submit" value="Guardar" class="btn btn-dark"></input>
+								<a href="/vouchers/list" class="btn btn-danger">Cancelar</a>
+							</div>
+						</div>
+						<p th:text="${mensaje}" class="form-text text-danger"></p>
+
+					</form>
+
+
+
 
 				</div>
 				<!-- /.container-fluid -->
@@ -204,7 +246,30 @@
 		class="fas fa-angle-up"></i>
 	</a>
 
-
+	<!-- Logout Modal-->
+	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">¿Listo para
+						salir?</h5>
+					<button class="close" type="button" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">Seleccione "Cerrar sesión" a
+					continuación si está listo para finalizar su sesión actual</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button"
+						data-dismiss="modal">Cancelar</button>
+					<a class="btn btn-primary" th:href="@{/categories/index}">Cerrar
+						Sesión</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="/vendor/jquery/jquery.min.js"></script>

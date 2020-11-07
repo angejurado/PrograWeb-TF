@@ -1,6 +1,7 @@
 package pe.edu.upc.controller;
 
-import java.util.List; 
+import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -10,11 +11,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
+
 
 import pe.edu.upc.entity.Store;
 import pe.edu.upc.serviceinterface.ILocationService;
@@ -50,10 +54,20 @@ public class StoreController {
 
 			return "store/store";
 		} else {
-			sS.insert(store);
+			int rpta = sS.insert(store);
+			if (rpta > 0) {
+				model.addAttribute("mensaje", "La tienda ya existe!!");
+				model.addAttribute("listaLocaciones", lS.list());
+				model.addAttribute("listaUsuarios", uS.list());
+				return "store/store";
+			} else {
+				model.addAttribute("listaTiendas", sS.list());
+				return "redirect:/stores/list";
+
+			}
+			
 		}
-		model.addAttribute("listaTiendas", sS.list());
-		return "redirect:/stores/list";
+		
 	}
 
 	@GetMapping("/list")
@@ -83,5 +97,57 @@ public class StoreController {
 		model.addAttribute("listaTiendas", listaTiendas);
 		return "store/listStore";
 	}
+	
+	@RequestMapping("/delete/{id}")
+	public String deleteStore(Model model, @PathVariable(value = "id") int id) {
+		try {
+			if (id > 0) {
+				sS.delete(id);
+			}
+			model.addAttribute("store", new Store());
+			model.addAttribute("mensaje", "Se eliminó correctamente!");
+			model.addAttribute("listTiendas", sS.list());
+		} catch (Exception e) {
+			model.addAttribute("store", new Store());
+			model.addAttribute("mensaje", "No se puede eliminar!!");
+			model.addAttribute("listTiendas", sS.list());
+
+		}
+
+		return "store/listStore";
+
+	}
+	@RequestMapping("/irUpdate/{id}")
+	public String irUpdate(@PathVariable int id, Model model, RedirectAttributes objRedir) {
+		Optional<Store> objSto=sS.searchId(id);
+		if(objSto==null) {
+			objRedir.addFlashAttribute("mensaje","Ocurrio un error");
+			return "redirect/store/listStores";
+		}
+		else {
+			model.addAttribute("listaLocaciones", lS.list());
+			model.addAttribute("listaUsuarios", uS.list());
+			model.addAttribute("store",objSto.get());
+			return "store/uStore";
+		}
+		
+	}
+	@PostMapping("/update")
+	public String updateStore(@Valid Store store, BindingResult result, Model model, SessionStatus status)
+	   throws Exception{
+	    if(result.hasErrors()) {
+	    	return "store/store";
+	    }else {
+	    	sS.insert(store);
+	    	this.listStores(model);
+	    }
+	 	model.addAttribute("listaTiendas", sS.list());
+		return "redirect:/stores/list";
+	  
+		
+	}
+		
+	
+	
 
 }

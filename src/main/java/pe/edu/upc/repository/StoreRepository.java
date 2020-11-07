@@ -13,5 +13,8 @@ public interface StoreRepository extends JpaRepository<Store, Integer>{
 
 	@Query("from Store s where s.nameBusiness like %:name%")
 	List<Store> findByStore(@Param("name")String nameBusiness);
+	
+	@Query("select count(s.nameBusiness) from Store s where s.nameBusiness=:nameBusiness")
+	public int searchStore(@Param("nameBusiness")String nameBusiness);
 }
 

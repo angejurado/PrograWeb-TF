@@ -1,8 +1,11 @@
 package pe.edu.upc.serviceimpl;
 
-import java.util.List;  
+
+import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,10 +22,14 @@ public class StoreServiceImpl implements IStoreService {
 	
 	@Transactional
 	@Override
-	public void insert(Store sto) {
-		
+	public int insert(Store sto) {
+		int rpta=sR.searchStore(sto.getNameBusiness());
+		if(rpta==0) {
 			sR.save(sto);
+		}
+		return rpta;
 		
+	
 		
 	}
 
@@ -34,8 +41,21 @@ public class StoreServiceImpl implements IStoreService {
 
 
     @Override
-   	public List<Store> findByStore(String nameBusiness) {
+   	public List<Store> findByStore(String nameBusiness) {	
    		// TODO Auto-generated method stub
    		return sR.findByStore(nameBusiness);
    	}
+
+	@Override
+	public void delete(int idStore) {
+		// TODO Auto-generated method stub
+		sR.deleteById(idStore);
+		
+	}
+
+	@Override
+	public Optional<Store> searchId(int idStore) {
+		// TODO Auto-generated method stub
+		return sR.findById(idStore);
+	}
 }
