@@ -1,6 +1,7 @@
 package pe.edu.upc.controller;
  
-import java.util.List;   
+import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid; 
 
@@ -10,9 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
@@ -55,7 +58,7 @@ public class ProductController {
 		}else {
 			pS.insert(product);
 		}
-		model.addAttribute("listaProductos", pS.list());
+		model.addAttribute("listaProduct", pS.list());
 		
 		return "redirect:/products/list";
 	}
@@ -86,5 +89,61 @@ public class ProductController {
 		model.addAttribute("listaProductos", listaProductos);
 		return "product/listProduct";
 	}
+	
+	@RequestMapping("/delete/{id}")
+	public String deleteProduct(Model model, @PathVariable (value="id") int id) throws ParseException{
+		
+		try {
+
+			if (id > 0) {
+				pS.delete(id);
+			}
+			model.addAttribute("product", new Product ());
+			model.addAttribute("mensaje", "Se elimino correctamente");
+			model.addAttribute("listaProductos",pS.list());
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			model.addAttribute("product", new Product());
+			model.addAttribute("Mensaje","No se puede eliminar");
+			model.addAttribute("listaProductos",pS.list());
+		}
+		return  "product/listProduct";
+	}
+		
+	@RequestMapping("/irupdate/{id}")
+	public String irUpdate(@PathVariable int id, Model model, RedirectAttributes objRedir){
+		
+		Optional<Product> objPro = pS.searchId(id);
+		if (objPro == null) {
+			objRedir.addFlashAttribute("mensaje", "ocurrio un error");
+			return "redirect:products/list";
+		}else {
+			model.addAttribute("listaProductos", pS.list());
+			model.addAttribute("product", objPro.get());
+			return "product/uproduct";
+
+		}
+		
+	}
+	
+	@PostMapping("/update")
+	public String UpdateVaccine(@Valid Product product, BindingResult result, Model model, 
+			SessionStatus status ) throws Exception {
+		
+		if (result.hasErrors()) {
+			
+			return "product/product";
+		}else {
+			pS.insert(product);
+			this.listProducts(model);
+		}
+		model.addAttribute("listaProductos", pS.list());
+		
+		return "redirect:/products/list";
+	}
+	
+	
+	
 	
 }

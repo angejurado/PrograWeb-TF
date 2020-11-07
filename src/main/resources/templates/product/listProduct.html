@@ -191,6 +191,8 @@
 								<th scope="col">Cantidad del producto</th>
 								<th scope="col">Peso</th>
 								<th scope="col">Id Marca</th>
+								<th scope="col">Eliminar</th>
+								<th scope="col">Operación</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -202,6 +204,11 @@
                                 <td th:text="${l.qProduct}"></td>
                                 <td th:text="${l.numWeigt}"></td>
                                 <td th:text="${l.brand.idBrand}"></td>
+                                <td><a th:href="@{'/products/delete/'+${l.idProduct}}"> 
+								<i class="iconf fa fa-trash" style="color: red;"></i>
+								</a></td>
+								<td><a th:href="@{'/products/irupdate/'+${l.idProduct}}"><i
+										class="iconf fa fa-pen" style="color: green;"></i></a></td>
                             </tr>
 						</tbody>
 					</table>
