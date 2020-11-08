@@ -1,5 +1,7 @@
 package pe.edu.upc.serviceimpl;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.entity.Location;
@@ -24,6 +26,12 @@ public class LocationServiceImpl implements ILocationService {
 	public List<Location> list() {
 		// TODO Auto-generated method stub
 		return lR.findAll();
+	}
+
+	@Override
+	public Optional<Location> searchId(int idLocation) {
+		// TODO Auto-generated method stub
+		return lR.findById(idLocation);
 	}
 }
 
