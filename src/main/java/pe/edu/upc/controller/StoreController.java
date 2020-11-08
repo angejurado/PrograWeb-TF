@@ -132,6 +132,7 @@ public class StoreController {
 		}
 		
 	}
+	
 	@PostMapping("/update")
 	public String updateStore(@Valid Store store, BindingResult result, Model model, SessionStatus status)
 	   throws Exception{
@@ -140,9 +141,11 @@ public class StoreController {
 	    }else {
 	    	sS.insert(store);
 	    	this.listStores(model);
+	    	model.addAttribute("mensaje","Actualizo correctamente");
+	    	model.addAttribute("listaTiendas", sS.list());
+			return "redirect:/stores/list";
 	    }
-	 	model.addAttribute("listaTiendas", sS.list());
-		return "redirect:/stores/list";
+		
 	  
 		
 	}
