@@ -1,4 +1,5 @@
 package pe.edu.upc.controller;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
@@ -26,11 +28,11 @@ public class CategoryController {
 	}
 	
 	@PostMapping("/save")
-	public String saveBrand(@Valid Category category, BindingResult result, Model model, SessionStatus status) throws Exception{
+	public String saveBrand(@Valid Category cate, BindingResult result, Model model, SessionStatus status) throws Exception{
 		if(result.hasErrors()) {
 			return "category/category";
 		}else {
-			cS.insert(category);
+			cS.insert(cate);
 		}
 		model.addAttribute("listaCategory", cS.list());
 		return "redirect:/categories/list";
@@ -47,4 +49,22 @@ public class CategoryController {
 		return "category/listCategory";
 	}
 
+	@RequestMapping("/delete/{id}")
+	public String deleteCategory(Model model, @PathVariable(value="id") int id )
+	{
+		try {
+			if(id>0) {
+				cS.delete(id);
+			}
+			model.addAttribute("category", new Category());
+			model.addAttribute("mensaje", "se elimino correctamente");
+			model.addAttribute("listaCategorias",cS.list());
+ 		} catch (Exception e) {
+ 			model.addAttribute("Category", new Category());
+			model.addAttribute("mensaje", "no se puede eliminar");
+			model.addAttribute("listaCategorias",cS.list());
+		}
+		return "category/listCategory";
+	}
 }
+

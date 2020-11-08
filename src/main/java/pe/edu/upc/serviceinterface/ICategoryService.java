@@ -8,5 +8,5 @@ public interface ICategoryService {
 	public void insert(Category cate);
 
 	List<Category> list();
-
+	public void delete(int idCategory);
 }

@@ -160,6 +160,7 @@
 							<tr>
 								<th scope="col">Id</th>
 								<th scope="col">Ciudad</th>
+								<th scope="col">Modificar</th>
 
 							</tr>
 						</thead>
@@ -167,6 +168,8 @@
 							<tr th:each="l: ${listaCities}">
 								<td th:text="${l.idCity}"></td>
 								<td th:text="${l.nameCity}"></td>
+								<td><a th:href="@{'/cities/irupdate/'+${l.idCity}}"><i
+										class="iconf fa fa-pen" style="color: green;"></i></a></td>
 							</tr>
 						</tbody>
 					</table>

@@ -2,6 +2,7 @@ package pe.edu.upc.serviceimpl;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.entity.Category;
@@ -28,4 +29,12 @@ public class CategoryServiceImpl implements ICategoryService {
 		// TODO Auto-generated method stub
 		return cR.findAll();
 	}
+
+	@Override
+	public void delete(int idCategory) {
+		// TODO Auto-generated method stub
+		cR.deleteById(idCategory);
+	}
+
+	
 }
