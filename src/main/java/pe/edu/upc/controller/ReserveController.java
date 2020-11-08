@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
 import pe.edu.upc.entity.Reserve;
+
 import pe.edu.upc.serviceinterface.ICardService;
 import pe.edu.upc.serviceinterface.IReserveService;
-import pe.edu.upc.serviceinterface.IProductService;
+import pe.edu.upc.serviceinterface.IUserService;
+
 
 @Controller
 @RequestMapping("/reserves")
@@ -22,16 +24,18 @@ public class ReserveController {
 
 	@Autowired
 	private IReserveService rS;
+	
 	@Autowired
-    private IProductService pS;
+	private IUserService uS;
+	
 	@Autowired
     private ICardService cS;
 	
 	@GetMapping("/new")
 	public String newLReserve(Model model) {
 		model.addAttribute("reserve", new Reserve());
-		model.addAttribute("listCard", cS.list());
-		model.addAttribute("listProduct", pS.list());
+		model.addAttribute("user",uS.list());
+		model.addAttribute("cards",cS.list());
 		return "reserve/reserve";
 	}
 	

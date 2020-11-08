@@ -5,6 +5,10 @@ import java.util.List;
 import pe.edu.upc.entity.Card;
 
 public interface ICardService {
-public void insert (Card car);
-List<Card>list();
+	
+	public void insert(Card car);
+
+	List<Card> list();
+	
+	List<Card> findCardsOfUser(int idUser);
 }

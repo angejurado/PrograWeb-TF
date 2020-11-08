@@ -27,4 +27,10 @@ public class CardServiceImpl implements ICardService {
 		// TODO Auto-generated method stub
 		return cR.findAll();
 	}
+
+	@Override
+	public List<Card> findCardsOfUser(int idUser) {
+		// TODO Auto-generated method stub
+		return cR.findCardsOfUser(idUser);
+	}
 }

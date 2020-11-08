@@ -178,13 +178,13 @@
 
 
 							<div class="form-group row">
-								<label for="product" class="col-sm-2 col-form-label">Producto:</label>
+								<label for="product" class="col-sm-2 col-form-label">Tienda</label>
 
 								<div class="col-sm-6">
-									<select class="form-control" required="required" th:field="*{product.idProduct}">
-										<option th:each="l: ${listProduct}" th:value="${l.idProduct}"
-											th:text="${l.nProduct}"
-											th:selected="(${l.idProduct} == *{product.idProduct})"></option>
+									<select class="form-control" required="required" th:field="*{store.idStore}">
+										<option th:each="l: ${listStore}" th:value="${l.idStore}"
+											th:text="${l.nameBusiness}"
+											th:selected="(${l.idStore} == *{store.idStore})"></option>
 									</select>
 								</div>
 							</div>
