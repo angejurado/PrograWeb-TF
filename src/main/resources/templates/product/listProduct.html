@@ -184,13 +184,13 @@
 					<table class="table table-striped">
 						<thead class="thead-dark">
 							<tr>
-								<th scope="col">Id Producto</th>
-								<th scope="col">Id Category</th>
+								<th scope="col">Producto</th>
+								<th scope="col">Categoria</th>
 								<th scope="col">Precio</th>
 								<th scope="col">Nombre del producto</th>
 								<th scope="col">Cantidad del producto</th>
 								<th scope="col">Peso</th>
-								<th scope="col">Id Marca</th>
+								<th scope="col">Marca</th>
 								<th scope="col">Eliminar</th>
 								<th scope="col">Operación</th>
 							</tr>
@@ -198,12 +198,12 @@
 						<tbody>
 						<tr th:each="l: ${listaProductos}">
                                 <td th:text="${l.idProduct}"></td>
-                                <td th:text="${l.category.idCategory}"></td>
+                                <td th:text="${l.category.nameCategory}"></td>
                                 <td th:text="${l.Mprice}"></td>
                                 <td th:text="${l.nProduct}"></td>
                                 <td th:text="${l.qProduct}"></td>
                                 <td th:text="${l.numWeigt}"></td>
-                                <td th:text="${l.brand.idBrand}"></td>
+                                <td th:text="${l.brand.nameBrand}"></td>
                                 <td><a th:href="@{'/products/delete/'+${l.idProduct}}"> 
 								<i class="iconf fa fa-trash" style="color: red;"></i>
 								</a></td>

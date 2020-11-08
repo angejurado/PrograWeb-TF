@@ -17,40 +17,43 @@ public class Reserve {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idReserve;
-
-	@ManyToOne
-    @JoinColumn(name="idProduct")
-    private Product product;
 		
-	@Column(name = "numQuantity", nullable = false)
-	private int numQuantity;
+	@ManyToOne
+	@JoinColumn(name="idUser")
+	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name="idStore")
+	private Store store;
 	
 	@ManyToOne
     @JoinColumn(name="idCard")
     private Card card;	
 		
 	@Column(name = "numTotalPrice", nullable = false)
-	private int numTotalPrice;
+	private double numTotalPrice;
 	
 	@Column(name = "dDate", length = 45, nullable = false)
 	private String dDate;
-
 	
+
 	public Reserve() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 
-	public Reserve(int idReserve, Product product, int numQuantity, Card card, int numTotalPrice, String dDate) {
+
+	public Reserve(int idReserve, User user, Store store, Card card, double numTotalPrice, String dDate) {
 		super();
 		this.idReserve = idReserve;
-		this.product = product;
-		this.numQuantity = numQuantity;
+		this.user = user;
+		this.store = store;
 		this.card = card;
 		this.numTotalPrice = numTotalPrice;
 		this.dDate = dDate;
 	}
+
 
 
 	public int getIdReserve() {
@@ -58,29 +61,35 @@ public class Reserve {
 	}
 
 
+
 	public void setIdReserve(int idReserve) {
 		this.idReserve = idReserve;
 	}
 
 
-	public Product getProduct() {
-		return product;
+
+	public User getUser() {
+		return user;
 	}
 
 
-	public void setProduct(Product product) {
-		this.product = product;
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 
-	public int getNumQuantity() {
-		return numQuantity;
+
+	public Store getStore() {
+		return store;
 	}
 
 
-	public void setNumQuantity(int numQuantity) {
-		this.numQuantity = numQuantity;
+
+	public void setStore(Store store) {
+		this.store = store;
 	}
+
 
 
 	public Card getCard() {
@@ -88,14 +97,17 @@ public class Reserve {
 	}
 
 
+
 	public void setCard(Card card) {
 		this.card = card;
 	}
 
 
-	public int getNumTotalPrice() {
+
+	public double getNumTotalPrice() {
 		return numTotalPrice;
 	}
+
 
 
 	public void setNumTotalPrice(int numTotalPrice) {
@@ -103,15 +115,20 @@ public class Reserve {
 	}
 
 
+
 	public String getdDate() {
 		return dDate;
 	}
 
 
+
 	public void setdDate(String dDate) {
 		this.dDate = dDate;
 	}
+	
+	
 
+	
 
 		
 }

@@ -22,7 +22,6 @@ import com.sun.el.parser.ParseException;
 import pe.edu.upc.entity.Product;
 import pe.edu.upc.serviceinterface.IBrandService;
 import pe.edu.upc.serviceinterface.IProductService;
-import pe.edu.upc.serviceinterface.IStoreService;
 import pe.edu.upc.serviceinterface.ICategoryService;
 
 @Controller
@@ -119,6 +118,8 @@ public class ProductController {
 			objRedir.addFlashAttribute("mensaje", "ocurrio un error");
 			return "redirect:products/list";
 		}else {
+			model.addAttribute("listBrand", bS.list());
+			model.addAttribute("listCategory", cS.list());
 			model.addAttribute("listaProductos", pS.list());
 			model.addAttribute("product", objPro.get());
 			return "product/uproduct";

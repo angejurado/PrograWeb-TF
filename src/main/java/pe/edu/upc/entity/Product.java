@@ -8,8 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+
 
 @Entity
 @Table(name ="products")
@@ -23,13 +22,14 @@ public class Product {
 	@JoinColumn(name = "idCategory")
 	private Category category;
 	
-	private Double Mprice;
+	@Column(name="mPrice")
+	private Double mprice;
 
 	@Column(name = "nProduct", length = 45, nullable = false )
 	private String nProduct;
 
-	@Column(name = "qProduct", length = 55, nullable = false )
-	private String qProduct;
+	@Column(name = "qProduct")
+	private int qProduct;
 	
 	@Column(name = "numWeigt", length = 65, nullable = false )
 	private String numWeigt;
@@ -43,17 +43,17 @@ public class Product {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Product(int idProduct, Category category, Double mprice, String nProduct, String qProduct, String numWeigt,
+	public Product(int idProduct, Category category, Double mprice, String nProduct, int qProduct, String numWeigt,
 			Brand brand) {
 		super();
 		this.idProduct = idProduct;
 		this.category = category;
-		Mprice = mprice;
+		this.mprice = mprice;
 		this.nProduct = nProduct;
 		this.qProduct = qProduct;
 		this.numWeigt = numWeigt;
 		this.brand = brand;
-		}
+	}
 
 	public int getIdProduct() {
 		return idProduct;
@@ -72,11 +72,11 @@ public class Product {
 	}
 
 	public Double getMprice() {
-		return Mprice;
+		return mprice;
 	}
 
 	public void setMprice(Double mprice) {
-		Mprice = mprice;
+		this.mprice = mprice;
 	}
 
 	public String getnProduct() {
@@ -87,11 +87,11 @@ public class Product {
 		this.nProduct = nProduct;
 	}
 
-	public String getqProduct() {
+	public int getqProduct() {
 		return qProduct;
 	}
 
-	public void setqProduct(String qProduct) {
+	public void setqProduct(int qProduct) {
 		this.qProduct = qProduct;
 	}
 
@@ -110,7 +110,6 @@ public class Product {
 	public void setBrand(Brand brand) {
 		this.brand = brand;
 	}
-
 
 	
 }

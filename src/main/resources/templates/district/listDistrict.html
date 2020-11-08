@@ -159,6 +159,7 @@
 							<tr>
 								<th scope="col">Id</th>
 								<th scope="col">Distrito</th>
+								<th scope="col">Ciudad</th>
 								<th scope="col">Modificar</th>
 								<th scope="col">Eliminar</th>
 							</tr>
@@ -167,6 +168,7 @@
 							<tr th:each="l: ${listaDistritos}">
 								<td th:text="${l.idDistrict}"></td>
 								<td th:text="${l.nameDistrict}"></td>
+								<td th:text="${l.city.nameCity}"></td>
 								<td><a th:href="@{'/districts/irupdate/'+${l.idDistrict}}"><i
 										class="iconf fa fa-pen" style="color: green;"></i></a></td>
 								<td><a th:href="@{'/districts/delete/'+${l.idDistrict}}"> 
