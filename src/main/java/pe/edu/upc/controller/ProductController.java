@@ -120,7 +120,6 @@ public class ProductController {
 		}else {
 			model.addAttribute("listBrand", bS.list());
 			model.addAttribute("listCategory", cS.list());
-			model.addAttribute("listaProductos", pS.list());
 			model.addAttribute("product", objPro.get());
 			return "product/uproduct";
 
@@ -139,7 +138,7 @@ public class ProductController {
 			pS.insert(product);
 			this.listProducts(model);
 		}
-		model.addAttribute("listaProductos", pS.list());
+		model.addAttribute("listaProduct", pS.list());
 		
 		return "redirect:/products/list";
 	}
