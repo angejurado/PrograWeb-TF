@@ -26,6 +26,7 @@ public class CityServiceImpl implements ICityService {
 	public List<City> list() {
 		// TODO Auto-generated method stub
 		return cR.findAll();
+		
 	}
 
 	@Override
