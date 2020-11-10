@@ -1,6 +1,6 @@
 package pe.edu.upc.controller;
 
-import java.util.Optional; 
+import java.util.Optional;   
 
 import javax.validation.Valid; 
 
@@ -38,19 +38,21 @@ public class DistrictController {
 	}
 	     
 	@PostMapping("/save")
-	public String saveBrand(@Valid District district, BindingResult result, Model model, 
-			SessionStatus status ) throws Exception {
-		
+	public String saveDistrict(@Valid District district, BindingResult result, Model model, SessionStatus status)
+			throws Exception {
 		if (result.hasErrors()) {
-			
 			return "district/district";
-		}else {
-			dS.insert(district);
+		} else {
+			int rpta = dS.insert(district);
+			if (rpta > 0) {
+				model.addAttribute("mensaje", "El distrito ya existe!!");
+				model.addAttribute("listCity",cS.list());
+				return "district/district";
+			} else {
+				model.addAttribute("listaDistrict", dS.list());
+				return "redirect:/districts/list";
+			}
 		}
-		model.addAttribute("listaDistrict", dS.list());
-		
-		return "redirect:/districts/list";
-		
 	}
 	
 	@GetMapping("/list")

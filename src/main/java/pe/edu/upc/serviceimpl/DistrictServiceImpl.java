@@ -1,6 +1,6 @@
 package pe.edu.upc.serviceimpl;
 
-import java.util.List;
+import java.util.List;   
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +15,17 @@ public class DistrictServiceImpl implements IDistrictService {
 	@Autowired
 	private DistrictRepository dR;
 	
+	
 	@Override
-	public void insert(District dis) {
-		try {
+	public int insert(District dis) {
+		int rpta = dR.searchDistrict(dis.getNameDistrict());
+		if (rpta == 0) {
 			dR.save(dis);
-		} catch (Exception e) {
-			System.out.println("Error en el serviceimpl District");
 		}
+
+		return rpta;
 	}
+
 
 	@Override
 	public List<District> list() {
