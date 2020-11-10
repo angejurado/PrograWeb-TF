@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
+import pe.edu.upc.entity.District;
 import pe.edu.upc.entity.User;
 import pe.edu.upc.serviceinterface.IUserService;
 
@@ -46,7 +47,7 @@ public class UserController {
 				model.addAttribute("mensaje", "El usuario ya existe!!");
 				return "user/user";
 			} else {
-				model.addAttribute("listaBrand", uS.list());
+				model.addAttribute("listaUsuarios", uS.list());
 				return "redirect:/users/list";
 			}
 		}
@@ -96,21 +97,26 @@ public class UserController {
 
 	
 	@PostMapping("/update")
-	public String updateUser(@Valid User user, BindingResult result, Model model, 
+	public String updateDistrict(@Valid User district, BindingResult result, Model model, 
 			SessionStatus status ) throws Exception {
-		
-		if (result.hasErrors()) {
-			
-			return "user/user";
-		}else {
-			uS.insert(user);
-			this.listUser(model);
-		}
-		model.addAttribute("listaUsuarios", uS.list());
-		
-		return "redirect:/users/list";
-		
-	}
+	
+        if (result.hasErrors()) {
+
+            return "user/user";
+        }else {
+            int rpta=uS.insert(district);
+            if (rpta > 0) {
+                model.addAttribute("mensaje", "El usuario ya existe");
+				model.addAttribute("listCity",uS.list());
+                return "user/uuser";
+            }else {
+                model.addAttribute("listaUsuarios", uS.list());
+                return "redirect:/users/list";
+            }
+        }
+
+    }
+    
 	
 	@RequestMapping("/delete/{id}")
 	public String deleteUser(Model model, @PathVariable(value = "id") int id) {
