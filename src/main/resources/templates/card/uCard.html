@@ -146,29 +146,34 @@
 
 					<form th:action="@{/cards/update}" th:object="${card}"
 						method="post">
+						
 						<div class="form-group row">
 							<label for="idCard" class="col-sm-2 col-form-label">Id</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{idCard}" class="form-control"
+								<input type="text" th:field="*{idCard}"
+									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('idCard')}"
 									th:errors="*{idCard}"></small>
 							</div>
 						</div>
-							
-							<div class="form-group row">
-
-						<label for="name" class="col-sm-2 col-form-label">Numero
-							de Tarjeta</label>
-						<div class="col-sm-6">
-							<input type="text" required="required" th:field="*{numCard}"
-								class="form-control" th:errorclass="'form-control alert-danger'" />
-							<small class="form-text text-danger"
-								th:if="${#fields.hasErrors('numCard')}" th:errors="*{numCard}"></small>
-						</div>
-				</div>
-
+						
+						
+						
+						
+						
+				<div class="form-group row">
+                            <label for="number" class="col-sm-2 col-form-label">Numero
+                                de Tarjeta</label>
+                            <div class="col-sm-6">
+                                <input type="number" min=1000000000000000 max=9999999999999999 required="required" th:field="*{numCard}" class="form-control"
+                                    th:errorclass="'form-control alert-danger'" /> <small
+                                    class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('numCard')}" th:errors="*{numCard}"></small>
+                            </div>
+                        </div>
+                      
 				<div class="form-group row">
 					<label for="user" class="col-sm-2 col-form-label">Dueño</label>
 					<div class="col-sm-6">
@@ -194,16 +199,18 @@
 					</div>
 				</div>
 
-				<div class="form-group row">
-					<label for="cPin" class="col-sm-2 col-form-label">Codigo de
-						seguridad</label>
-					<div class="col-sm-1">
-						<input type="password" required="required" th:field="*{codeCard}"
-							class="form-control" th:errorclass="'form-control alert-danger'" />
-						<small class="form-text text-danger"
-							th:if="${#fields.hasErrors('codeCard')}" th:errors="*{codeCard}"></small>
-					</div>
-				</div>
+					<div class="form-group row">
+							<label for="cPin" class="col-sm-2 col-form-label">Codigo
+								de seguridad</label>
+							<div class="col-sm-1">
+								<input type="password" required="required" th:field="*{codeCard}"
+									class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('codeCard')}"
+									th:errors="*{codeCard}"></small>
+							</div>
+						</div>
 
 				<div class="form-group row">
 					<div class="col-sm-6">

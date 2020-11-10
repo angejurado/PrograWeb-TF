@@ -145,17 +145,18 @@
 
 
 					<form th:action="@{/cards/save}" th:object="${card}" method="post">
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Numero
-								de Tarjeta</label>
-							<div class="col-sm-6">
-								<input type="text" required="required" th:field="*{numCard}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('numCard')}" th:errors="*{numCard}"></small>
-							</div>
-						</div>
-
+				
+				<div class="form-group row">
+                            <label for="number" class="col-sm-2 col-form-label">Numero
+                                de Tarjeta</label>
+                            <div class="col-sm-6">
+                                <input type="number" min=1000000000000000 max=9999999999999999 required="required" th:field="*{numCard}" class="form-control"
+                                    th:errorclass="'form-control alert-danger'" /> <small
+                                    class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('numCard')}" th:errors="*{numCard}"></small>
+                            </div>
+                        </div>
+                        
 						<div class="form-group row">
 							<label for="user"  class="col-sm-2 col-form-label">Dueño</label>
 							<div class="col-sm-6">
@@ -172,7 +173,7 @@
 							<label for="dExpiration" class="col-sm-2 col-form-label">Fecha
 								de Expiracion</label>
 							<div class="col-sm-3">
-								<input type="month" required="required" th:field="*{dExpiration}"
+								<input type="month" min=2020-12 required="required" th:field="*{dExpiration}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"

@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 @Entity
 @Table(name="cards")
 public class Card {
@@ -15,20 +17,34 @@ public class Card {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idCard;
-
-	@Column(name = "numCard", length = 35 ,nullable = false)
+	
+	
+	@Column(name = "numCard", length = 16 ,nullable = false)
 	private String numCard;
 	
 	@Column(name = "dExpiration", length = 45, nullable = false)
 	private String dExpiration;
-		
+
+	@Min(value=100, message="El código debe de 3 cifras")
+    @Max(value=999, message="El código debe de 3 cifras")
 	@Column(name = "codeCard", length = 55, nullable = false)
-	private String codeCard;
+	private int codeCard;
 	
 	@ManyToOne
     @JoinColumn(name="idUser")
     private User user;
-	
+
+	public Card(int idCard, String numCard, String dExpiration,
+			@Min(value = 100, message = "El código debe de 3 cifras") @Max(value = 999, message = "El código debe de 3 cifras") int codeCard,
+			User user) {
+		super();
+		this.idCard = idCard;
+		this.numCard = numCard;
+		this.dExpiration = dExpiration;
+		this.codeCard = codeCard;
+		this.user = user;
+	}
+
 	public Card() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -58,11 +74,11 @@ public class Card {
 		this.dExpiration = dExpiration;
 	}
 
-	public String getCodeCard() {
+	public int getCodeCard() {
 		return codeCard;
 	}
 
-	public void setCodeCard(String codeCard) {
+	public void setCodeCard(int codeCard) {
 		this.codeCard = codeCard;
 	}
 
@@ -73,17 +89,8 @@ public class Card {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-	public Card(int idCard, String numCard, String dExpiration, String codeCard, User user) {
-		super();
-		this.idCard = idCard;
-		this.numCard = numCard;
-		this.dExpiration = dExpiration;
-		this.codeCard = codeCard;
-		this.user = user;
-	}
-
 	
-	
+
+
 	
 }
