@@ -28,9 +28,7 @@ public class StoreServiceImpl implements IStoreService {
 			sR.save(sto);
 		}
 		return rpta;
-		
-	
-		
+
 	}
 
 	@Override
@@ -40,11 +38,7 @@ public class StoreServiceImpl implements IStoreService {
 	}
 
 
-    @Override
-   	public List<Store> findByStore(String nameBusiness) {	
-   		// TODO Auto-generated method stub
-   		return sR.findByStore(nameBusiness);
-   	}
+    
 
 	@Override
 	public void delete(int idStore) {
@@ -53,6 +47,11 @@ public class StoreServiceImpl implements IStoreService {
 		
 	}
 
+	@Override
+   	public List<Store> findByStore(String nameBusiness) {	
+   		// TODO Auto-generated method stub
+   		return sR.findByStore(nameBusiness);
+   	}
 	@Override
 	public Optional<Store> searchId(int idStore) {
 		// TODO Auto-generated method stub

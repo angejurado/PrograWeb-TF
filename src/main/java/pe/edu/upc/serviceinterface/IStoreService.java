@@ -10,8 +10,9 @@ public interface IStoreService {
 
 	public int insert(Store sto);
 	public List<Store>list();
-	List<Store> findByStore(String nameBusiness);
 	public void delete(int idStore);
+	
+	List<Store> findByStore(String nameBusiness);
 	Optional<Store> searchId(int idStore);
 	
 }

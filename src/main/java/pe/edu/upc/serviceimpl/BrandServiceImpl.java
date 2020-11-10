@@ -1,10 +1,8 @@
 package pe.edu.upc.serviceimpl;
-
 import java.util.List;
-
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import pe.edu.upc.entity.Brand;
 import pe.edu.upc.repository.BrandRepository;
 import pe.edu.upc.serviceinterface.IBrandService;
@@ -15,12 +13,15 @@ public class BrandServiceImpl implements IBrandService {
 	private BrandRepository bR;
 	
 	@Override
-	public void insert(Brand bra) {
-		try {
+	public int insert(Brand bra) {
+		int rpta= bR.searchBrand(bra.getNameBrand());
+		if(rpta==0)
+		{
 			bR.save(bra);
-		} catch (Exception e) {
-			System.out.println("Error en el serviceimpl Brand");
 		}
+		
+		return rpta;
+		
 	}
 
 	@Override
@@ -28,4 +29,19 @@ public class BrandServiceImpl implements IBrandService {
 		// TODO Auto-generated method stub
 		return bR.findAll();
 	}
+
+	@Override
+	public List<Brand> findByBrand(String nameBrand) {
+		// TODO Auto-generated method stub
+		return bR.findByBrand(nameBrand);
+	}
+
+	@Override
+	public Optional<Brand> searchId(int idBrand) {
+		// TODO Auto-generated method stub
+		return bR.findById(idBrand);
+	}
+	
+	
+	
 }
