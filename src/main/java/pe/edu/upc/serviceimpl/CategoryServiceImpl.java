@@ -14,15 +14,7 @@ public class CategoryServiceImpl implements ICategoryService {
 	@Autowired
 	private CategoryRepository cR;
 
-	@Override
-	public void insert(Category cate) {
-		try {
-			cR.save(cate);
-		} catch (Exception e) {
-			System.out.println("Error en el serviceimpl Category");
-
-		}
-	}
+	
 
 	@Override
 	public List<Category> list() {
@@ -34,6 +26,16 @@ public class CategoryServiceImpl implements ICategoryService {
 	public void delete(int idCategory) {
 		// TODO Auto-generated method stub
 		cR.deleteById(idCategory);
+	}
+
+	@Override
+	public int insert(Category cate) {
+		int rpta=cR.searchCategory(cate.getNameCategory());
+		if(rpta==0)
+		{
+			cR.save(cate);
+		}
+		return rpta;
 	}
 
 	
