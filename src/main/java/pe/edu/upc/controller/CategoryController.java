@@ -29,14 +29,21 @@ public class CategoryController {
 	
 	@PostMapping("/save")
 	public String saveBrand(@Valid Category cate, BindingResult result, Model model, SessionStatus status) throws Exception{
-		if(result.hasErrors()) {
+		
+		if (result.hasErrors()) {
 			return "category/category";
 		}else {
-			cS.insert(cate);
+			int rpta=cS.insert(cate);
+			if (rpta > 0) {
+				model.addAttribute("mensaje", "la categoria ya existe");
+				return "category/category";
+			}else {
+				model.addAttribute("listaCategorias", cS.list());
+				return "redirect:/categories/list";
+			}
 		}
-		model.addAttribute("listaCategory", cS.list());
-		return "redirect:/categories/list";
-		}
+		
+	}
 	
 	@GetMapping("/list")
 	public String listCategory(Model model) {

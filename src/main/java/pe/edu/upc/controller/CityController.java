@@ -43,7 +43,7 @@ public class CityController {
 				return "city/city";
 			} else {
 				model.addAttribute("listaCities", cS.list());
-				return "city/city";
+				return "redirect:/cities/list";
 			}
 		}
 
