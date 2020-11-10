@@ -7,7 +7,7 @@ import pe.edu.upc.entity.User;
 
 public interface IUserService {
 
-public void insert(User use);
+public int insert(User use);
 
 	List<User> list();
 

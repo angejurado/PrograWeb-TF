@@ -1,6 +1,6 @@
 package pe.edu.upc.serviceimpl;
 
-import java.util.List;
+import java.util.List;  
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +17,15 @@ public class UserServiceImpl implements IUserService {
 	private UserRepository uR;
 
 	@Override
-	public void insert(User use) {
-		try {
+	public int insert(User use) {
+		int rpta = uR.searchUser(use.getNameUser());
+		if (rpta == 0) {
 			uR.save(use);
-		} catch (Exception e) {
-			System.out.println("Error al insertar en el serviceimpl user");
 		}
-		
+
+		return rpta;
 	}
+	
 
 	@Override
 	public List<User> list() {

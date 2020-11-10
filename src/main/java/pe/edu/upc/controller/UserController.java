@@ -1,6 +1,6 @@
 package pe.edu.upc.controller;
 
-import java.util.List;
+import java.util.List; 
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -36,20 +36,20 @@ public class UserController {
 	}
 	
 	@PostMapping("/save")
-	public String saveUser(@Valid User user, BindingResult result, Model model, 
-			SessionStatus status ) throws Exception {
-		
+	public String saveUser(@Valid User user, BindingResult result, Model model, SessionStatus status)
+			throws Exception {
 		if (result.hasErrors()) {
-			
 			return "user/user";
-		}else {
-			uS.insert(user);
-			this.listUser(model);
+		} else {
+			int rpta = uS.insert(user);
+			if (rpta > 0) {
+				model.addAttribute("mensaje", "El usuario ya existe!!");
+				return "user/user";
+			} else {
+				model.addAttribute("listaBrand", uS.list());
+				return "redirect:/users/list";
+			}
 		}
-		model.addAttribute("listaBrand", uS.list());
-		
-		return "redirect:/users/list";
-		
 	}
 	
 	@GetMapping("/list")
