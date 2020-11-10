@@ -1,6 +1,6 @@
 package pe.edu.upc.controller;
 
-import java.util.Optional;   
+import java.util.Optional;    
 
 import javax.validation.Valid; 
 
@@ -86,18 +86,24 @@ public class DistrictController {
 	@PostMapping("/update")
 	public String updateDistrict(@Valid District district, BindingResult result, Model model, 
 			SessionStatus status ) throws Exception {
-		
-		if (result.hasErrors()) {
-			
-			return "district/district";
-		}else {
-			dS.insert(district);
-			model.addAttribute("mensaje", "Registro actualizado correctamente");
-		}
-		model.addAttribute("listaDistrict", dS.list());
-		
-		return "redirect:/districts/list";
-	}
+	
+        if (result.hasErrors()) {
+
+            return "district/district";
+        }else {
+            int rpta=dS.insert(district);
+            if (rpta > 0) {
+                model.addAttribute("mensaje", "El distrito ya existe");
+				model.addAttribute("listCity",cS.list());
+                return "district/udistrict";
+            }else {
+                model.addAttribute("listaDistrict", dS.list());
+                return "redirect:/districts/list";
+            }
+        }
+
+    }
+    
 	
 	@RequestMapping("/delete/{id}")
 	public String deleteDistrict(Model model, @PathVariable(value = "id") int id) {
