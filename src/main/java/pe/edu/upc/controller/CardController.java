@@ -21,7 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
-import pe.edu.upc.entity.Brand;
+
 import pe.edu.upc.entity.Card;
 import pe.edu.upc.serviceinterface.ICardService;
 import pe.edu.upc.serviceinterface.IUserService;

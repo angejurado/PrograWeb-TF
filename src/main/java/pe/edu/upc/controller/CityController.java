@@ -1,7 +1,8 @@
 package pe.edu.upc.controller;
+
 import java.util.Optional;
 
-import javax.validation.Valid; 
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,33 +23,35 @@ public class CityController {
 
 	@Autowired
 	private ICityService cS;
-	
-	
+
 	@GetMapping("/new")
 	public String newLCity(Model model) {
 		model.addAttribute("city", new City());
 		return "city/city";
 
 	}
-	
+
 	@PostMapping("/save")
-	public String saveCity(@Valid City city, BindingResult result, Model model, SessionStatus status ) throws Exception {
-		
+	public String saveCity(@Valid City city, BindingResult result, Model model, SessionStatus status) throws Exception {
+
 		if (result.hasErrors()) {
-			
 			return "city/city";
-		}else {
-			cS.insert(city);
+		} else {
+			int rpta = cS.insert(city);
+			if (rpta > 0) {
+				model.addAttribute("mensaje", "la ciudad ya existe");
+				return "city/city";
+			} else {
+				model.addAttribute("listaCities", cS.list());
+				return "city/city";
+			}
 		}
-		model.addAttribute("listaCity", cS.list());
-		
-		return "redirect:/cities/list";
-		
+
 	}
-	
+
 	@GetMapping("/list")
 	public String listCity(Model model) {
-		
+
 		try {
 			model.addAttribute("listaCities", cS.list());
 		} catch (Exception e) {
@@ -57,6 +60,7 @@ public class CityController {
 		}
 		return "city/listCity";
 	}
+
 	@RequestMapping("/irupdate/{id}")
 	public String irUpdate(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 		Optional<City> objVac = cS.searchId(id);
@@ -72,20 +76,22 @@ public class CityController {
 	}
 
 	@PostMapping("/update")
-	public String updateCity(@Valid City city, BindingResult result, Model model, SessionStatus status ) throws Exception {
-		
+	public String updateCity(@Valid City city, BindingResult result, Model model, SessionStatus status)
+			throws Exception {
+
 		if (result.hasErrors()) {
-			
+
 			return "city/city";
-		}else {
-			cS.insert(city);
-			
-			model.addAttribute("mensaje", "Registro actualizado correctamente");
+		} else {
+			int rpta = cS.insert(city);
+			if (rpta > 0) {
+				model.addAttribute("mensaje", "la ciudad ya existe");
+				return "city/ucity";
+			} else {
+				model.addAttribute("listaCity", cS.list());
+				return "redirect:/cities/list";
+			}
 		}
-		model.addAttribute("listaCity", cS.list());
-		
-		return "redirect:/cities/list";
-		
+
 	}
 }
-

@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import pe.edu.upc.entity.Brand;
+
 import pe.edu.upc.entity.Card;
 
 public interface ICardService {

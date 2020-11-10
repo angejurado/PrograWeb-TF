@@ -6,7 +6,7 @@ import pe.edu.upc.entity.City;
 
 
 public interface ICityService {
-	public void insert (City cit);
+	public int insert (City cit);
 	List<City>list();
 	Optional<City> searchId(int idCity);
 }

@@ -13,14 +13,7 @@ public class CityServiceImpl implements ICityService {
 	@Autowired
 	private CityRepository cR;
 	
-	@Override
-	public void insert(City cit) {
-		try {
-			cR.save(cit);
-		} catch (Exception e) {
-			System.out.println("Error en el serviceimpl City");
-		}
-	}
+	
 
 	@Override
 	public List<City> list() {
@@ -33,5 +26,15 @@ public class CityServiceImpl implements ICityService {
 	public Optional<City> searchId(int idCity) {
 		// TODO Auto-generated method stub
 		return cR.findById(idCity);
+	}
+	@Override
+	public int insert(City cit) {
+		int rpta=cR.searchCity(cit.getNameCity());
+		if(rpta==0)
+		{
+			cR.save(cit);
+		}
+		return rpta;
+
 	}
 }
