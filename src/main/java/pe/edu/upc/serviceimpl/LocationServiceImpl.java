@@ -13,14 +13,7 @@ public class LocationServiceImpl implements ILocationService {
 	@Autowired
 	private LocationRepository lR;
 	
-	@Override
-	public void insert(Location loc) {
-		try {
-			lR.save(loc);
-		} catch (Exception e) {
-			System.out.println("Error en el serviceimpl Location");
-		}
-	}
+	
 
 	@Override
 	public List<Location> list() {
@@ -28,10 +21,31 @@ public class LocationServiceImpl implements ILocationService {
 		return lR.findAll();
 	}
 
+	
+	
+	@Override
+	public int insert(Location loc) {
+		int rpta=lR.searchLocation(loc.getNameDirection());
+		if(rpta ==0)
+		{
+			lR.save(loc);
+		}
+		return rpta;
+		
+	}
+	
+	@Override
+	public List<Location> findByLocation(String nameDirection) {
+		// TODO Auto-generated method stub
+		return lR.findByLocation(nameDirection);
+	}
+	
 	@Override
 	public Optional<Location> searchId(int idLocation) {
 		// TODO Auto-generated method stub
 		return lR.findById(idLocation);
 	}
+
+	
 }
 

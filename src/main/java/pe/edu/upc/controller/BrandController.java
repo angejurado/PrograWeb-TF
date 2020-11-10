@@ -49,8 +49,6 @@ public class BrandController {
 			model.addAttribute("listaBrand", bS.list());
 			return "redirect:/brands/list";}
 		}
-
-		
 	}
 	
 	@GetMapping("/list")
