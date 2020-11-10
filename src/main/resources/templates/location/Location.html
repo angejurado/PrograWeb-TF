@@ -160,7 +160,7 @@
 							<label for="name" class="col-sm-2 col-form-label"> Codigo
 								Postal </label>
 							<div class="col-sm-6">
-								<input type="text" required="required" th:field="*{numPostalCode}"
+								<input type="text"  min=10000 max=99999 required="required" th:field="*{numPostalCode}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
