@@ -184,7 +184,8 @@
 						<thead class="thead-dark">
 							<tr>
 								<th scope="col">Id</th>
-								<th scope="col">Nombre de la tienda</th>
+								<th scope="col">Tienda</th>
+								<th scope="col">Dueño</th>
 								<th scope="col">Hora de apertura</th>
 								<th scope="col">Hora de cierre</th>
 								<th scope="col">Descripcion</th>
@@ -195,6 +196,7 @@
 						<tbody>
 							<tr th:each="s: ${listaTiendas}">
 								<td th:text="${s.idStore}"></td>
+								<td th:text="${s.user.nameUser}"></td>
 								<td th:text="${s.nameBusiness}"></td>
 								<td th:text="${s.starHour}"></td>
 								<td th:text="${s.endHour}"></td>

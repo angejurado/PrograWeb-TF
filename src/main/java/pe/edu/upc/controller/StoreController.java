@@ -139,11 +139,17 @@ public class StoreController {
 	    if(result.hasErrors()) {
 	    	return "store/store";
 	    }else {
-	    	sS.insert(store);
-	    	this.listStores(model);
-	    	model.addAttribute("mensaje","Actualizo correctamente");
-	    	model.addAttribute("listaTiendas", sS.list());
-			return "redirect:/stores/list";
+	    	int rpta = sS.insert(store);
+			if (rpta > 0) {
+				model.addAttribute("mensaje", "La tienda ya existe!!");
+				model.addAttribute("listaLocaciones", lS.list());
+				model.addAttribute("listaUsuarios", uS.list());
+				return "store/uStore";
+			} else {
+				model.addAttribute("listaTiendas", sS.list());
+				return "redirect:/stores/list";
+
+			}
 	    }
 		
 	  
