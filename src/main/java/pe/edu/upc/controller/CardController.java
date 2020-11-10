@@ -2,6 +2,7 @@ package pe.edu.upc.controller;
 
 
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.sun.el.parser.ParseException;
+
+import pe.edu.upc.entity.Brand;
 import pe.edu.upc.entity.Card;
 import pe.edu.upc.serviceinterface.ICardService;
 import pe.edu.upc.serviceinterface.IUserService;
@@ -40,17 +45,21 @@ public class CardController {
 	@PostMapping("/save")
 	public String saveCard(@Valid Card card, BindingResult result, Model model, 
 			SessionStatus status ) throws Exception {
-		
+
 		if (result.hasErrors()) {
 			
 			return "card/card";
 		}else {
-			cS.insert(card);
+			int rpta=cS.insert(card); 
+				if(rpta>0)
+				{
+					model.addAttribute("mensaje","La tarjeta ya existe. ");
+					return "card/card";
+				
+		}else {
+			model.addAttribute("listaCard", cS.list());
+			return "redirect:/cards/list";}
 		}
-		model.addAttribute("listaCard", cS.list());
-		
-		return "redirect:/cards/list";
-		
 	}
 	
 	@GetMapping("/list")
@@ -95,6 +104,19 @@ public class CardController {
 		model.addAttribute("listaCard", cS.list());
 		
 		return "redirect:/cards/list";
+	}
+	
+	
+	@RequestMapping("/find")
+	public String findByCard(Model model, @Validated Card card) throws ParseException{
+		
+		List<Card> listaTarjetas;
+		listaTarjetas = cS.findByCard(card.getNumCard());
+		if (listaTarjetas.isEmpty()) {
+			model.addAttribute("mensaje", "No se encontro");
+		}
+		model.addAttribute("listaMarcas", listaTarjetas);
+		return "brand/listBrand";
 	}
 	
 
