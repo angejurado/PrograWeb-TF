@@ -156,6 +156,7 @@
 								<th scope="col">Id</th>
 								<th scope="col">Numero de la tarjeta</th>
 								<th scope="col">Fecha de Expiración</th>
+									<th scope="col">Modificar</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -163,6 +164,8 @@
 								<td th:text="${l.idCard}"></td>
 								<td th:text="${l.numCard}"></td>
 								<td th:text="${l.dExpiration}"></td>
+								<td><a th:href="@{'/cards/irupdate/'+${l.idCard}}"><i
+										class="iconf fa fa-pen" style="color: green;"></i></a></td>
 							</tr>
 						</tbody>
 					</table>
