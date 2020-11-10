@@ -47,16 +47,18 @@ public class CardController {
 			SessionStatus status ) throws Exception {
 
 		if (result.hasErrors()) {
-			
+			model.addAttribute("listUser", uS.list());
 			return "card/card";
 		}else {
 			int rpta=cS.insert(card); 
 				if(rpta>0)
 				{
 					model.addAttribute("mensaje","La tarjeta ya existe. ");
+			        model.addAttribute("listUser", uS.list());
 					return "card/card";
 				
 		}else {
+			model.addAttribute("listUser", uS.list());
 			model.addAttribute("listaCard", cS.list());
 			return "redirect:/cards/list";}
 		}
@@ -100,6 +102,7 @@ public class CardController {
 		}else {
 			cS.insert(card);
 			model.addAttribute("mensaje", "Registro actualizado correctamente");
+	        model.addAttribute("listUser", uS.list());
 		}
 		model.addAttribute("listaCard", cS.list());
 		
