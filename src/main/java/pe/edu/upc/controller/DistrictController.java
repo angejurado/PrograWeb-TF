@@ -62,7 +62,7 @@ public class DistrictController {
 			model.addAttribute("listaDistritos", dS.list());
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("Error al listar en el controller");
+			System.out.println("Error al listar en el distrito");
 		}
 		return "district/listDistrict";
 	}
