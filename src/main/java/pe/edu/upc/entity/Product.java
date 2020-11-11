@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
 
 
 @Entity
@@ -22,15 +24,20 @@ public class Product {
 	@JoinColumn(name = "idCategory")
 	private Category category;
 	
+	@Positive
 	@Column(name="mPrice")
 	private Double mprice;
 
-	@Column(name = "nProduct", length = 45, nullable = false )
-	private String nProduct;
 
+	@Column(name = "nProduct", length = 45, nullable = false )
+	@Pattern(regexp = "^[A-Za-z]*$", message="introduzca solo letras")
+	private String nProduct;
+	
+	@Positive
 	@Column(name = "qProduct")
 	private int qProduct;
 	
+	@Positive
 	@Column(name = "numWeigt", length = 65, nullable = false )
 	private String numWeigt;
 	

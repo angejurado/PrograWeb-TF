@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="cities")
@@ -16,6 +17,7 @@ public class City {
 	
 
 	@Column(name = "nameCity", length = 36, nullable = false)
+	@Pattern(regexp = "^[A-Za-z]*$", message="introduzca solo letras")
 	private String nameCity;
 
 	public City() {

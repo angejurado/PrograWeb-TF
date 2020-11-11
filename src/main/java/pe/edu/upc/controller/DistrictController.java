@@ -41,6 +41,7 @@ public class DistrictController {
 	public String saveDistrict(@Valid District district, BindingResult result, Model model, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
+			model.addAttribute("listCity",cS.list());
 			return "district/district";
 		} else {
 			int rpta = dS.insert(district);
@@ -88,8 +89,8 @@ public class DistrictController {
 			SessionStatus status ) throws Exception {
 	
         if (result.hasErrors()) {
-
-            return "district/district";
+        	model.addAttribute("listCity",cS.list());
+            return "district/udistrict";
         }else {
             int rpta=dS.insert(district);
             if (rpta > 0) {

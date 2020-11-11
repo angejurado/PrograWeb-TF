@@ -52,7 +52,8 @@ public class ProductController {
 			SessionStatus status ) throws Exception {
 		
 		if (result.hasErrors()) {
-			
+			model.addAttribute("listBrand", bS.list());
+			model.addAttribute("listCategory", cS.list());
 			return "product/product";
 		}else {
 			pS.insert(product);
@@ -132,7 +133,8 @@ public class ProductController {
 			SessionStatus status ) throws Exception {
 		
 		if (result.hasErrors()) {
-			
+			model.addAttribute("listBrand", bS.list());
+			model.addAttribute("listCategory", cS.list());
 			return "product/product";
 		}else {
 			pS.insert(product);
