@@ -9,5 +9,6 @@ public interface ICityService {
 	public int insert (City cit);
 	List<City>list();
 	Optional<City> searchId(int idCity);
+	public void delete(int idCity);
 }
 

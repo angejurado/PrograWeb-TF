@@ -16,7 +16,7 @@ public class Category {
 	private int idCategory;
 
 	@Column(name = "nameCategory", length = 50, nullable = false)
-	@Pattern(regexp = "^[A-Za-z]*$", message="introduzca solo letras")
+	@Pattern(regexp = "[a-zA-Z ]{2,254}", message="introduzca solo letras")
 	private String nameCategory;
 
 //CONSTRUCTOR

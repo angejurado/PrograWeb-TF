@@ -161,7 +161,8 @@
 								<th scope="col">Id</th>
 								<th scope="col">Ciudad</th>
 								<th scope="col">Modificar</th>
-
+								<th scope="col">Eliminar</th>
+								
 							</tr>
 						</thead>
 						<tbody>
@@ -170,6 +171,9 @@
 								<td th:text="${l.nameCity}"></td>
 								<td><a th:href="@{'/cities/irupdate/'+${l.idCity}}"><i
 										class="iconf fa fa-pen" style="color: green;"></i></a></td>
+											<td><a th:href="@{'/cities/delete/'+${l.idCity}}"> 
+								<i class="iconf fa fa-trash" style="color: red;"></i>
+								</a></td>
 							</tr>
 						</tbody>
 					</table>

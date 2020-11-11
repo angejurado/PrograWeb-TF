@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.sun.el.parser.ParseException;
+
 import pe.edu.upc.entity.City;
+
 import pe.edu.upc.serviceinterface.ICityService;
 
 @Controller
@@ -61,6 +64,28 @@ public class CityController {
 		return "city/listCity";
 	}
 
+	
+	@RequestMapping("/delete/{id}")
+	public String deleteCity(Model model, @PathVariable (value="id") int id) throws ParseException{
+		
+		try {
+
+			if (id > 0) {
+				cS.delete(id);
+			}
+			model.addAttribute("city", new City());
+			model.addAttribute("mensaje", "Se elimino correctamente");
+			model.addAttribute("listaCities",cS.list());
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			model.addAttribute("city", new City());
+			model.addAttribute("mensaje","No se puede eliminar");
+			model.addAttribute("listaCities",cS.list());
+		}
+		return "city/listCity";
+	}
+	
 	@RequestMapping("/irupdate/{id}")
 	public String irUpdate(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 		Optional<City> objVac = cS.searchId(id);

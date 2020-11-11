@@ -19,7 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
-import pe.edu.upc.entity.District;
+
 import pe.edu.upc.entity.User;
 import pe.edu.upc.serviceinterface.IUserService;
 

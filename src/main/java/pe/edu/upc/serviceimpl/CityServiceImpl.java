@@ -37,4 +37,9 @@ public class CityServiceImpl implements ICityService {
 		return rpta;
 
 	}
+
+	@Override
+	public void delete(int idCity) {
+		cR.deleteById(idCity);
+	}
 }
