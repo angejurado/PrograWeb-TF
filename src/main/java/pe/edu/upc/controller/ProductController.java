@@ -135,10 +135,9 @@ public class ProductController {
 		if (result.hasErrors()) {
 			model.addAttribute("listBrand", bS.list());
 			model.addAttribute("listCategory", cS.list());
-			return "product/product";
+			return "product/uproduct";
 		}else {
 			pS.insert(product);
-			this.listProducts(model);
 		}
 		model.addAttribute("listaProduct", pS.list());
 		
