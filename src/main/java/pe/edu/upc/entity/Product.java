@@ -24,7 +24,7 @@ public class Product {
 	@JoinColumn(name = "idCategory")
 	private Category category;
 	
-	@Positive
+	
 	@Column(name="mPrice")
 	private Double mprice;
 
@@ -33,10 +33,10 @@ public class Product {
 	@Pattern(regexp = "[a-zA-Z ]{2,254}", message="introduzca solo letras")
 	private String nProduct;
 	
-	@Positive
+	
 	@Column(name = "qProduct")
 	private int qProduct;
-	@Positive
+	
 	@Column(name = "numWeigt", length = 65, nullable = false )
 	private String numWeigt;
 	
