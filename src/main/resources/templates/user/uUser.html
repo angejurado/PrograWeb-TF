@@ -149,7 +149,7 @@
 					<div class="form-group row">
 							<label for="idDistrict" class="col-sm-2 col-form-label">Id</label>
 							<div class="col-sm-6">
-								<input type="text" th:field="*{idUser}"
+								<input type="text" readonly th:field="*{idUser}"
 									class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
@@ -216,7 +216,7 @@
 
 						<div class="form-group row">
 							<div class="col-sm-6">
-								<input type="submit" value="Guardar" class="btn btn-dark"></input>
+								<input type="submit" value="Actualizar" class="btn btn-dark"></input>
 								<a href="/users/list" class="btn btn-danger">Cancelar</a>
 							</div>
 						</div>
