@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="brands")
@@ -16,6 +17,7 @@ public class Brand {
 	private int idBrand;
 	
 	@Column(name = "nameBrand", length = 35, nullable = false)
+	@Pattern(regexp = "^[A-Za-z]*$", message="Introduzca solo letras en la marca")
 	private String nameBrand;
 	public Brand() {
 		super();
