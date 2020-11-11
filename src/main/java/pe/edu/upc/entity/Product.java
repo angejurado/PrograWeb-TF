@@ -30,13 +30,12 @@ public class Product {
 
 
 	@Column(name = "nProduct", length = 45, nullable = false )
-	@Pattern(regexp = "^[A-Za-z]*$", message="introduzca solo letras")
+	@Pattern(regexp = "[a-zA-Z ]{2,254}", message="introduzca solo letras")
 	private String nProduct;
 	
 	@Positive
 	@Column(name = "qProduct")
 	private int qProduct;
-	
 	@Positive
 	@Column(name = "numWeigt", length = 65, nullable = false )
 	private String numWeigt;
