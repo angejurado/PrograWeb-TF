@@ -30,7 +30,7 @@ public class Product {
 
 
 	@Column(name = "nProduct", length = 45, nullable = false )
-	@Pattern(regexp = "[a-zA-Z ]{2,254}", message="introduzca solo letras")
+
 	private String nProduct;
 	
 	
