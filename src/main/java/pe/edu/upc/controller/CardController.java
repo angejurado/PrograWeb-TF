@@ -95,19 +95,25 @@ public class CardController {
 	@PostMapping("/update")
 	public String updateCard(@Valid Card card, BindingResult result, Model model, 
 			SessionStatus status ) throws Exception {
-		
+
 		if (result.hasErrors()) {
-			
+			model.addAttribute("listUser", uS.list());
 			return "card/card";
 		}else {
-			cS.insert(card);
-			model.addAttribute("mensaje", "Registro actualizado correctamente");
-	        model.addAttribute("listUser", uS.list());
+			int rpta=cS.insert(card); 
+				if(rpta>0)
+				{
+					model.addAttribute("mensaje","La tarjeta ya existe. ");
+			        model.addAttribute("listUser", uS.list());
+					return "card/ucard";
+				
+		}else {
+			model.addAttribute("listUser", uS.list());
+			model.addAttribute("listaCard", cS.list());
+			return "redirect:/cards/list";}
 		}
-		model.addAttribute("listaCard", cS.list());
-		
-		return "redirect:/cards/list";
 	}
+	
 	
 	
 	@RequestMapping("/find")
