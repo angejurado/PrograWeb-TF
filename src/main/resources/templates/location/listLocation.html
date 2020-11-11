@@ -171,6 +171,8 @@
 								<td th:text="${l.numPostalCode}"></td>
 								<td><a th:href="@{'/locations/irupdate/'+${l.idLocation}}"><i
 										class="iconf fa fa-pen" style="color: green;"></i></a></td>
+								<td><a th:href="@{'/locations/delete/'+${l.idLocation}}"> 
+									<i class="iconf fa fa-trash" style="color: red;"></i></a></td>
 							</tr>
 						</tbody>
 					</table>

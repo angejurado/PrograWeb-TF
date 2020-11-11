@@ -11,5 +11,5 @@ public interface ILocationService {
 	
 	Optional<Location> searchId(int idLocation);
 	List<Location> findByLocation(String nameDirection);
-	
+	public void delete(int idLocation);
 }

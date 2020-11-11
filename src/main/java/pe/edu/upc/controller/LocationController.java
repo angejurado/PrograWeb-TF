@@ -18,7 +18,6 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
-
 import pe.edu.upc.entity.Location;
 import pe.edu.upc.serviceinterface.ICityService;
 import pe.edu.upc.serviceinterface.IDistrictService;
@@ -145,4 +144,26 @@ public class LocationController {
 		return "location/listLocation";
 	}
 
+	@RequestMapping("/delete/{id}")
+	public String deleteDistrict(Model model, @PathVariable(value = "id") int id) {
+		try {
+			if (id > 0) {
+				lS.delete(id);
+			}
+			model.addAttribute("location", new Location());
+			model.addAttribute("mensaje", "Se eliminó correctamente la direccion!");
+			model.addAttribute("listaDirecciones", lS.list());
+		} catch (Exception e) {
+			model.addAttribute("location", new Location());
+			model.addAttribute("listaLocation", lS.list());
+			
+			model.addAttribute("mensaje", "No se puede eliminar la direccion!!");
+			
+		}
+		return "redirect:/locations/list";
+	
+
+	}
+	
+	
 }

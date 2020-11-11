@@ -46,6 +46,14 @@ public class LocationServiceImpl implements ILocationService {
 		return lR.findById(idLocation);
 	}
 
+
+
+	@Override
+	public void delete(int idLocation) {
+		// TODO Auto-generated method stub
+		lR.deleteById(idLocation);
+	}
+
 	
 }
 
