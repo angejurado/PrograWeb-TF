@@ -26,7 +26,7 @@
 
 <body id="page-top">
 
-<!-- Page Wrapper -->
+	<!-- Page Wrapper -->
 	<div id="wrapper">
 
 		<!-- Sidebar -->
@@ -156,44 +156,75 @@
 				<div class="bg row">
 
 					<div class="content container">
-
-						<div class="d-flex">
-							<h3 class="title-content">Lista de Importaciones</h3>
-
-
+						<div class="col-6">
+							<h3>Registrar Importación</h3>
 						</div>
-						<div class="d-flex">
 
-							<a th:href="@{/reserves/new}"
-								class="btn btn-secondary btn-xs">Nuevo</a>
+						<div class="col-6 frm-registro ">
+							<form th:action="@{/reserves/save}" method="post"
+								th:object="${reserve}">
+
+								<div class="form-group row">
+									<label for="user" class="col-sm-2 col-form-label">Usuario</label>
+									<div class="col-sm-6">
+										<select class="form-control" required="required"
+											th:field="*{user.idUser}">
+											<option th:each="l: ${listUser}" th:value="${l.idUser}"
+												th:text="${l.nameUser}"
+												th:selected="(${l.idUser} == *{user.idUser})"></option>
+										</select>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="user" class="col-sm-2 col-form-label">Tienda</label>
+									<div class="col-sm-6">
+										<select class="form-control" required="required"
+											th:field="*{store.idStore}">
+											<option th:each="l: ${listStores}" th:value="${l.idStore}"
+												th:text="${l.nameBusiness}"
+												th:selected="(${l.idStore} == *{store.idStore})"></option>
+										</select>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="user" class="col-sm-2 col-form-label">Tarjeta</label>
+									<div class="col-sm-6">
+										<select class="form-control" required="required"
+											th:field="*{card.idCard}">
+											<option th:each="l: ${listCard}" th:value="${l.idCard}"
+												th:text="${l.numCard}"
+												th:selected="(${l.idCard} == *{card.idCard})"></option>
+										</select>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="dExpiration" class="col-sm-2 col-form-label">Fecha
+										de Expiracion</label>
+									<div class="col-sm-3">
+										<input type="date" min=2020-11-11 required="required"
+											th:field="*{dDate}" class="form-control"
+											th:errorclass="'form-control alert-danger'" /> <small
+											class="form-text text-danger"
+											th:if="${#fields.hasErrors('dDate')}"
+											th:errors="*{dDate}"></small>
+									</div>
+								</div>
+
+
+								<button type="submit" class="btnadd btn btn-secondary">Crear
+									Importacion</button>
+								<a href="/reserves/list" class="btncancel btn btn-danger">Cancelar</a>
+							</form>
+							<div th:if="${mensaje}" class="alert alert-danger">
+								<p th:text="${mensaje}"></p>
+							</div>
 						</div>
-						<table class="table">
-							<thead class="thead-light">
-								<tr>
-									<th scope="col" class="text-center">ID</th>
-									<th scope="col" class="text-center">Dia creado</th>
-									<th scope="col" class="text-center">Cliente</th>
-									<th scope="col" class="text-center">Tienda</th>
-									<th scope="col" class="text-center">Ver detalle</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="res : ${listaReservas}">
-									<td class="text-center" th:text="${res.idReserve}"></td>
-									<td class="text-center" th:text="${res.dDate}"></td>
-									<td class="text-center" th:text="${res.user.nameUser}"></td>
-									<td class="text-center" th:text="${res.store.nameBusiness}"></td>
-									<td class="text-center"><a
-										th:href="@{'/reserves/detail/' + ${res.idReserve}}"
-										class="btn btn-danger">Detalle</a></td>
 
 
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div th:if="${error}" class="alert alert-danger">
-						<p th:text="${error}"></p>
+
 					</div>
 
 				</div>

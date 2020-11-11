@@ -1,12 +1,14 @@
 package pe.edu.upc.repository;
 
-import org.springframework.data.jpa.repository.Query;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import pe.edu.upc.entity.DetailsReserve;
+
 @Repository
-public interface DetailsReserveRepository {
+public interface DetailsReserveRepository extends JpaRepository<DetailsReserve, Integer> {
 
 	
-	@Query("select sum(dr..mprice*dr.quantity) from DetailsReserve dr")
-	public double calculateTotal();
+	
 }

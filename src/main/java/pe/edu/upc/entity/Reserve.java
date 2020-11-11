@@ -1,12 +1,20 @@
 package pe.edu.upc.entity;
 
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 
 
@@ -29,29 +37,35 @@ public class Reserve {
 	@ManyToOne
     @JoinColumn(name="idCard")
     private Card card;	
-		
-	@Column(name = "numTotalPrice", nullable = false)
-	private double numTotalPrice;
-	
+
 	@Column(name = "dDate", length = 45, nullable = false)
 	private String dDate;
 	
-
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "idDetailsReserve", nullable = true)
+	private List<DetailsReserve> reserveDetails;
+	
+	
 	public Reserve() {
-		super();
-		// TODO Auto-generated constructor stub
+		
+	}
+	
+	public Double getTotal() {
+		return reserveDetails.stream().collect(Collectors.summingDouble(DetailsReserve::calcularSubTotal));
 	}
 
+	public void addDetailImportation(DetailsReserve item) {
+		this.reserveDetails.add(item);
+	}
 
-
-	public Reserve(int idReserve, User user, Store store, Card card, double numTotalPrice, String dDate) {
+	public Reserve(int idReserve, User user, Store store, Card card, String dDate, List<DetailsReserve> reserveDetails) {
 		super();
 		this.idReserve = idReserve;
 		this.user = user;
 		this.store = store;
 		this.card = card;
-		this.numTotalPrice = numTotalPrice;
 		this.dDate = dDate;
+		this.reserveDetails = reserveDetails;
 	}
 
 
@@ -60,75 +74,52 @@ public class Reserve {
 		return idReserve;
 	}
 
-
-
 	public void setIdReserve(int idReserve) {
 		this.idReserve = idReserve;
 	}
-
-
 
 	public User getUser() {
 		return user;
 	}
 
-
-
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-
 
 	public Store getStore() {
 		return store;
 	}
 
-
-
 	public void setStore(Store store) {
 		this.store = store;
 	}
-
-
 
 	public Card getCard() {
 		return card;
 	}
 
-
-
 	public void setCard(Card card) {
 		this.card = card;
 	}
-
-
-
-	public double getNumTotalPrice() {
-		return numTotalPrice;
-	}
-
-
-
-	public void setNumTotalPrice(int numTotalPrice) {
-		this.numTotalPrice = numTotalPrice;
-	}
-
-
 
 	public String getdDate() {
 		return dDate;
 	}
 
-
-
-	public void setdDate(String dDate) {
-		this.dDate = dDate;
+	public void setdDate(String requestday) {
+		this.dDate = requestday;
 	}
-	
-	
 
-	
+	public List<DetailsReserve> getReserveDetails() {
+		return reserveDetails;
+	}
+
+	public void setReserveDetails(List<DetailsReserve> reserveDetails) {
+		this.reserveDetails = reserveDetails;
+	}
+
+
+
 
 		
 }

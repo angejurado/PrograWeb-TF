@@ -18,15 +18,8 @@ public class DetailsReserve {
 	private int idDetailsReserve;
 	
 	@ManyToOne
-	@JoinColumn(name="idReserve")
-	private Reserve reserve;
-	
-	@ManyToOne
 	@JoinColumn(name="idProduct")
 	private Product product;
-	
-	@Column(name="mprice")
-	private double mprice;
 	
 	@Column(name="quantity")
 	private int quantity;
@@ -36,29 +29,22 @@ public class DetailsReserve {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DetailsReserve(int idDetailsReserve, Reserve reserve, Product product, double mprice, int quantity) {
+	public DetailsReserve(int idDetailsReserve, Product product, int quantity) {
 		super();
 		this.idDetailsReserve = idDetailsReserve;
-		this.reserve = reserve;
 		this.product = product;
-		this.mprice = mprice;
 		this.quantity = quantity;
 	}
-
+	public Double calcularSubTotal() {
+			return quantity * product.getMprice();
+	}
+	
 	public int getIdDetailsReserve() {
 		return idDetailsReserve;
 	}
 
 	public void setIdDetailsReserve(int idDetailsReserve) {
 		this.idDetailsReserve = idDetailsReserve;
-	}
-
-	public Reserve getReserve() {
-		return reserve;
-	}
-
-	public void setReserve(Reserve reserve) {
-		this.reserve = reserve;
 	}
 
 	public Product getProduct() {
@@ -69,14 +55,6 @@ public class DetailsReserve {
 		this.product = product;
 	}
 
-	public double getMprice() {
-		return mprice;
-	}
-
-	public void setMprice(double mprice) {
-		this.mprice = mprice;
-	}
-
 	public int getQuantity() {
 		return quantity;
 	}
@@ -84,6 +62,7 @@ public class DetailsReserve {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
 	
 	
 	
