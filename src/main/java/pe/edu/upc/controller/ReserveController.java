@@ -91,7 +91,7 @@ public class ReserveController {
 			return "reserve/listReserve"; 
 		}
 		model.put("reserve", res);
-		model.put("titulo", "Detalle de Importacion #" + res.getIdReserve());
+		model.put("titulo", "Detalle de Reserva #" + res.getIdReserve());
 
 		return "reserve/details/listDetail"; 
 	}
