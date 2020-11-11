@@ -17,7 +17,7 @@ public class City {
 	
 
 	@Column(name = "nameCity", length = 36, nullable = false)
-	@Pattern(regexp = "^[A-Za-z]*$", message="introduzca solo letras")
+	@Pattern(regexp = "[a-zA-Z]{2,80}", message="introduzca solo letras")
 	private String nameCity;
 
 	public City() {

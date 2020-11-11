@@ -17,7 +17,7 @@ public class Brand {
 	private int idBrand;
 	
 	@Column(name = "nameBrand", length = 35, nullable = false)
-	@Pattern(regexp = "^[A-Za-z]*$", message="Introduzca solo letras en la marca")
+	@Pattern(regexp = "[a-zA-Z]{2,80}", message="Introduzca solo letras en la marca")
 	private String nameBrand;
 	public Brand() {
 		super();
