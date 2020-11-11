@@ -51,17 +51,24 @@ public class LocationController {
 			throws Exception {
 
 		if (result.hasErrors()) {
-
+			model.addAttribute("listCity", ciS.list());
+			model.addAttribute("listDistrict", diS.list());
+			
 			return "location/location";
 		} else {
 			int rpta=lS.insert(location);
 			
 			if(rpta>0)
 			{
+				
 				model.addAttribute("mensaje","La direccion ya existe. ");
+				model.addAttribute("listCity", ciS.list());
+				model.addAttribute("listDistrict", diS.list());
 				return "location/location";
 				} 
 			else	{
+				model.addAttribute("listCity", ciS.list());
+				model.addAttribute("listDistrict", diS.list());
 				model.addAttribute("listaLocations",lS.list());
 				return "redirect:/locations/list";
 				}
@@ -102,18 +109,29 @@ public class LocationController {
 			throws Exception {
 
 		if (result.hasErrors()) {
-
+			model.addAttribute("listCity", ciS.list());
+			model.addAttribute("listDistrict", diS.list());
+			
 			return "location/ulocation";
 		} else {
-			lS.insert(location);
-			model.addAttribute("mensaje", "Registro actualizado correctamente");
-		}
-
-		model.addAttribute("listaLocation", lS.list());
-
-		return "redirect:/locations/list";
-
-	}
+			int rpta=lS.insert(location);
+			
+			if(rpta>0)
+			{
+				
+				model.addAttribute("mensaje","La direccion ya existe. ");
+				model.addAttribute("listCity", ciS.list());
+				model.addAttribute("listDistrict", diS.list());
+				return "location/ulocation";
+				} 
+			else	{
+				model.addAttribute("listCity", ciS.list());
+				model.addAttribute("listDistrict", diS.list());
+				model.addAttribute("listaLocations",lS.list());
+				return "redirect:/locations/list";
+				}
+		
+		}	}
 
 	@RequestMapping("/find")
 	public String findBynLocation(Model model, @Validated Location location) throws ParseException {
