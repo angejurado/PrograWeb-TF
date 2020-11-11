@@ -145,22 +145,26 @@
 
 
 					<form th:action="@{/cards/save}" th:object="${card}" method="post">
-				
-				<div class="form-group row">
-                            <label for="number" class="col-sm-2 col-form-label">Numero
-                                de Tarjeta</label>
-                            <div class="col-sm-6">
-                                <input type="number" min=1000000000000000 max=9999999999999999 required="required" th:field="*{numCard}" class="form-control"
-                                    th:errorclass="'form-control alert-danger'" /> <small
-                                    class="form-text text-danger"
-                                    th:if="${#fields.hasErrors('numCard')}" th:errors="*{numCard}"></small>
-                            </div>
-                        </div>
-                        
+
 						<div class="form-group row">
-							<label for="user"  class="col-sm-2 col-form-label">Dueño</label>
+							<label for="number" class="col-sm-2 col-form-label">Numero
+								de Tarjeta</label>
 							<div class="col-sm-6">
-								<select class="form-control" required="required" th:field="*{user.idUser}">
+								<input type="number" min=1000000000000000 max=9999999999999999
+									required="required"
+									oninvalid="this.setCustomValidity('El numero de la tarjeta debe ser de 16 digitos')"
+									th:field="*{numCard}" class="form-control"
+									th:errorclass="'form-control alert-danger'" /> <small
+									class="form-text text-danger"
+									th:if="${#fields.hasErrors('numCard')}" th:errors="*{numCard}"></small>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label for="user" class="col-sm-2 col-form-label">Dueño</label>
+							<div class="col-sm-6">
+								<select class="form-control" required="required"
+									th:field="*{user.idUser}">
 									<option th:each="l: ${listUser}" th:value="${l.idUser}"
 										th:text="${l.nameUser}"
 										th:selected="(${l.idUser} == *{user.idUser})"></option>
@@ -173,8 +177,8 @@
 							<label for="dExpiration" class="col-sm-2 col-form-label">Fecha
 								de Expiracion</label>
 							<div class="col-sm-3">
-								<input type="month" min=2020-12 required="required" th:field="*{dExpiration}"
-									class="form-control"
+								<input type="month" min=2020-12 required="required"
+									th:field="*{dExpiration}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('dExpiration')}"
@@ -186,8 +190,8 @@
 							<label for="cPin" class="col-sm-2 col-form-label">Codigo
 								de seguridad</label>
 							<div class="col-sm-1">
-								<input type="password" style="width:150px" required="required" th:field="*{codeCard}"
-									class="form-control"
+								<input type="password" style="width: 150px" required="required"
+									th:field="*{codeCard}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('codeCard')}"

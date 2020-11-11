@@ -184,7 +184,7 @@
 						<div class="form-group row">
 							<label for="celUser" class="col-sm-2 col-form-label">Celular</label>
 							<div class="col-sm-6">
-								<input type="number" required="required" th:field="*{celUser}" class="form-control"
+								<input type="number" required="required" oninvalid="this.setCustomValidity('El numero de celular debe ser de 9 digitos')" th:field="*{celUser}" class="form-control"
 									th:errorclass="'form-control alert-danger'" /> <small
 									class="form-text text-danger"
 									th:if="${#fields.hasErrors('celUser')}" th:errors="*{celUser}"></small>
