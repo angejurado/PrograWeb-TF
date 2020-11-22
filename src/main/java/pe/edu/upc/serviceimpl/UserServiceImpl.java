@@ -50,4 +50,18 @@ public class UserServiceImpl implements IUserService {
 	public void delete(int idUser) {
 		uR.deleteById(idUser);
 	}
+
+
+	@Override
+	public List<User> listOwners() {
+		// TODO Auto-generated method stub
+		return uR.listOwners();
+	}
+
+
+	@Override
+	public List<User> listClientes() {
+		// TODO Auto-generated method stub
+		return uR.listCliente();
+	}
 }

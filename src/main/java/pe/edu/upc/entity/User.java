@@ -30,7 +30,7 @@ public class User {
 	private String passwordUser;
 	
 	@Column(name="typeUser", nullable=false)
-	private int typeUser;
+	private String typeUser;
 
 	public User() {
 		super();
@@ -39,7 +39,7 @@ public class User {
 
 	public User(int idUser, String nameUser, String emailUser,
 			@Max(value = 999999999, message = "Ingrese un numero correcto") @Min(value = 900000000, message = "Ingrese un numero correcto") int celUser,
-			String passwordUser, int typeUser) {
+			String passwordUser, String typeUser) {
 		super();
 		this.idUser = idUser;
 		this.nameUser = nameUser;
@@ -89,11 +89,11 @@ public class User {
 		this.passwordUser = passwordUser;
 	}
 
-	public int getTypeUser() {
+	public String getTypeUser() {
 		return typeUser;
 	}
 
-	public void setTypeUser(int typeUser) {
+	public void setTypeUser(String typeUser) {
 		this.typeUser = typeUser;
 	}
 	

@@ -17,4 +17,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	@Query("select count(d.nameUser) from User d where d.nameUser=:nameUser")
 	public int searchUser(@Param("nameUser") String nameUser);
+	
+	@Query("from User u where u.typeUser='Dueño'")
+	List<User> listOwners();
+	
+	@Query("from User u where u.typeUser='Cliente'")
+	List<User> listCliente();
 }

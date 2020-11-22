@@ -42,7 +42,7 @@ public class StoreController {
 	public String newStore(Model model) {
 		model.addAttribute("store", new Store());
 		model.addAttribute("listaLocaciones", lS.list());
-		model.addAttribute("listaUsuarios", uS.list());
+		model.addAttribute("listaUsuarios", uS.listOwners());
 		return "store/store";
 	}
 
@@ -58,7 +58,7 @@ public class StoreController {
 			if (rpta > 0) {
 				model.addAttribute("mensaje", "La tienda ya existe!!");
 				model.addAttribute("listaLocaciones", lS.list());
-				model.addAttribute("listaUsuarios", uS.list());
+				model.addAttribute("listaUsuarios", uS.listOwners());
 				return "store/store";
 			} else {
 				model.addAttribute("listaTiendas", sS.list());
@@ -77,7 +77,7 @@ public class StoreController {
 
 			model.addAttribute("store", new Store());
 			model.addAttribute("listaLocaciones", lS.list());
-			model.addAttribute("listaUsuarios", uS.list());
+			model.addAttribute("listaUsuarios", uS.listOwners());
 			model.addAttribute("listaTiendas", sS.list());
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -126,7 +126,7 @@ public class StoreController {
 		}
 		else {
 			model.addAttribute("listaLocaciones", lS.list());
-			model.addAttribute("listaUsuarios", uS.list());
+			model.addAttribute("listaUsuarios", uS.listOwners());
 			model.addAttribute("store",objSto.get());
 			return "store/uStore";
 		}
@@ -143,7 +143,7 @@ public class StoreController {
 			if (rpta > 0) {
 				model.addAttribute("mensaje", "La tienda ya existe!!");
 				model.addAttribute("listaLocaciones", lS.list());
-				model.addAttribute("listaUsuarios", uS.list());
+				model.addAttribute("listaUsuarios", uS.listOwners());
 				return "store/uStore";
 			} else {
 				model.addAttribute("listaTiendas", sS.list());

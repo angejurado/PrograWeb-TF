@@ -38,7 +38,7 @@ public class CardController {
 	@GetMapping("/new")
     public String newLBrand(Model model) {
         model.addAttribute("card", new Card());
-        model.addAttribute("listUser", uS.list());
+        model.addAttribute("listUser", uS.listClientes());
         return "card/card";
     }
       	
@@ -47,18 +47,18 @@ public class CardController {
 			SessionStatus status ) throws Exception {
 
 		if (result.hasErrors()) {
-			model.addAttribute("listUser", uS.list());
+			model.addAttribute("listUser", uS.listClientes());
 			return "card/card";
 		}else {
 			int rpta=cS.insert(card); 
 				if(rpta>0)
 				{
 					model.addAttribute("mensaje","La tarjeta ya existe. ");
-			        model.addAttribute("listUser", uS.list());
+					model.addAttribute("listUser", uS.listClientes());
 					return "card/card";
 				
 		}else {
-			model.addAttribute("listUser", uS.list());
+			model.addAttribute("listUser", uS.listClientes());
 			model.addAttribute("listaCard", cS.list());
 			return "redirect:/cards/list";}
 		}
@@ -83,7 +83,7 @@ public class CardController {
 			objRedir.addFlashAttribute("mensaje", "Ocurrió un error");
 			return "redirect:/cards/list";
 		} else {
-			model.addAttribute("listUser",uS.list());
+			model.addAttribute("listUser", uS.listClientes());
 			model.addAttribute("card", objCar.get());
 			return "card/ucard";
 
@@ -97,18 +97,18 @@ public class CardController {
 			SessionStatus status ) throws Exception {
 
 		if (result.hasErrors()) {
-			model.addAttribute("listUser", uS.list());
+			model.addAttribute("listUser", uS.listClientes());
 			return "card/card";
 		}else {
 			int rpta=cS.insert(card); 
 				if(rpta>0)
 				{
 					model.addAttribute("mensaje","La tarjeta ya existe. ");
-			        model.addAttribute("listUser", uS.list());
+					model.addAttribute("listUser", uS.listClientes());
 					return "card/ucard";
 				
 		}else {
-			model.addAttribute("listUser", uS.list());
+			model.addAttribute("listUser", uS.listClientes());
 			model.addAttribute("listaCard", cS.list());
 			return "redirect:/cards/list";}
 		}
@@ -125,7 +125,7 @@ public class CardController {
 			model.addAttribute("mensaje", "No se encontro");
 		}
 		model.addAttribute("listaMarcas", listaTarjetas);
-		return "brand/listBrand";
+		return "card/listCard";
 	}
 	
 

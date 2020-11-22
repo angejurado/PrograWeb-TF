@@ -16,5 +16,9 @@ public int insert(User use);
 	Optional<User> searchId(int idUser);
 	
 	public void delete(int idUser);
+	
+	List<User> listOwners();
+	
+	List<User> listClientes();
 
 }
