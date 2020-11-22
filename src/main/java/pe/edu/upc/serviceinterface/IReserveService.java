@@ -10,9 +10,9 @@ public interface IReserveService {
 	
 	public boolean insert(Reserve res);
 
-	Reserve listarId(int idReserve);
+	Reserve listarId(Long idReserve);
 
 	List<Reserve>list();
 
-	Optional<Reserve> fetchByImportIdWhithImportDetailsWithProduct(int id);
+	Optional<Reserve> fetchByImportIdWhithImportDetailsWithProduct(Long id);
 }

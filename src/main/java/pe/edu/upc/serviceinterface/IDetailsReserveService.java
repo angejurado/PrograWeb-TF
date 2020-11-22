@@ -6,6 +6,6 @@ public interface IDetailsReserveService {
 	
 	public Integer insert(DetailsReserve dr);
 
-	public void delete(int idDetailReserve);
+	public void delete(Long idDetailReserve);
 
 }

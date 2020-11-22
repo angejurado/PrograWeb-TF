@@ -1,6 +1,5 @@
 package pe.edu.upc.entity;
 
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,7 +23,7 @@ public class Reserve {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idReserve;
+	private Long idReserve;
 		
 	@ManyToOne
 	@JoinColumn(name="idUser")
@@ -42,14 +41,17 @@ public class Reserve {
 	private String dDate;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "idDetailsReserve", nullable = true)
+	@JoinColumn(name = "idReserve", nullable = true)
 	private List<DetailsReserve> reserveDetails;
 	
 	
-	public Reserve() {
-		
-	}
 	
+	
+	public Reserve() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Double getTotal() {
 		return reserveDetails.stream().collect(Collectors.summingDouble(DetailsReserve::calcularSubTotal));
 	}
@@ -58,23 +60,12 @@ public class Reserve {
 		this.reserveDetails.add(item);
 	}
 
-	public Reserve(int idReserve, User user, Store store, Card card, String dDate, List<DetailsReserve> reserveDetails) {
-		super();
-		this.idReserve = idReserve;
-		this.user = user;
-		this.store = store;
-		this.card = card;
-		this.dDate = dDate;
-		this.reserveDetails = reserveDetails;
-	}
 
-
-
-	public int getIdReserve() {
+	public Long getIdReserve() {
 		return idReserve;
 	}
 
-	public void setIdReserve(int idReserve) {
+	public void setIdReserve(Long idReserve) {
 		this.idReserve = idReserve;
 	}
 

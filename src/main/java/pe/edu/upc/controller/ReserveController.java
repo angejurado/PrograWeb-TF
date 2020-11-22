@@ -64,7 +64,7 @@ public class ReserveController {
 
 	
 	@RequestMapping("/newproduct/{id}")
-	public String irNewProduct(@PathVariable(value = "id") int id, Map<String, Object> model) {
+	public String irNewProduct(@PathVariable(value = "id") Long id, Map<String, Object> model) {
 
 		model.put("detail", new DetailsReserve());
 		model.put("listProducts", pS.list());
@@ -82,7 +82,7 @@ public class ReserveController {
 	}
 	
 	@GetMapping("/detail/{id}")
-	public String detailImportation(@PathVariable(value = "id") int id, Map<String, Object> model,
+	public String detailImportation(@PathVariable(value = "id") Long id, Map<String, Object> model,
 			RedirectAttributes flash) {
 		Reserve res = rS.listarId(id);
 
@@ -113,7 +113,7 @@ public class ReserveController {
 	}
 	
 	@PostMapping("/saveproduct{id}")
-	public String newProductXImportation(@PathVariable(value = "id") int id, @Valid DetailsReserve reservadet,
+	public String newProductXReserve(@PathVariable(value = "id") Long id, @Valid DetailsReserve reservadet,
 			RedirectAttributes flash, BindingResult result, Model model, SessionStatus status) {
 		Reserve res = rS.listarId(id);
 		if (result.hasErrors()) {
@@ -134,10 +134,10 @@ public class ReserveController {
 	}
 	
 	@RequestMapping("{idimp}/eliminardetail/{id}")
-	public String eliminarDetalle(Map<String, Object> model, @PathVariable(value = "id") int idet,
+	public String eliminarDetalle(Map<String, Object> model, @PathVariable(value = "id") Long idet,
 			@PathVariable(value = "idimp") int idimp, RedirectAttributes flash) {
 		try {
-			if (idet > 0) {
+			if (idet!=0 && idet > 0) {
 				dS.delete(idet);
 				flash.addAttribute("mensaje", "Se eliminó correctamente");
 				flash.addAttribute("mensaje1", "Se eliminó correctamente el id" + idet);

@@ -17,7 +17,7 @@ public class DetailsReserveServiceImpl implements IDetailsReserveService {
 	@Autowired
 	public DetailsReserveRepository drsR;
 	
-	@Transactional
+
 	@Override
 	public Integer insert(DetailsReserve dr) {
 		DetailsReserve drs = drsR.save(dr);
@@ -30,7 +30,7 @@ public class DetailsReserveServiceImpl implements IDetailsReserveService {
 
 	@Transactional
 	@Override
-	public void delete(int idDetailReserve) {
+	public void delete(Long idDetailReserve) {
 	
 		drsR.deleteById(idDetailReserve);
 	}

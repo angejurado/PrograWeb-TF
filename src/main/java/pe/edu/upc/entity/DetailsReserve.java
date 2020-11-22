@@ -15,7 +15,7 @@ public class DetailsReserve {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idDetailsReserve;
+	private Long idDetailsReserve;
 	
 	@ManyToOne
 	@JoinColumn(name="idProduct")
@@ -29,7 +29,7 @@ public class DetailsReserve {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DetailsReserve(int idDetailsReserve, Product product, int quantity) {
+	public DetailsReserve(Long idDetailsReserve, Product product, int quantity) {
 		super();
 		this.idDetailsReserve = idDetailsReserve;
 		this.product = product;
@@ -39,11 +39,11 @@ public class DetailsReserve {
 			return quantity * product.getMprice();
 	}
 	
-	public int getIdDetailsReserve() {
+	public Long getIdDetailsReserve() {
 		return idDetailsReserve;
 	}
 
-	public void setIdDetailsReserve(int idDetailsReserve) {
+	public void setIdDetailsReserve(Long idDetailsReserve) {
 		this.idDetailsReserve = idDetailsReserve;
 	}
 

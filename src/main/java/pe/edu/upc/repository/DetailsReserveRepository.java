@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import pe.edu.upc.entity.DetailsReserve;
 
 @Repository
-public interface DetailsReserveRepository extends JpaRepository<DetailsReserve, Integer> {
+public interface DetailsReserveRepository extends JpaRepository<DetailsReserve, Long> {
 
 	
 	
