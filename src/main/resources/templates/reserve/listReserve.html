@@ -85,6 +85,9 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/categories/list}">Categorias</a>
 					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/reserves/listVoucher}">Vouchers</a>
+					</div>
 				</div></li>
 
 
@@ -168,10 +171,10 @@
 								class="btn btn-secondary btn-xs">Nuevo</a>
 						</div>
 						<table class="table">
-							<thead class="thead-light">
+							<thead class="thead-dark">
 								<tr>
-									<th scope="col" class="text-center">ID</th>
-									<th scope="col" class="text-center">Dia creado</th>
+									<th scope="col" class="text-center">Voucher</th>
+									<th scope="col" class="text-center">Fecha</th>
 									<th scope="col" class="text-center">Cliente</th>
 									<th scope="col" class="text-center">Tienda</th>
 									<th scope="col" class="text-center">Ver detalle</th>
@@ -183,8 +186,7 @@
 									<td class="text-center" th:text="${res.dDate}"></td>
 									<td class="text-center" th:text="${res.user.nameUser}"></td>
 									<td class="text-center" th:text="${res.store.nameBusiness}"></td>
-									<td class="text-center"><a
-										th:href="@{'/reserves/detail/' + ${res.idReserve}}"
+									<td class="text-center"><a th:href="@{'/reserves/detail/' + ${res.idReserve}}"
 										class="btn btn-danger">Detalle</a></td>
 
 

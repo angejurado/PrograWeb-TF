@@ -1,5 +1,7 @@
 package pe.edu.upc.controller;
 
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,17 +68,10 @@ public class VoucherController {
     }
 	
 	@GetMapping("/list")
-    public String listVouchers(Model model) {
-
-        try {
-            model.addAttribute("listaVoucherss", vS.list());
-        } catch (Exception e) {
-            // TODO: handle exception
-            System.out.println("Error al listar vouchers en el controller");
-        }
-        return "voucher/listVoucher";
-    }
-
+	public String listar(Map<String, Object> model) {
+		model.put("listaReservas", rS.list());
+		return "voucher/listVoucher";
+	}
 	
 
 }

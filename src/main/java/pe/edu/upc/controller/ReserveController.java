@@ -81,6 +81,12 @@ public class ReserveController {
 		return "reserve/listReserve";
 	}
 	
+	@GetMapping("/listVoucher")
+	public String listarVoucher(Map<String, Object> model) {
+		model.put("listaReservas", rS.list());
+		return "voucher/listVoucher";
+	}
+	
 	@GetMapping("/detail/{id}")
 	public String detailImportation(@PathVariable(value = "id") Long id, Map<String, Object> model,
 			RedirectAttributes flash) {
@@ -94,6 +100,21 @@ public class ReserveController {
 		model.put("titulo", "Detalle de Reserva #" + res.getIdReserve());
 
 		return "reserve/details/listDetail"; 
+	}
+	
+	@GetMapping("/voucher/{id}")
+	public String detailVoucher(@PathVariable(value = "id") Long id, Map<String, Object> model,
+			RedirectAttributes flash) {
+		Reserve res = rS.listarId(id);
+
+		if (res == null) {
+			flash.addFlashAttribute("error", "El Voucher no existe en la base de datos");
+			return "reserve/listReserve"; 
+		}
+		model.put("reserve", res);
+		model.put("titulo", "Detalle del Voucher #" + res.getIdReserve());
+
+		return "voucher/listVoucherDetails"; 
 	}
 	
 	@PostMapping("/save")
