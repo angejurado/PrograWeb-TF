@@ -26,7 +26,7 @@
 
 <body id="page-top">
 
-<!-- Page Wrapper -->
+	<!-- Page Wrapper -->
 	<div id="wrapper">
 
 		<!-- Sidebar -->
@@ -167,8 +167,8 @@
 						</div>
 						<div class="d-flex">
 
-							<a th:href="@{/reserves/new}"
-								class="btn btn-secondary btn-xs">Nuevo</a>
+							<a th:href="@{/reserves/new}" class="btn btn-secondary btn-xs">Nuevo</a>
+
 						</div>
 						<table class="table">
 							<thead class="thead-dark">
@@ -186,7 +186,8 @@
 									<td class="text-center" th:text="${res.dDate}"></td>
 									<td class="text-center" th:text="${res.user.nameUser}"></td>
 									<td class="text-center" th:text="${res.store.nameBusiness}"></td>
-									<td class="text-center"><a th:href="@{'/reserves/detail/' + ${res.idReserve}}"
+									<td class="text-center"><a
+										th:href="@{'/reserves/detail/' + ${res.idReserve}}"
 										class="btn btn-danger">Detalle</a></td>
 
 

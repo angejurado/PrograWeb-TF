@@ -50,4 +50,18 @@ public class ReserveServiceImpl implements IReserveService {
 		// TODO Auto-generated method stub
 		return rR.fetchByImportIdWhithImportDetailsWithProduct(id);
 	}
+
+
+	@Override
+	public List<Reserve> findByString(String parametro) {
+		// TODO Auto-generated method stub
+		return rR.searchByString(parametro);
+	}
+
+
+	@Override
+	public List<Reserve> findByNumber(Long parametro) {
+		// TODO Auto-generated method stub
+		return rR.searchByNumber(parametro);
+	}
 }

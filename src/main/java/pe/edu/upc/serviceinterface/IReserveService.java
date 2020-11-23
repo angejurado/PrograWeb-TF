@@ -15,4 +15,8 @@ public interface IReserveService {
 	List<Reserve>list();
 
 	Optional<Reserve> fetchByImportIdWhithImportDetailsWithProduct(Long id);
+	
+	List<Reserve>findByString(String parametro);
+	
+	List<Reserve>findByNumber(Long parametro);
 }
