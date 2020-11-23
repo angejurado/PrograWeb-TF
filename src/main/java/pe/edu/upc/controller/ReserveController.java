@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -256,6 +257,34 @@ public class ReserveController {
 		model.addAttribute("listaReserve", rS.list());
 		
 		return "redirect:/reserves/list";
+	}
+	
+	@RequestMapping("/reporte3")
+	public String vouchersDeUnMes(@ModelAttribute("mesAbuscar")Model model, @Validated String mesAbuscar) {
+		int mes=0;
+		if(mesAbuscar!=null) {
+			switch (mesAbuscar)
+			{
+			case "Enero": mes=1; break;
+			case "Febrero": mes=2; break;
+			case "Marzo": mes=3; break;
+			case "Abril": mes=4; break;
+			case "Mayo": mes=5; break;
+			case "Junio": mes=6; break;
+			case "Julio": mes=7; break;
+			case "Agosto": mes=8; break;
+			case "Septiembre": mes=9; break;
+			case "Octubre": mes=10; break;
+			case "Noviembre": mes=11; break;
+			case "Diciembre": mes=12; break;
+			}
+			
+		}else {
+			mesAbuscar="Enero";
+		}
+		
+		model.addAttribute("listVouchersMes", rS.vouchersDeUnMes(mes));
+		return "reports/vouchersDeUnMes";
 	}
 	
 	

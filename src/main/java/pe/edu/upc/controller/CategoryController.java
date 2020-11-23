@@ -1,5 +1,7 @@
 package pe.edu.upc.controller;
 
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +74,12 @@ public class CategoryController {
 			model.addAttribute("listaCategorias",cS.list());
 		}
 		return "category/listCategory";
+	}
+	
+	@RequestMapping("/reporte1")
+	public String catMasSolicitadas(Map<String, Object> model) {
+		model.put("listCatMasSoli", cS.catMasPedida());
+		return "reports/categoriasMasPedidas";
 	}
 }
 

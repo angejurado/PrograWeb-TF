@@ -38,5 +38,11 @@ public class CategoryServiceImpl implements ICategoryService {
 		return rpta;
 	}
 
+	@Override
+	public List<String[]> catMasPedida() {
+		// TODO Auto-generated method stub
+		return cR.catMasSolicitada();
+	}
+
 	
 }

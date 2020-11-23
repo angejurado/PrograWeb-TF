@@ -22,5 +22,14 @@ public interface ReserveRepository extends JpaRepository<Reserve, Long>{
 	
 	@Query("from Reserve r where r.getTotal()>=:busqueda")
 	List<Reserve>searchByNumber(@Param("busqueda")Long parametro);
+	
+	@Query(value="select r.id_reserve,u.name_user,s.name_business,r.d_date,SUM(dr.quantity*p.m_price)\n" + 
+			"from reserves r inner join stores s on r.id_store=s.id_store\n" + 
+			"inner join users u on r.id_user=u.id_user\n" + 
+			"inner join detailsreserves dr on r.id_reserve=dr.id_reserve\n" + 
+			"inner join products p on dr.id_product=p.id_product\n" + 
+			"where EXTRACT(MONTH FROM r.d_date)=?1\n" + 
+			"group by r.id_reserve,u.name_user,s.name_business", nativeQuery=true)
+	List<Reserve>vouchersDeUnMes(int mes);
 
 }

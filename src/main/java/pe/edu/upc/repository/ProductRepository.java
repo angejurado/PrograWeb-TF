@@ -17,4 +17,11 @@ public interface ProductRepository  extends JpaRepository<Product, Integer>{
 	
 	@Query("select count(p.nProduct) from Product p where p.nProduct=:nProduct")
 	public int searchProduct(@Param("nProduct") String nProduct);
+	
+	@Query(value="select p.n_product, SUM(dr.quantity)\n" + 
+			"from detailsreserves dr inner join products p on dr.id_product=p.id_product\n" + 
+			"group by p.n_product\n" + 
+			"order by SUM(dr.quantity)\n" + 
+			"desc limit 10",nativeQuery=true)
+	public List<String[]> top10Productos();
 }

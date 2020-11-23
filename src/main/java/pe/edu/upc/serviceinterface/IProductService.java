@@ -7,13 +7,15 @@ import pe.edu.upc.entity.Product;
 
 public interface IProductService {
 
-public void insert(Product pro);
-	
+	public void insert(Product pro);
+
 	List<Product> list();
-	
+
 	List<Product> findBynProduct(String nProduct);
-	
-public void delete(int idProduct);
-	
+
+	public void delete(int idProduct);
+
 	Optional<Product> searchId(int idProduct);
+	
+	public List<String[]> top10Productos();
 }

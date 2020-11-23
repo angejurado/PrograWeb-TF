@@ -23,4 +23,6 @@ public interface IReserveService {
 	List<Reserve>findByNumber(Long parametro);
 	
 	Optional<Reserve> searchId(Long idProduct);
+	
+	List<Reserve>vouchersDeUnMes(int mes);
 }

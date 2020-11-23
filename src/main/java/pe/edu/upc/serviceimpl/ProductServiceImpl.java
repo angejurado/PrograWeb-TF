@@ -51,4 +51,10 @@ public class ProductServiceImpl implements IProductService{
 		// TODO Auto-generated method stub
 		return pR.findById(idProduct);
 	}
+
+	@Override
+	public List<String[]> top10Productos() {
+		// TODO Auto-generated method stub
+		return pR.top10Productos();
+	}
 }

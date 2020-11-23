@@ -79,4 +79,11 @@ public class ReserveServiceImpl implements IReserveService {
 		// TODO Auto-generated method stub
 		return rR.findById(idProduct);
 	}
+
+
+	@Override
+	public List<Reserve> vouchersDeUnMes(int mes) {
+		// TODO Auto-generated method stub
+		return rR.vouchersDeUnMes(mes);
+	}
 }

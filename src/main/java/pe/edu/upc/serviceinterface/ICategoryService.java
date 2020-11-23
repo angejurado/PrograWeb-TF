@@ -9,4 +9,6 @@ public interface ICategoryService {
 
 	List<Category> list();
 	public void delete(int idCategory);
+	
+	public List<String[]> catMasPedida();
 }
