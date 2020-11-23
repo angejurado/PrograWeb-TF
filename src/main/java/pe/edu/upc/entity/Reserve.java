@@ -1,5 +1,6 @@
 package pe.edu.upc.entity;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,8 +14,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+
 
 
 @Entity
@@ -37,8 +44,10 @@ public class Reserve {
     @JoinColumn(name="idCard")
     private Card card;	
 
-	@Column(name = "dDate", length = 45, nullable = false)
-	private String dDate;
+	@Column(name = "dDate", nullable = false)
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date dDate;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "idReserve", nullable = true)
@@ -46,10 +55,10 @@ public class Reserve {
 	
 	
 	
-	
-	public Reserve() {
-		super();
-		// TODO Auto-generated constructor stub
+	@PrePersist
+	public void prePersist() {
+		
+		this.dDate = new Date();
 	}
 
 	public Double getTotal() {
@@ -93,11 +102,11 @@ public class Reserve {
 		this.card = card;
 	}
 
-	public String getdDate() {
+	public Date getdDate() {
 		return dDate;
 	}
 
-	public void setdDate(String requestday) {
+	public void setdDate(Date requestday) {
 		this.dDate = requestday;
 	}
 

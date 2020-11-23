@@ -9,6 +9,8 @@ import pe.edu.upc.entity.Reserve;
 public interface IReserveService {
 	
 	public boolean insert(Reserve res);
+	
+	public void delete(Long id);
 
 	Reserve listarId(Long idReserve);
 
@@ -19,4 +21,6 @@ public interface IReserveService {
 	List<Reserve>findByString(String parametro);
 	
 	List<Reserve>findByNumber(Long parametro);
+	
+	Optional<Reserve> searchId(Long idProduct);
 }

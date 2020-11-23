@@ -178,6 +178,8 @@
 									<th scope="col" class="text-center">Cliente</th>
 									<th scope="col" class="text-center">Tienda</th>
 									<th scope="col" class="text-center">Ver detalle</th>
+									<th scope="col" class="text-center">Eliminar</th>
+									<th scope="col" class="text-center">Actualizar</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -189,6 +191,10 @@
 									<td class="text-center"><a
 										th:href="@{'/reserves/detail/' + ${res.idReserve}}"
 										class="btn btn-danger">Detalle</a></td>
+									<td><a th:href="@{'/reserves/delete/'+${res.idReserve}}">&nbsp;&nbsp;&nbsp;&nbsp;
+											<i class="iconf fa fa-trash"  style="color: red;"></i></a></td>
+									<td><a th:href="@{'/reserves/irupdate/'+${res.idReserve}}"><i
+										class="iconf fa fa-pen" style="color: green;"></i></a></td>
 
 
 								</tr>

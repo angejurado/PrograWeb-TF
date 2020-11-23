@@ -64,4 +64,19 @@ public class ReserveServiceImpl implements IReserveService {
 		// TODO Auto-generated method stub
 		return rR.searchByNumber(parametro);
 	}
+
+
+	@Override
+	public void delete(Long id) {
+		// TODO Auto-generated method stub
+		rR.deleteById(id);
+		
+	}
+
+
+	@Override
+	public Optional<Reserve> searchId(Long idProduct) {
+		// TODO Auto-generated method stub
+		return rR.findById(idProduct);
+	}
 }

@@ -1,7 +1,9 @@
 package pe.edu.upc.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -123,9 +125,9 @@ public class ReserveController {
 	
 	@PostMapping("/save")
 	public String saveOrder(@Valid Reserve res, Model model, SessionStatus status, BindingResult binRes) {
-	
+		Date requestday = new Date();
 		try {
-			
+			res.setdDate(requestday);
 			rS.insert(res);
 			status.setComplete();
 			model.addAttribute("success", "Reserva Generada");
@@ -199,6 +201,63 @@ public class ReserveController {
 		model.addAttribute("listaReserva", listaReserva);
 		return "reserve/listReserve";
 	}
+	
+	@RequestMapping("/delete/{id}")
+	public String deleteReserve(Model model, @PathVariable (value="id") Long id) throws ParseException{
+		
+		try {
+
+			if (id > 0) {
+				rS.delete(id);;
+			}
+			model.addAttribute("reserva", new Reserve ());
+			model.addAttribute("success", "Se elimino correctamente");
+			model.addAttribute("listaReserva",rS.list());
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			model.addAttribute("reserva", new Reserve ());
+			model.addAttribute("success","No se puede eliminar");
+			model.addAttribute("listaReserva",rS.list());
+		}
+		return  "redirect:/reserves/list";
+	}
+	
+	@RequestMapping("/irupdate/{id}")
+	public String irUpdate(@PathVariable Long id, Model model, RedirectAttributes objRedir){
+		
+		Optional<Reserve> objPro = rS.searchId(id);
+		if (objPro == null) {
+			objRedir.addFlashAttribute("mensaje", "ocurrio un error");
+			return "redirect:reserves/list";
+		}else {
+			model.addAttribute("listUser", uS.list());
+			model.addAttribute("listCard", cS.list());
+			model.addAttribute("listStores", sS.list());
+			model.addAttribute("reserve", objPro.get());
+			return "reserve/uReserve";
+
+		}
+		
+	}
+	
+	@PostMapping("/update")
+	public String UpdateReserve(@Valid Reserve product, BindingResult result, Model model, 
+			SessionStatus status ) throws Exception {
+		
+		if (result.hasErrors()) {
+			model.addAttribute("listUser", uS.list());
+			model.addAttribute("listCard", cS.list());
+			model.addAttribute("listStores", sS.list());
+			return "reserve/uReserve";
+		}else {
+			rS.insert(product);
+		}
+		model.addAttribute("listaReserve", rS.list());
+		
+		return "redirect:/reserves/list";
+	}
+	
 	
 	
 }
