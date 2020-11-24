@@ -138,7 +138,7 @@
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
 						</a></li>
-						
+
 						<!-- Nav Item - User Information -->
 						<li class="nav-item dropdown no-arrow"><a
 							class="nav-link dropdown-toggle" href="#" id="userDropdown"
@@ -147,8 +147,10 @@
 								class="mr-2 d-none d-lg-inline text-gray-600 small"><img
 									th:src="@{/img/logout.png}" width="30" height="30" alt="logo"
 									align="middle"></img></span>
-									
-									</a> <!-- Dropdown - User Information -->
+								<div sec:authorize="isAuthenticated()">
+									Bienvenido, <span sec:authentication="name">Username</span>
+								</div>
+						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="userDropdown">
@@ -174,7 +176,7 @@
 					<h1 class="h3 mb-4 text-gray-800">Producto</h1>
 
 					<a th:href="@{/products/new/}" class="btn btn-secondary btn-xs">Nuevo</a>
-					
+
 					<form th:action="@{/products/find}" method="post"
 						th:object="${product}">
 
@@ -182,24 +184,22 @@
 							<table>
 								<tbody>
 									<tr>
-										<td><label for="nProduct"
-											class="col-sm-2 col-form-label">Buscar:</label></td>
+										<td><label for="nProduct" class="col-sm-2 col-form-label">Buscar:</label></td>
 										<td><input type="text" class="form-control"
 											th:field="*{nProduct}" id="nProduct"
-											placeholder="Nombre Producto" required="required"
-											></input></td>
+											placeholder="Nombre Producto" required="required"></input></td>
 										<td><button type="submit" class="btn btn-danger">
 												<i class="iconf fa fa-search" style="color: white;"></i>
 											</button></td>
-										</tr>
+									</tr>
 								</tbody>
 							</table>
 						</div>
 
 					</form>
-					
-					
-					
+
+
+
 					<form th:action="@{/products/findprice}" method="post"
 						th:object="${product}">
 
@@ -214,18 +214,18 @@
 
 										<td><button type="submit" class="btn btn-danger">
 												<i class="iconf fa fa-search" style="color: white;"></i>
-											</button></td>										
-									<td><a href="/products/list" class="btn btn-danger">Limpiar</a></td>
-											
-														</tr>
+											</button></td>
+										<td><a href="/products/list" class="btn btn-danger">Limpiar</a></td>
+
+									</tr>
 								</tbody>
 							</table>
 						</div>
 
 					</form>
-					
-					
-					
+
+
+
 					<hr class="sidebar-divider">
 
 					<table class="table table-striped">
@@ -238,25 +238,29 @@
 								<th scope="col">Cantidad del producto</th>
 								<th scope="col">Peso</th>
 								<th scope="col">Marca</th>
+								<th scope="col">Tienda</th>
+								<th scope="col">Ubicacion</th>
 								<th scope="col">Eliminar</th>
 								<th scope="col">Actualizar</th>
 							</tr>
 						</thead>
 						<tbody>
-						<tr th:each="l: ${listaProductos}">
-                                <td th:text="${l.idProduct}"></td>
-                                <td th:text="${l.category.nameCategory}"></td>
-                                <td th:text="${l.Mprice}"></td>
-                                <td th:text="${l.nProduct}"></td>
-                                <td th:text="${l.qProduct}"></td>
-                                <td th:text="${l.numWeigt}"></td>
-                                <td th:text="${l.brand.nameBrand}"></td>
-                                <td><a th:href="@{'/products/delete/'+${l.idProduct}}"> 
-								<i class="iconf fa fa-trash" style="color: red;"></i>
+							<tr th:each="l: ${listaProductos}">
+								<td th:text="${l.idProduct}"></td>
+								<td th:text="${l.category.nameCategory}"></td>
+								<td th:text="${l.Mprice}"></td>
+								<td th:text="${l.nProduct}"></td>
+								<td th:text="${l.qProduct}"></td>
+								<td th:text="${l.numWeigt}"></td>
+								<td th:text="${l.brand.nameBrand}"></td>
+								<td th:text="${l.store.nameBusiness}"></td>
+								<td th:text="${l.store.location.district.nameDistrict}"></td>
+								<td><a th:href="@{'/products/delete/'+${l.idProduct}}">
+										<i class="iconf fa fa-trash" style="color: red;"></i>
 								</a></td>
 								<td><a th:href="@{'/products/irupdate/'+${l.idProduct}}"><i
 										class="iconf fa fa-pen" style="color: green;"></i></a></td>
-                            </tr>
+							</tr>
 						</tbody>
 					</table>
 
