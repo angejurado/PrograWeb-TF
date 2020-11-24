@@ -39,6 +39,15 @@ public class ProductServiceImpl implements IProductService{
    		// TODO Auto-generated method stub
    		return pR.findBynProduct(nProduct);
    	}
+    
+    
+    @Override
+   	public List<Product> findByPrice(Double mPrice) {
+   		// TODO Auto-generated method stub
+   		return pR.findByPrice(mPrice);
+   	}
+    
+    
 
 	@Override
 	public void delete(int idProduct) {

@@ -1,4 +1,4 @@
-package pe.edu.upc.controller;
+ package pe.edu.upc.controller;
  
 import java.util.List;
 import java.util.Map;
@@ -23,6 +23,7 @@ import com.sun.el.parser.ParseException;
 import pe.edu.upc.entity.Product;
 import pe.edu.upc.serviceinterface.IBrandService;
 import pe.edu.upc.serviceinterface.IProductService;
+import pe.edu.upc.serviceinterface.IStoreService;
 import pe.edu.upc.serviceinterface.ICategoryService;
 
 @Controller
@@ -38,12 +39,16 @@ public class ProductController {
 	@Autowired
 	private ICategoryService cS;
 	
+	@Autowired
+	private IStoreService sS; 
+	
 
 	@GetMapping("/new")
 	public String newProduct(Model model) {
 		model.addAttribute("product", new Product());
 		model.addAttribute("listBrand", bS.list());
 		model.addAttribute("listCategory", cS.list());
+		model.addAttribute("listStore", sS.list());
 				return "product/product";
 	}
 	
@@ -55,6 +60,7 @@ public class ProductController {
 		if (result.hasErrors()) {
 			model.addAttribute("listBrand", bS.list());
 			model.addAttribute("listCategory", cS.list());
+			model.addAttribute("listStore", sS.list());
 			return "product/product";
 		}else {
 			pS.insert(product);
@@ -71,6 +77,7 @@ public class ProductController {
 			model.addAttribute("product", new Product());
 			model.addAttribute("listBrand", bS.list());
 			model.addAttribute("listCategory", cS.list());
+			model.addAttribute("listStore", sS.list());
 			model.addAttribute("listaProductos", pS.list());
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -84,6 +91,20 @@ public class ProductController {
 		
 		List<Product> listaProductos;
 		listaProductos = pS.findBynProduct(product.getnProduct());
+		if (listaProductos.isEmpty()) {
+			model.addAttribute("mensaje", "No se encontro");
+		}
+		model.addAttribute("listaProductos", listaProductos);
+		return "product/listProduct";
+	}
+	
+	
+	
+	@RequestMapping("/findprice")
+	public String findByPrice(Model model, @Validated Product product) throws ParseException{
+		
+		List<Product> listaProductos;
+		listaProductos = pS.findByPrice(product.getMprice());
 		if (listaProductos.isEmpty()) {
 			model.addAttribute("mensaje", "No se encontro");
 		}
@@ -122,6 +143,7 @@ public class ProductController {
 		}else {
 			model.addAttribute("listBrand", bS.list());
 			model.addAttribute("listCategory", cS.list());
+			model.addAttribute("listStore", sS.list());
 			model.addAttribute("product", objPro.get());
 			return "product/uproduct";
 
@@ -136,6 +158,7 @@ public class ProductController {
 		if (result.hasErrors()) {
 			model.addAttribute("listBrand", bS.list());
 			model.addAttribute("listCategory", cS.list());
+			model.addAttribute("listStore", sS.list());
 			return "product/uproduct";
 		}else {
 			pS.insert(product);

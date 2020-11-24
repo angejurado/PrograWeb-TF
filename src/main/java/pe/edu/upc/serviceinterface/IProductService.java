@@ -17,5 +17,7 @@ public interface IProductService {
 
 	Optional<Product> searchId(int idProduct);
 	
+	List<Product> findByPrice(Double mPrice);
+	
 	public List<String[]> top10Productos();
 }

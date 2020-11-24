@@ -44,13 +44,19 @@ public class Product {
 	@JoinColumn(name = "idBrand")
 	private Brand brand;
 	
+	@ManyToOne
+	@JoinColumn(name="idStore")
+	private Store store;
+	
+	
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+
 	public Product(int idProduct, Category category, Double mprice, String nProduct, int qProduct, String numWeigt,
-			Brand brand) {
+			Brand brand, Store store) {
 		super();
 		this.idProduct = idProduct;
 		this.category = category;
@@ -59,63 +65,88 @@ public class Product {
 		this.qProduct = qProduct;
 		this.numWeigt = numWeigt;
 		this.brand = brand;
+		this.store = store;
 	}
+
 
 	public int getIdProduct() {
 		return idProduct;
 	}
 
+
 	public void setIdProduct(int idProduct) {
 		this.idProduct = idProduct;
 	}
+
 
 	public Category getCategory() {
 		return category;
 	}
 
+
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+
 
 	public Double getMprice() {
 		return mprice;
 	}
 
+
 	public void setMprice(Double mprice) {
 		this.mprice = mprice;
 	}
+
 
 	public String getnProduct() {
 		return nProduct;
 	}
 
+
 	public void setnProduct(String nProduct) {
 		this.nProduct = nProduct;
 	}
+
 
 	public int getqProduct() {
 		return qProduct;
 	}
 
+
 	public void setqProduct(int qProduct) {
 		this.qProduct = qProduct;
 	}
+
 
 	public String getNumWeigt() {
 		return numWeigt;
 	}
 
+
 	public void setNumWeigt(String numWeigt) {
 		this.numWeigt = numWeigt;
 	}
+
 
 	public Brand getBrand() {
 		return brand;
 	}
 
+
 	public void setBrand(Brand brand) {
 		this.brand = brand;
 	}
 
-	
+
+	public Store getStore() {
+		return store;
+	}
+
+
+	public void setStore(Store store) {
+		this.store = store;
+	}
+
+		
 }
