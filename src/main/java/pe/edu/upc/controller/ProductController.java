@@ -175,4 +175,10 @@ public class ProductController {
 		return "reports/productosMasPedidos";
 	}
 	
+	@RequestMapping("/reporte4")
+	public String productoMenosVendido(Map<String, Object> model) {
+		model.put("listproductomenosvendido",pS.productoMenosVendido() );
+		return "reports/productoMenosPedido";
+	}
+	
 }

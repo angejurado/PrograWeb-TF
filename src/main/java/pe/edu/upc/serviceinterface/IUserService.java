@@ -20,5 +20,7 @@ public int insert(User use);
 	List<User> listOwners();
 	
 	List<User> listClientes();
+	
+	List<String[]>clienteMasFrecuente();
 
 }

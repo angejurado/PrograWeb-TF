@@ -20,4 +20,6 @@ public interface IProductService {
 	List<Product> findByPrice(Double mPrice);
 	
 	public List<String[]> top10Productos();
+	
+	public List<String[]> productoMenosVendido();
 }

@@ -23,4 +23,11 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	@Query("from User u where u.typeUser='Cliente'")
 	List<User> listCliente();
+	
+	@Query(value="select u.name_user, COUNT(u.name_user) from users u inner join reserves r on u.id_user=r.id_user\r\n" + 
+			"inner join detailsreserves dr on r.id_reserve=dr.id_reserve\r\n" + 
+			"group by u.name_user\r\n" + 
+			"order by COUNT(u.name_user) desc\r\n" + 
+			"limit 1",nativeQuery=true)
+	public List<String[]>clienteMasFrecuente();
 }

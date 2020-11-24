@@ -1,6 +1,7 @@
 package pe.edu.upc.controller;
 
-import java.util.List; 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -134,5 +135,12 @@ public class UserController {
 		}
 		return "user/listUser";
 	}
+	
+	@RequestMapping("/reporte3")
+	public String top10Productos(Map<String, Object> model) {
+		model.put("listclientesmasfrecuentes", uS.clienteMasFrecuente());
+		return "reports/clientesmasfrecuentes";
+	}
+	
 }
 

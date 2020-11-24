@@ -169,23 +169,21 @@
 
 					<div class="content container">
 						<div class="cinforeport">
-							<h3 class="title-content">Categorías mas demandada</h3>
-							<p class="inforeport">Lista de la categoría más demandada</p>
+							<h3 class="title-content">Cliente mas frecuente</h3>
+							<p class="inforeport">Cliente con mayor frecuencia de compra</p>
 						</div>
 						<table class="table">
 							<thead class="thead-light">
 								<tr>
-									<th scope="col" class="text-center">Categoría</th>
+									<th scope="col" class="text-center">Nombre</th>
 									<th scope="col" class="text-center">Presencia en
 										Reservas</th>
-									<th scope="col" class="text-center">Cantidad total</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="rep : ${listCatMasSoli}">
+								<tr th:each="rep : ${listclientesmasfrecuentes}">
 									<td class="text-center" th:text="${rep[0]}"></td>
 									<td class="text-center" th:text="${rep[1]}"></td>
-									<td class="text-center" th:text="${rep[2]}"></td>
 								</tr>
 							</tbody>
 						</table>

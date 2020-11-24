@@ -64,4 +64,11 @@ public class UserServiceImpl implements IUserService {
 		// TODO Auto-generated method stub
 		return uR.listCliente();
 	}
+
+
+	@Override
+	public List<String[]> clienteMasFrecuente() {
+		// TODO Auto-generated method stub
+		return uR.clienteMasFrecuente();
+	}
 }

@@ -66,4 +66,10 @@ public class ProductServiceImpl implements IProductService{
 		// TODO Auto-generated method stub
 		return pR.top10Productos();
 	}
+
+	@Override
+	public List<String[]> productoMenosVendido() {
+		// TODO Auto-generated method stub
+		return pR.productoMenosVendido();
+	}
 }

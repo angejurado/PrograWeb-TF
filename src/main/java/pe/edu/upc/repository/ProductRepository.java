@@ -26,4 +26,12 @@ public interface ProductRepository  extends JpaRepository<Product, Integer>{
 			"order by SUM(dr.quantity)\n" + 
 			"desc limit 10",nativeQuery=true)
 	public List<String[]> top10Productos();
+	
+	
+	@Query(value="select p.n_product, sum(dr.quantity) from reserves r inner join detailsreserves dr on r.id_reserve=dr.id_reserve\n" + 
+			"inner join products p on p.id_product=dr.id_product\n" + 
+			"group by p.n_product\n" + 
+			"order by SUM(dr.quantity*p.m_price) \n" + 
+			"limit 1",nativeQuery=true)
+	public List<String[]> productoMenosVendido();
 }
