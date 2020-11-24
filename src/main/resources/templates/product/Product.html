@@ -146,7 +146,7 @@
 								class="mr-2 d-none d-lg-inline text-gray-600 small"><img
 									th:src="@{/img/logout.png}" width="30" height="30" alt="logo"
 									align="middle"></img></span>
-									div sec:authorize="isAuthenticated()">
+									<div sec:authorize="isAuthenticated()">
 									Bienvenido, <span sec:authentication="name">Username</span>
 								</div>
 									</a> <!-- Dropdown - User Information -->
