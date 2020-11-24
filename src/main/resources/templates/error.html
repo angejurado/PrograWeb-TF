@@ -30,22 +30,21 @@
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<ul class="navbar-nav bg-primary sidebar sidebar-dark accordion"
+		<ul
+			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 			id="accordionSidebar">
-
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				th:href="@{/stores/index}">
+				th:href="@{/categories/list}">
 				<div class="sidebar-brand-icon rotate-n-15">
-					<i class="fab fa-cuttlefish"></i>
+					<i class="fas fa-leaf"></i>
 				</div>
-				<div class="sidebar-brand-text mx-3">C-TOP</div>
+				<div class="sidebar-brand-text mx-2">Programación en Web</div>
 			</a>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
-
 
 
 			<!-- Nav Item - Pages Collapse Menu -->
@@ -55,6 +54,7 @@
 			</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 					data-parent="#accordionSidebar">
+					
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/stores/list}">Tiendas</a>
 					</div>
@@ -89,15 +89,15 @@
 						<a class="collapse-item" th:href="@{/reserves/listVoucher}">Vouchers</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" th:href="@{/reserves/reports}">Reportes</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/userss/list}">Usuarios</a>
 					</div>
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" th:href="@{/roles/list}">Roles</a>
 					</div>
 				</div></li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
 
 			<!-- Sidebar Toggler (Sidebar) -->
 
@@ -133,6 +133,33 @@
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
 						</a></li>
+
+
+
+						<!-- Nav Item - User Information -->
+						<li class="nav-item dropdown no-arrow"><a
+							class="nav-link dropdown-toggle" href="#" id="userDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> <span
+								class="mr-2 d-none d-lg-inline text-gray-600 small"><img
+									th:src="@{/img/logout.png}" width="30" height="30" alt="logo"
+									align="middle"></img></span>
+
+						</a> <!-- Dropdown - User Information -->
+							<div
+								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+								aria-labelledby="userDropdown">
+								<a class="dropdown-item" href="#"> <i
+									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
+								</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#" data-toggle="modal"
+									data-target="#logoutModal"> <i
+									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+									Cerrar sesión
+								</a>
+							</div></li>
+
 					</ul>
 
 				</nav>
@@ -141,111 +168,19 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
-					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Tienda</h1>
+					<div class="container">
 
-					<hr class="sidebar-divider">
-					<div th:object="${store}" th:remove="tag">
-						<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
-							role="alert">
-							<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
-						</ul>
+						<div class="card bg-danger text-white">
+							<div class="card-header">Acceso Denegado!</div>
+							<div class="card-body">
+								<h5 class="card-title">Los sentimos , NO tienes permisos
+									para acceder a este recurso.</h5>
+								<a th:href="@{/products/list}" class="btn btn-outline-light"
+									role="button">Ir al inicio</a>
+
+							</div>
+						</div>
 					</div>
-
-					<form th:action="@{/stores/update}" th:object="${store}"
-						method="post">
-						
-						<div class="form-group row">
-							<label for="idStore" class="col-sm-2 col-form-label">Id</label>
-							<div class="col-sm-6">
-								<input type="text" readonly th:field="*{idStore}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('idStore')}"
-									th:errors="*{idStore}"></small>
-							</div>
-						</div>
-						
-						<div class="form-group row">
-							<label for="name" class="col-sm-2 col-form-label">Nombre
-								de Negocio</label>
-							<div class="col-sm-6">
-								<input type="text" required="required" th:field="*{nameBusiness}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('nameBusiness')}"
-									th:errors="*{nameBusinesse}"></small>
-							</div>
-						</div>
-
-
-						<div class="form-group row">
-							<label for="starHour" class="col-sm-2 col-form-label">Hora
-								de Inicio</label>
-							<div class="col-sm-2">
-								<input type="time" required="required" th:field="*{starHour}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('starHour')}"
-									th:errors="*{starHour}"></small>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="endHour" class="col-sm-2 col-form-label">Hora
-								de Fin</label>
-							<div class="col-sm-2">
-								<input type="time" required="required" th:field="*{endHour}" class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('endHour')}" th:errors="*{endHour}"></small>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="tDescription" class="col-sm-2 col-form-label">Descripcion</label>
-							<div class="col-sm-6">
-								<input type="text" required="required" th:field="*{tDescription}"
-									class="form-control"
-									th:errorclass="'form-control alert-danger'" /> <small
-									class="form-text text-danger"
-									th:if="${#fields.hasErrors('tDescription')}"
-									th:errors="*{tDescription}"></small>
-							</div>
-						</div>
-
-						<div class="form-group row ">
-							<label for="user" class="col-sm-2 col-form-label">Dueño</label>
-							<div class="col-sm-6">
-								<select class="form-control" required="required" th:field="*{user.idUser}">
-									<option th:each="l: ${listaUsuarios}" th:value="${l.idUser}"
-										th:text="${l.nameUser}"
-										th:selected="(${l.idUser} == *{user.idUser})"></option>
-								</select>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label for="location" class="col-sm-2 col-form-label">Location</label>
-							<div class="col-sm-6">
-								<select class="form-control" th:field="*{location.idLocation}">
-									<option th:each="l: ${listaLocaciones}"
-										th:value="${l.idLocation}" th:text="${l.nameDirection}"
-										th:selected="(${l.idLocation} == *{location.idLocation})"></option>
-								</select>
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<div class="col-sm-6">
-								<input type="submit" value="Actualizar" class="btn btn-dark"></input>
-								<a href="/stores/list" class="btn btn-danger">Cancelar</a>
-							</div>
-						</div>
-						<p th:text="${mensaje}" class="form-text text-danger"></p>
-
-					</form>
-
-
 
 
 				</div>
@@ -258,7 +193,7 @@
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Web 2020-02</span>
+						<span>Copyright &copy; Web 2020</span>
 					</div>
 				</div>
 			</footer>
@@ -291,10 +226,13 @@
 				<div class="modal-body">Seleccione "Cerrar sesión" a
 					continuación si está listo para finalizar su sesión actual</div>
 				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancelar</button>
-					<a class="btn btn-primary" th:href="@{/categories/index}">Cerrar
-						Sesión</a>
+					<form id="logoutForm" th:action="@{/logout}" method="post">
+						<button class="btn btn-danger"
+							onclick="document.getElementById('logoutForm').submit();"
+							type="submit">Cerrar</button>
+						<button class="btn btn-dark" type="button" data-dismiss="modal"
+							th:href="@{/categories/list}">Cancel</button>
+					</form>
 				</div>
 			</div>
 		</div>
